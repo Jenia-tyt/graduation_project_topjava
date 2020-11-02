@@ -1,6 +1,7 @@
 Hi, this is my graduation project from the course TopJava.
 
 There are two types of users:
+
 User;
 
 Admin;
