@@ -1,6 +1,5 @@
 package ru.restaurants.repository.datajpa;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
@@ -8,13 +7,13 @@ import ru.restaurants.repository.RestaurantRepository;
 import java.util.List;
 
 @Repository
-public class RestaurantsDataJpa implements RestaurantRepository {
+public class RestaurantsDataJpaRepository implements RestaurantRepository {
 
-    @Autowired
-    private final CrudRestaurant repository;
 
-    public RestaurantsDataJpa(CrudRestaurant repository) {
-        this.repository = repository;
+    private final CrudRestaurant CrudRepository;
+
+    public RestaurantsDataJpaRepository(CrudRestaurant repository) {
+        this.CrudRepository = repository;
     }
 
     @Override
@@ -29,8 +28,7 @@ public class RestaurantsDataJpa implements RestaurantRepository {
 
     @Override
     public Restaurant get(Integer id) {
-        return repository.findById(id).orElse(null);
-
+        return CrudRepository.findById(id).orElse(null);
     }
 
     @Override

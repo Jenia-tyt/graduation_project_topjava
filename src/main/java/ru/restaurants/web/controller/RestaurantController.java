@@ -16,10 +16,11 @@ public class RestaurantController {
 
     private static final Logger LOG = LoggerFactory.getLogger(RestaurantController.class);
 
-    @Autowired
-    @Qualifier("RestaurantsDataJpa")
-    private RestaurantRepository repository;
+    private final RestaurantRepository repository;
 
+    public RestaurantController(RestaurantRepository repository) {
+        this.repository = repository;
+    }
 
     public Restaurant get (Integer id){
         LOG.info("get restaurant {}", id);

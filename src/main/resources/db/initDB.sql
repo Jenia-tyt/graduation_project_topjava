@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS restaurant;
 
-CREATE SEQUENCE global_seq START WITH 1;
+-- CREATE SEQUENCE global_seq START WITH 1;
 
 
 CREATE TABLE restaurant
