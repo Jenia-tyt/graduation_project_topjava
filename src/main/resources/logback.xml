@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod = "30 seconds">
+
+    <contextListner class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>
+            true
+        </resetJUL>
+    </contextListner>
+
+    <jmxConfigurator/>
+
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>
+            /Users/evgeny/Graduation_Project/log/Rest.log
+        </file>
+        <encoder>
+            <charster>UTF-8</charster>
+            <pattern>%date %-5level %logger{50}.%M:%L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charster>UTF-8</charster>
+            <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) %cyan(%class{50}.%M:%L) -%msg%n</pattern>
+        </encoder>
+        <logger name="ru.restaurants" level="debug"/>
+
+        <root level="info"/>
+            <appender-ref ref="file"/>
+            <appender-ref ref="console"/>
+    </appender>
+
+
+</configuration>
