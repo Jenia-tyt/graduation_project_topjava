@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<configuration scan="true" scanPeriod = "30 seconds">
+<configuration>
 
     <contextLisner class="ch.qos.logback.classic.jul.LevelChangePropagator">
-        <resetJUL>
-            true
-        </resetJUL>
+        <resetJUL>true</resetJUL>
     </contextLisner>
 
     <appender name="console"  class="ch.qos.logback.core.ConsoleAppender">
@@ -12,6 +9,7 @@
             <charster>UTF-8</charster>
             <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) %cyan(%class{50}.%M:%L) - %msg%n</pattern>
         </encoder>
+    </appender>
 
         <appender name="result" class="ch.qos.logback.core.ConsoleAppender">
             <encoder>
@@ -19,6 +17,7 @@
                 <pattern>%magenta(%msg%n)</pattern>
             </encoder>
         </appender>
+
         <logger name="result" level="INFO" additivity="false">
             <appender-ref ref="result"/>
         </logger>
@@ -30,5 +29,4 @@
         <root level="INFO">
             <appender-ref ref="console"/>
         </root>
-    </appender>
 </configuration>

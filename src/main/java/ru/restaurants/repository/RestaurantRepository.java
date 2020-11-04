@@ -8,7 +8,7 @@ public interface RestaurantRepository {
 
     public Restaurant save (Restaurant r);
 
-    public boolean delete (Integer id);
+    public void delete (Integer id);
 
     public Restaurant get (Integer id);
 
