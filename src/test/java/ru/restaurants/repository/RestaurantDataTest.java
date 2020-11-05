@@ -9,6 +9,7 @@ import java.util.List;
 public class RestaurantDataTest {
     public static final Integer REST_ID = 1;
     public static final Restaurant REST = new Restaurant(REST_ID, "user1", "компот 1 макороны 2 суп 3", 0);
+    public static final Integer REST_ID_NOT_FOUND = 22;
 
     private static final Restaurant r1 = new Restaurant(REST_ID, "user1", "компот 1 макороны 2 суп 3", 0);
     private static final Restaurant r2 = new Restaurant(REST_ID+1,"user2", "чай 2 гречка 4 щи 9", 10);
@@ -19,5 +20,13 @@ public class RestaurantDataTest {
 
     public static Restaurant getNew(){
         return new Restaurant(null, "getNew", "menu", 666);
+    }
+
+    public static Restaurant getUpdate (Restaurant rest){
+        Restaurant r = new Restaurant(rest);
+        r.setName("Update name");
+        r.setMenu("Update menu");
+        r.setRating(888);
+        return r;
     }
 }

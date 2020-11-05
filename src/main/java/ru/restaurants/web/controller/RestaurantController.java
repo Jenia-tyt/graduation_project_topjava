@@ -4,8 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
+import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
 
 import java.util.List;
 
@@ -23,11 +25,12 @@ public class RestaurantController {
 
     public Restaurant get(Integer id) {
         LOG.info("get restaurant {}", id);
-        return repository.get(id);
+        return checkNotFoundWithId(repository.get(id), id);
     }
 
     public Restaurant save(Restaurant r) {
         LOG.info("Save restaurant r{}", r);
+        Assert.notNull(r, "Restaurant doesn't be null");
         return repository.save(r);
     }
 
@@ -38,6 +41,6 @@ public class RestaurantController {
 
     public void delete (int id){
         LOG.info("delete restaurant id{}", id);
-        repository.delete(id);
+        checkNotFoundWithId(repository.delete(id), id);
     }
 }

@@ -23,8 +23,8 @@ public class RestaurantsDataJpaRepository implements RestaurantRepository {
     }
 
     @Override
-    public void delete(Integer id) {
-        crudRestaurant.deleteById(id);
+    public boolean delete(Integer id) {
+        return crudRestaurant.delete(id) != 0;
     }
 
     @Override
