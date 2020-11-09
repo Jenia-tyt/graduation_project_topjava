@@ -2,6 +2,7 @@ package ru.restaurants.web.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
@@ -17,6 +18,7 @@ public class RestaurantController {
 
     private static final Logger LOG = LoggerFactory.getLogger(RestaurantController.class);
 
+    @Autowired
     private final RestaurantRepository repository;
 
     public RestaurantController(RestaurantRepository repository) {

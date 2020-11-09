@@ -34,7 +34,7 @@ public class RestaurantsDataJpaTest {
 
     @Test
     public void duplicateCreateRestaurant(){
-        assertThrows(DataAccessException.class, ()-> controller.save(new Restaurant(null, "user1", "duplicate", 0)));
+        assertThrows(DataAccessException.class, ()-> controller.save(new Restaurant(null, "restaurant1", 0)));
     }
 
     @Test
@@ -52,6 +52,7 @@ public class RestaurantsDataJpaTest {
         Restaurant r = controller.get(RestaurantDataTest.REST_ID);
         int id = r.id();
         Restaurant updateRest = RestaurantDataTest.getUpdate(r);
+        updateRest.setId(id);
         controller.save(updateRest);
         Restaurant z = controller.get(id);
         assertThat(z).isEqualTo(updateRest);
@@ -59,8 +60,9 @@ public class RestaurantsDataJpaTest {
 
     @Test
     public void delete() {
+        Restaurant r = controller.get(RestaurantDataTest.REST_ID);
         controller.delete(RestaurantDataTest.REST_ID);
-        Assert.assertNull(controller.get(RestaurantDataTest.REST_ID));
+        Assert.assertThrows(NotFoundException.class, () -> controller.get(RestaurantDataTest.REST_ID));
     }
 
     @Test

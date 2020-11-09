@@ -1,7 +1,9 @@
 package ru.restaurants.repository;
 
+import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface RestaurantRepository {
@@ -13,4 +15,8 @@ public interface RestaurantRepository {
     public Restaurant get (Integer id);
 
     public List<Restaurant> getAll ();
+
+    public List<Menu> getMenuOfDate(Integer idRest, LocalDate start, LocalDate end);
+
+    public Menu getMenuOfDate(Integer idRest, LocalDate date);
 }
