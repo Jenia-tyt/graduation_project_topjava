@@ -1,7 +1,9 @@
 package ru.restaurants.repository.datajpa;
 
+import net.bytebuddy.asm.Advice;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
@@ -39,14 +41,8 @@ public class RestaurantsDataJpaRepository implements RestaurantRepository {
         return crudRestaurant.findAll(SORT);
     }
 
-
     @Override
-    public List<Menu> getMenuOfDate(Integer idRest, LocalDate start,  LocalDate end) {
-        return null;
-    }
-
-    @Override
-    public Menu getMenuOfDate(Integer idRest, LocalDate date) {
-        return null;
+    public List<Menu> getAllMenuForRest(Integer idRest) {
+        return crudRestaurant.getAllMenuForRest(idRest);
     }
 }

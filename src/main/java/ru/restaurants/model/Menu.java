@@ -1,6 +1,9 @@
 package ru.restaurants.model;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
@@ -13,17 +16,23 @@ import java.time.LocalDateTime;
 @Table(name = "menu")
 public class Menu extends AbstractBaseEntity{
 
-    @Column(name = "name_Rest")
+    @Column(name = "name_rest")
     @NotNull
     @NotBlank
     @Size(min = 2, max = 30)
     private String nameRest;
 
-    @Column(name = "id_rest")
-    @NotNull
-    private Integer idRest;
+//    @Column(name = "id_rest")
+//    @NotNull
+//    private Integer idRest;
 
-    @Column(name = "date_Menu")
+    @ManyToOne
+    @NotNull
+    @JoinColumn (name = "id_rest", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Restaurant rest;
+
+    @Column(name = "date_menu")
     @NotBlank
     @NotNull
     private LocalDateTime dateTimeMenu;
@@ -35,18 +44,18 @@ public class Menu extends AbstractBaseEntity{
 
     public Menu() {}
 
-    public Menu(@NotNull @NotBlank @Size(min = 2, max = 30) String nameRest, @NotNull Integer idRest, @NotBlank @NotNull LocalDateTime dateTimeMenu, @NotNull @NotBlank String menuRest) {
-        this(null, nameRest, idRest, dateTimeMenu, menuRest);
+    public Menu(@NotNull @NotBlank @Size(min = 2, max = 30) String nameRest, @NotNull Restaurant r, @NotBlank @NotNull LocalDateTime dateTimeMenu, @NotNull @NotBlank String menuRest) {
+        this(null, nameRest, r, dateTimeMenu, menuRest);
     }
 
     public Menu (Menu m){
-        this(m.getId(), m.getNameRest(), m.idRest, m.getDateTimeMenu(), m.getMenuRest());
+        this(m.getId(), m.getNameRest(), m.rest, m.getDateTimeMenu(), m.getMenuRest());
     }
 
-    public Menu(Integer id, String nameRest, Integer idRest, LocalDateTime dateTimeMenu, String menuRest) {
+    public Menu(Integer id, String nameRest, Restaurant r, LocalDateTime dateTimeMenu, String menuRest) {
         super(id);
         this.nameRest = nameRest;
-        this.idRest = idRest;
+        this.rest = r;
         this.dateTimeMenu = dateTimeMenu;
         this.menuRest = menuRest;
     }
@@ -75,12 +84,12 @@ public class Menu extends AbstractBaseEntity{
         this.menuRest = menuRest;
     }
 
-    public Integer getIdRest() {
-        return idRest;
+    public Restaurant getRest() {
+        return rest;
     }
 
-    public void setIdRest(Integer id_Rest) {
-        this.idRest = id_Rest;
+    public void setRest(Restaurant rest) {
+        this.rest = rest;
     }
 
     @Override
@@ -88,6 +97,6 @@ public class Menu extends AbstractBaseEntity{
         return "Name restaurant" + nameRest + "\n" +
                 "date menu: " + dateTimeMenu + "\n" +
                 "Menu: " + menuRest +
-                "Id rest: " + idRest;
+                "Id rest: " + rest.getName();
     }
 }

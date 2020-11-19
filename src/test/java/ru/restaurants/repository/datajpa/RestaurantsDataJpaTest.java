@@ -1,24 +1,30 @@
 package ru.restaurants.repository.datajpa;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.InstanceOfAssertFactories.LIST;
 import static org.junit.Assert.assertThrows;
 
 import org.junit.Assert;
+import org.junit.ClassRule;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExternalResource;
+import org.junit.rules.Stopwatch;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.support.DataAccessUtils;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
+import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantDataTest;
 import ru.restaurants.util.execption.NotFoundException;
 import ru.restaurants.web.controller.RestaurantController;
 
+import java.util.List;
 
 
 @ContextConfiguration({
@@ -31,6 +37,12 @@ public class RestaurantsDataJpaTest {
 
     @Autowired
     private RestaurantController controller;
+
+    @ClassRule
+    public static ExternalResource summary = TimingRule.SUMMARY;
+
+    @Rule
+    public Stopwatch stopwatch = TimingRule.STOPWATCH;
 
     @Test
     public void duplicateCreateRestaurant(){
@@ -48,6 +60,7 @@ public class RestaurantsDataJpaTest {
     }
 
     @Test
+    @Transactional
     public void upDate(){
         Restaurant r = controller.get(RestaurantDataTest.REST_ID);
         int id = r.id();
@@ -59,7 +72,7 @@ public class RestaurantsDataJpaTest {
     }
 
     @Test
-    public void delete() {
+    public void delete() { //NOT OK, Need check, does menu with this ID be in table with name "menu".
         Restaurant r = controller.get(RestaurantDataTest.REST_ID);
         controller.delete(RestaurantDataTest.REST_ID);
         Assert.assertThrows(NotFoundException.class, () -> controller.get(RestaurantDataTest.REST_ID));
@@ -68,6 +81,7 @@ public class RestaurantsDataJpaTest {
     @Test
     public void get() {
         Restaurant r = controller.get(RestaurantDataTest.REST_ID);
+        Restaurant f = RestaurantDataTest.REST;
         assertThat(r).isEqualTo(RestaurantDataTest.REST);
     }
 
@@ -85,5 +99,21 @@ public class RestaurantsDataJpaTest {
         Restaurant rBeforeSave = controller.get(idNew);
         assertThat(r).isEqualTo(testR);
         assertThat(r).isEqualTo(rBeforeSave);
+    }
+
+    @Test
+    public void getAllMenuForRest(){
+        assertThat(controller.getAllMenuForRest(RestaurantDataTest.REST_ID))
+                .usingElementComparatorIgnoringFields("id")
+                .isEqualTo(RestaurantDataTest.MENU_OF_REST);
+    }
+
+    @Test
+    @Transactional
+    public void save (){
+        Restaurant r = RestaurantDataTest.getNew();
+        r.setMenu(RestaurantDataTest.MENU_OF_REST);
+        Restaurant f = controller.save(r);
+        assertThat(r).isEqualTo(f);
     }
 }

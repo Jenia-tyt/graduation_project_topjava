@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
@@ -45,4 +47,10 @@ public class RestaurantController {
         LOG.info("delete restaurant id{}", id);
         checkNotFoundWithId(repository.delete(id), id);
     }
+
+    public List<Menu> getAllMenuForRest(Integer id){
+        LOG.info("get all menu for restaurant id{}", id);
+        return checkNotFoundWithId(repository.getAllMenuForRest(id), id);
+    }
+
 }

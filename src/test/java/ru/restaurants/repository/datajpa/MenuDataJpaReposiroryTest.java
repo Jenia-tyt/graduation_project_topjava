@@ -32,8 +32,6 @@ public class MenuDataJpaReposiroryTest {
 
     @Test
     public void getAll() {
-        List<Menu> z = menuController.getAll();
-        int f = 0;
     }
 
     @Test

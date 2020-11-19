@@ -14,9 +14,8 @@ public interface RestaurantRepository {
 
     public Restaurant get (Integer id);
 
-    public List<Restaurant> getAll ();
+    public List<Restaurant> getAll();
 
-    public List<Menu> getMenuOfDate(Integer idRest, LocalDate start, LocalDate end);
+    public List<Menu> getAllMenuForRest (Integer idRest);
 
-    public Menu getMenuOfDate(Integer idRest, LocalDate date);
 }

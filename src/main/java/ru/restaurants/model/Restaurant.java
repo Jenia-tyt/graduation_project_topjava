@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -22,7 +21,7 @@ public class Restaurant extends AbstractBaseEntity{
     @Size(min = 3, max = 30)
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "rest")
     @OrderBy("dateTimeMenu DESC")
     private List <Menu> menu;
 
@@ -45,8 +44,6 @@ public class Restaurant extends AbstractBaseEntity{
         this.name = name;
         this.rating = rating;
     }
-
-
 
     public String getName() {
         return name;
@@ -76,7 +73,6 @@ public class Restaurant extends AbstractBaseEntity{
     public String toString() {
         return "ID" + getId() + "\n" +
                 "Название ресторана: " + name +"\n" +
-                "menu: " + menuOfDate() + "\n" +
                 "рейтинг: " + rating + "\n";
     }
 
