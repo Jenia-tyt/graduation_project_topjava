@@ -4,19 +4,20 @@ import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface MenuRepository {
+    public Menu get(int id);
+
     public List<Menu> getAll();
 
-    public List<Menu> getAllRest(Restaurant r);
+    public List<Menu> getAllMenuOfRest(int id_rest);
 
-    public List<Menu> getAllDate (LocalDate date);
+    public List<Menu> getAllDate (LocalDateTime date);
 
-    public Menu get();
+    public boolean delete (int id);
 
-    public boolean delete (Integer id);
-
-    public  Menu save ();
+    public  Menu save (Menu m);
 
 }

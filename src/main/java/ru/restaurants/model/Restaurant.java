@@ -2,6 +2,8 @@ package ru.restaurants.model;
 
 
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
@@ -59,6 +61,10 @@ public class Restaurant extends AbstractBaseEntity{
 
     public void setMenu(List<Menu> menu) {
         this.menu = new ArrayList<>(menu);
+    }
+
+    public void addMenuINList(Menu m){
+        menu.add(m);
     }
 
     public Integer getRating() {

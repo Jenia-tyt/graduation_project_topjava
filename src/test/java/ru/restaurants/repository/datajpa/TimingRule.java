@@ -1,40 +1,36 @@
 package ru.restaurants.repository.datajpa;
 
-import org.junit.rules.ExternalResource;
-import org.junit.rules.Stopwatch;
-import org.junit.runner.Description;
+import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StopWatch;
 
-import java.util.concurrent.TimeUnit;
+public class TimingRule implements
+    BeforeTestExecutionCallback, AfterTestExecutionCallback, BeforeAllCallback, AfterAllCallback {
 
-public class TimingRule {
-    private static final Logger LOG = LoggerFactory.getLogger("result");
+        private static final Logger log = LoggerFactory.getLogger("result");
 
-    private static final StringBuilder results = new StringBuilder();
+        private StopWatch stopWatch;
 
-    public static final Stopwatch STOPWATCH = new Stopwatch(){
         @Override
-        protected void finished(long nanos, Description description) {
-            String result = String.format("%-95s %7d", description.getDisplayName(), TimeUnit.NANOSECONDS.toMillis(nanos));
-            results.append(result).append('\n');
-            LOG.info(result + " ms\n");
-        }
-    };
-
-    private static final String DELIM = "-".repeat(103);
-
-    public static final ExternalResource SUMMARY = new ExternalResource() {
-        @Override
-        protected void before() throws Throwable {
-            results.setLength(0);
+        public void beforeAll(ExtensionContext extensionContext) {
+            stopWatch = new StopWatch("Execution time of " + extensionContext.getRequiredTestClass().getSimpleName());
         }
 
         @Override
-        protected void after() {
-            LOG.info("\n" + DELIM +
-                    "\nTest                                                                                       Duration, ms" +
-                    "\n" + DELIM + "\n" + results + DELIM + "\n");
+        public void beforeTestExecution(ExtensionContext extensionContext) {
+            String testName = extensionContext.getDisplayName();
+            log.info("\nStart " + testName);
+            stopWatch.start(testName);
         }
-    };
-}
+
+        @Override
+        public void afterTestExecution(ExtensionContext extensionContext) {
+            stopWatch.stop();
+        }
+
+        @Override
+        public void afterAll(ExtensionContext extensionContext) {
+            log.info('\n' + stopWatch.prettyPrint() + '\n');
+        }
+    }

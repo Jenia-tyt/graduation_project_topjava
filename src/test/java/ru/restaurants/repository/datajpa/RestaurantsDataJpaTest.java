@@ -1,48 +1,33 @@
 package ru.restaurants.repository.datajpa;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.LIST;
-import static org.junit.Assert.assertThrows;
 
-import org.junit.Assert;
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExternalResource;
-import org.junit.rules.Stopwatch;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
-import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
-import ru.restaurants.repository.RestaurantDataTest;
+import ru.restaurants.repository.DataTest;
 import ru.restaurants.util.execption.NotFoundException;
 import ru.restaurants.web.controller.RestaurantController;
 
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
-@ContextConfiguration({
+@SpringJUnitConfig(locations = {
         "classpath:spring/spring-db.xml",
         "classpath:spring/spring-app.xml"
 })
-@RunWith(SpringRunner.class)
+@ExtendWith(TimingRule.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class RestaurantsDataJpaTest {
 
     @Autowired
     private RestaurantController controller;
-
-    @ClassRule
-    public static ExternalResource summary = TimingRule.SUMMARY;
-
-    @Rule
-    public Stopwatch stopwatch = TimingRule.STOPWATCH;
 
     @Test
     public void duplicateCreateRestaurant(){
@@ -51,50 +36,46 @@ public class RestaurantsDataJpaTest {
 
     @Test
     public void deleteNotFounded(){
-        assertThrows(NotFoundException.class, () -> controller.delete(RestaurantDataTest.REST_ID_NOT_FOUND));
+        assertThrows(NotFoundException.class, () -> controller.delete(DataTest.REST_ID_NOT_FOUND));
     }
 
     @Test
     public void getNotFounded() {
-        assertThrows(NotFoundException.class, () -> controller.get(RestaurantDataTest.REST_ID_NOT_FOUND));
+        assertThrows(NotFoundException.class, () -> controller.get(DataTest.REST_ID_NOT_FOUND));
     }
 
     @Test
-    @Transactional
     public void upDate(){
-        Restaurant r = controller.get(RestaurantDataTest.REST_ID);
-        int id = r.id();
-        Restaurant updateRest = RestaurantDataTest.getUpdate(r);
-        updateRest.setId(id);
-        controller.save(updateRest);
-        Restaurant z = controller.get(id);
-        assertThat(z).isEqualTo(updateRest);
+        Restaurant r = controller.get(DataTest.REST_ID);
+        r.setName("Name UpDate");
+        r.addMenuINList(DataTest.NEW_MENU);
+        Restaurant z = controller.save(r);
+        assertThat(z).isEqualTo(r);
     }
 
     @Test
-    public void delete() { //NOT OK, Need check, does menu with this ID be in table with name "menu".
-        Restaurant r = controller.get(RestaurantDataTest.REST_ID);
-        controller.delete(RestaurantDataTest.REST_ID);
-        Assert.assertThrows(NotFoundException.class, () -> controller.get(RestaurantDataTest.REST_ID));
+    public void delete() {
+        controller.delete(DataTest.REST_ID);
+        assertThrows(NotFoundException.class, () -> controller.get(DataTest.REST_ID));
     }
 
     @Test
     public void get() {
-        Restaurant r = controller.get(RestaurantDataTest.REST_ID);
-        Restaurant f = RestaurantDataTest.REST;
-        assertThat(r).isEqualTo(RestaurantDataTest.REST);
+        Restaurant r = controller.get(DataTest.REST_ID);
+        Restaurant f = DataTest.REST;
+        assertThat(r).isEqualTo(DataTest.REST);
     }
 
     @Test
     public void getAll() {
-        assertThat(controller.getAll()).isEqualTo(RestaurantDataTest.LIST_REST);
+        assertThat(controller.getAll()).isEqualTo(DataTest.LIST_REST);
     }
 
     @Test
     public void create(){
-        Restaurant r = controller.save(RestaurantDataTest.getNew());
+        Restaurant r = controller.save(DataTest.getNew());
         int idNew = r.id();
-        Restaurant testR = RestaurantDataTest.getNew();
+        Restaurant testR = DataTest.getNew();
         testR.setId(idNew);
         Restaurant rBeforeSave = controller.get(idNew);
         assertThat(r).isEqualTo(testR);
@@ -103,16 +84,14 @@ public class RestaurantsDataJpaTest {
 
     @Test
     public void getAllMenuForRest(){
-        assertThat(controller.getAllMenuForRest(RestaurantDataTest.REST_ID))
+        assertThat(controller.getAllMenuForRest(DataTest.REST_ID))
                 .usingElementComparatorIgnoringFields("id")
-                .isEqualTo(RestaurantDataTest.MENU_OF_REST);
+                .isEqualTo(DataTest.MENU_OF_REST);
     }
 
     @Test
-    @Transactional
     public void save (){
-        Restaurant r = RestaurantDataTest.getNew();
-        r.setMenu(RestaurantDataTest.MENU_OF_REST);
+        Restaurant r = DataTest.getNew();
         Restaurant f = controller.save(r);
         assertThat(r).isEqualTo(f);
     }

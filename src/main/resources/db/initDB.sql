@@ -14,9 +14,8 @@ CREATE TABLE menu
 (
     id          INTEGER     PRIMARY KEY DEFAULT  nextval('global_seq'),
     id_rest     INTEGER     not null,
-    name_rest   VARCHAR     not null,
     date_menu   TIMESTAMP   not null,
     menu        VARCHAR     not null,
-    UNIQUE (id_rest, name_rest, date_menu),
+    UNIQUE (id_rest, date_menu),
     FOREIGN KEY (id_rest) REFERENCES restaurant (id) ON DELETE CASCADE
 )

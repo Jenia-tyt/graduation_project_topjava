@@ -1,6 +1,8 @@
 package ru.restaurants.model;
 
 
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -8,23 +10,12 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 
 @Entity
 @Table(name = "menu")
 public class Menu extends AbstractBaseEntity{
-
-    @Column(name = "name_rest")
-    @NotNull
-    @NotBlank
-    @Size(min = 2, max = 30)
-    private String nameRest;
-
-//    @Column(name = "id_rest")
-//    @NotNull
-//    private Integer idRest;
 
     @ManyToOne
     @NotNull
@@ -33,8 +24,6 @@ public class Menu extends AbstractBaseEntity{
     private Restaurant rest;
 
     @Column(name = "date_menu")
-    @NotBlank
-    @NotNull
     private LocalDateTime dateTimeMenu;
 
     @Column(name = "menu")
@@ -44,28 +33,27 @@ public class Menu extends AbstractBaseEntity{
 
     public Menu() {}
 
-    public Menu(@NotNull @NotBlank @Size(min = 2, max = 30) String nameRest, @NotNull Restaurant r, @NotBlank @NotNull LocalDateTime dateTimeMenu, @NotNull @NotBlank String menuRest) {
-        this(null, nameRest, r, dateTimeMenu, menuRest);
+    public Menu( @NotNull Restaurant r, @NotBlank @NotNull LocalDateTime dateTimeMenu, @NotNull @NotBlank String menuRest) {
+        this(null, r, dateTimeMenu, menuRest);
     }
 
     public Menu (Menu m){
-        this(m.getId(), m.getNameRest(), m.rest, m.getDateTimeMenu(), m.getMenuRest());
+        this(m.getId(), m.rest, m.getDateTimeMenu(), m.getMenuRest());
     }
 
-    public Menu(Integer id, String nameRest, Restaurant r, LocalDateTime dateTimeMenu, String menuRest) {
+    public Menu(Integer id, Restaurant r, LocalDateTime dateTimeMenu, String menuRest) {
         super(id);
-        this.nameRest = nameRest;
         this.rest = r;
         this.dateTimeMenu = dateTimeMenu;
         this.menuRest = menuRest;
     }
 
-    public String getNameRest() {
-        return nameRest;
+    public Restaurant getRest() {
+        return rest;
     }
 
-    public void setNameRest(String nameRest) {
-        this.nameRest = nameRest;
+    public void setRest(Restaurant rest) {
+        this.rest = rest;
     }
 
     public LocalDateTime getDateTimeMenu() {
@@ -84,19 +72,25 @@ public class Menu extends AbstractBaseEntity{
         this.menuRest = menuRest;
     }
 
-    public Restaurant getRest() {
-        return rest;
-    }
-
-    public void setRest(Restaurant rest) {
-        this.rest = rest;
+    @Override
+    public String toString() {
+        return  "Name rest" + rest.getName()  +
+                "Date menu: " + dateTimeMenu + "\n" +
+                "Menu: " + menuRest +
+                "Id rest: " + rest.getName();
     }
 
     @Override
-    public String toString() {
-        return "Name restaurant" + nameRest + "\n" +
-                "date menu: " + dateTimeMenu + "\n" +
-                "Menu: " + menuRest +
-                "Id rest: " + rest.getName();
+    public boolean equals(Object o) {
+        if (this == o){
+            return true;
+        }
+        if (o == null || !getClass().equals(Hibernate.getClass(o))){
+            return false;
+        }
+        return this.id != null
+                && this.id.equals(((Menu) o).id)
+                && this.dateTimeMenu.equals(((Menu) o).dateTimeMenu)
+                && this.rest.equals(((Menu) o).rest);
     }
 }

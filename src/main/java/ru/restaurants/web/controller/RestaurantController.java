@@ -3,13 +3,14 @@ package ru.restaurants.web.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
+
+import javax.transaction.Transactional;
+
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class RestaurantController {
         LOG.info("get restaurant {}", id);
         return checkNotFoundWithId(repository.get(id), id);
     }
+
 
     public Restaurant save(Restaurant r) {
         LOG.info("Save restaurant r{}", r);
