@@ -2,7 +2,6 @@ package ru.restaurants.model;
 
 
 import org.hibernate.Hibernate;
-import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 

@@ -1,18 +1,44 @@
 package ru.restaurants.model;
 
+
+
+import org.hibernate.annotations.BatchSize;
+
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
 
+@Entity
+@Table(name = "users")
 public class User extends AbstractBaseEntity{
 
+    @NotNull
+    @Column(name = "email")
     private String email;
 
+    @NotNull
+    @Size(min = 3, max = 30)
+    @Column(name = "name")
     private String name;
 
+    @NotNull
+    @Size(min = 8, max = 30)
+    @Column(name = "password")
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "role", joinColumns = @JoinColumn(name = "user_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"}, name = "user_roles_idx")})
+    @Column(name = "role")
+    @ElementCollection(fetch = FetchType.EAGER)
+    @BatchSize(size = 200)
     private Set<Role> role;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OrderBy("dateVote DESC")
     private List<Vote> votes;
 
     private boolean voteToDay;

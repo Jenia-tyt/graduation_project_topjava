@@ -1,26 +1,29 @@
-package ru.restaurants.web.controller;
+package ru.restaurants.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Menu;
 import ru.restaurants.repository.MenuRepository;
+import ru.restaurants.web.controller.MenuController;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
 
-@Controller
-public class MenuController {
+@Service
+public class MenuService {
+
     private static final Logger LOG = LoggerFactory.getLogger(MenuController.class);
 
     @Autowired
     private final MenuRepository repository;
 
 
-    public MenuController(MenuRepository repository) {
+    public MenuService(MenuRepository repository) {
         this.repository = repository;
     }
 

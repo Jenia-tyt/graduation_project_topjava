@@ -8,14 +8,14 @@ import java.util.List;
 
 public interface RestaurantRepository {
 
-    public Restaurant save (Restaurant r);
+    Restaurant save (Restaurant r);
 
-    public boolean delete (Integer id);
+    boolean delete (Integer id);
 
-    public Restaurant get (Integer id);
+    Restaurant get (Integer id);
 
-    public List<Restaurant> getAll();
+    List<Restaurant> getAll();
 
-    public List<Menu> getAllMenuForRest (Integer idRest);
+    List<Menu> getAllMenuForRest (Integer idRest);
 
 }

@@ -9,13 +9,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
-public class MenuDataJpaReposirory implements MenuRepository {
+public class MenuDataJpaRepository implements MenuRepository {
 
     private static final Sort SORT = Sort.by(Sort.Direction.ASC, "id");
 
     private final CrudMenu crudMenu;
 
-    public MenuDataJpaReposirory(CrudMenu crudMenu) {
+    public MenuDataJpaRepository(CrudMenu crudMenu) {
         this.crudMenu = crudMenu;
     }
 

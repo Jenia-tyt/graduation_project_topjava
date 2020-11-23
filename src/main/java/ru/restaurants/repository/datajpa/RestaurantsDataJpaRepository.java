@@ -1,14 +1,11 @@
 package ru.restaurants.repository.datajpa;
 
-import net.bytebuddy.asm.Advice;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository
