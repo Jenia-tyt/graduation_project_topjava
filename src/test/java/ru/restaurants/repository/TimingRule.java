@@ -1,4 +1,4 @@
-package ru.restaurants.repository.datajpa;
+package ru.restaurants.repository;
 
 import org.junit.jupiter.api.extension.*;
 import org.slf4j.Logger;

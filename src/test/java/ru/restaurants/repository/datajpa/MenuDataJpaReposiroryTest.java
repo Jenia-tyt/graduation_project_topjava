@@ -3,15 +3,8 @@ package ru.restaurants.repository.datajpa;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import org.springframework.test.context.junit4.SpringRunner;
 import ru.restaurants.model.Menu;
 import ru.restaurants.repository.DataTest;
 import ru.restaurants.util.execption.NotFoundException;
@@ -23,14 +16,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
-@SpringJUnitConfig(locations = {
-        "classpath:spring/spring-db.xml",
-        "classpath:spring/spring-app.xml"
-        })
-@ExtendWith(TimingRule.class)
-@Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
-public class MenuDataJpaReposiroryTest {
+public class MenuDataJpaReposiroryTest extends AbstractDataJpaTest{
 
     @Autowired
     MenuController controller;

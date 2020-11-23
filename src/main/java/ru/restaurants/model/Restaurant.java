@@ -23,7 +23,7 @@ public class Restaurant extends AbstractBaseEntity{
     @Size(min = 3, max = 30)
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "rest")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "rest")
     @OrderBy("dateTimeMenu DESC")
     private List <Menu> menu;
 
@@ -63,8 +63,14 @@ public class Restaurant extends AbstractBaseEntity{
         this.menu = new ArrayList<>(menu);
     }
 
-    public void addMenuINList(Menu m){
-        menu.add(m);
+    public void addMenuInList(Menu m){
+        if (this.getMenu() != null) {
+            menu.add(m);
+        } else {
+            List<Menu> menus = new ArrayList<>();
+            menus.add(m);
+            setMenu(menus);
+        }
     }
 
     public Integer getRating() {
