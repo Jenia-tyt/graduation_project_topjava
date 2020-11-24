@@ -28,11 +28,6 @@ public class UserService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-    public List<User> getAll (){ //требуется реализация в crud
-        LOG.info("Get all users");
-        return null;
-    }
-
     public User getByEmail(String email){
         LOG.info("Get user with email {}", email);
         Assert.notNull(email, "Email doesn't be null");

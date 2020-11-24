@@ -22,11 +22,14 @@ public class Vote extends AbstractBaseEntity{
 
     @Column(name = "id_rest")
     @NotNull
-    @NotEmpty
-    private int idRest;
+    private Integer idRest;
 
     public Vote() {
     }
+
+//    public Vote(User user, LocalDateTime dateVote, int idRest){
+//        this(null, user, dateVote, idRest);
+//    }
 
     public Vote(Integer id, User user, LocalDateTime dateVote, int idRest) {
         super(id);
@@ -70,7 +73,8 @@ public class Vote extends AbstractBaseEntity{
         return this.id != null
                 && this.id.equals(((Vote)o).id)
                 && this.dateVote.equals(((Vote)o).dateVote)
-                && this.idRest==((Vote) o).idRest;
+                && this.idRest.equals(((Vote) o).idRest)
+                && this.user.equals(((Vote) o).user);
     }
 
     @Override
