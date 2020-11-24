@@ -27,9 +27,10 @@ VALUES ('user@mail.ru', 'user', 'passwordUser'),
        ('admin_user@gmail.com', 'admin_user', 'passwordAU');
 
 INSERT INTO role (user_id, role)
-VALUES (13, 'user'),
-       (14, 'admin'),
-       (15, 'admin, user');
+VALUES (13, 'USER'),
+       (14, 'ADMIN'),
+       (15, 'ADMIN'),
+       (15, 'USER');
 
 INSERT INTO vote (id_user, date_vote, id_rest)
 VALUES (13, '2020-01-30 13:00:00', 3),

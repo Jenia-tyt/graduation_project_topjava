@@ -1,6 +1,5 @@
 package ru.restaurants.repository.datajpa;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.restaurants.model.User;
 import ru.restaurants.repository.UserRepository;
@@ -21,10 +20,6 @@ public class UserDateJpaRepository implements UserRepository {
         return crudUser.findById(id).orElse(null);
     }
 
-    @Override
-    public List<User> getAll() {
-        return null;
-    }
 
     @Override
     public User getByEmail(String email) {

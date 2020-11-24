@@ -1,5 +1,7 @@
 package ru.restaurants.model;
 
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotEmpty;
@@ -55,5 +57,26 @@ public class Vote extends AbstractBaseEntity{
 
     public void setIdRest(int idRest) {
         this.idRest = idRest;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null){
+            return false;
+        }
+        if (this.getClass() != Hibernate.getClass(o)){
+            return false;
+        }
+        return this.id != null
+                && this.id.equals(((Vote)o).id)
+                && this.dateVote.equals(((Vote)o).dateVote)
+                && this.idRest==((Vote) o).idRest;
+    }
+
+    @Override
+    public String toString() {
+        return "User with id " + user.id +
+                "voted " + dateVote +
+                "behind " + idRest;
     }
 }

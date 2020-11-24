@@ -13,6 +13,7 @@ import ru.restaurants.util.execption.NotFoundException;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
+
 public class RestaurantsDataJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Autowired

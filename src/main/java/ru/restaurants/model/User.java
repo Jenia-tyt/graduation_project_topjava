@@ -2,14 +2,17 @@ package ru.restaurants.model;
 
 
 
+import net.bytebuddy.implementation.bind.annotation.Default;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.BatchSize;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -41,27 +44,44 @@ public class User extends AbstractBaseEntity{
     @OrderBy("dateVote DESC")
     private List<Vote> votes;
 
+    @Column(name = "vote_to_day")
+    @NotNull
     private boolean voteToDay;
 
     public User() {
     }
 
     public User (User user){
-        this(user.getId(), user.getEmail(), user.getName(), user.getPassword(), user.getRole(), user.getVotes(),user.isVoteToDay());
+        this(user.getId(), user.getEmail(), user.getName(), user.getPassword(), user.getVotes(),user.isVoteToDay(), user.getRole());
     }
 
-    public User(String email, String name, String password, Set<Role> role, List<Vote> votes, boolean voteToDay) {
-        this(null, email, name, password, role, votes, voteToDay);
+    public User(String email, String name, String password,  List<Vote> votes, Role role, Role... roles) {
+        this(null, email, name, password, votes, false, EnumSet.of(role, roles));
     }
 
-    public User(Integer id, String email, String name, String password, Set<Role> role, List<Vote> votes, boolean voteToDay) {
+    public User(Integer id, String email, String name, String password, List<Vote> votes, boolean voteToDay, Collection<Role> role) {
         super(id);
         this.email = email;
         this.name = name;
         this.password = password;
-        this.role = role;
         this.votes = votes;
         this.voteToDay = voteToDay;
+        setRole(role);
+    }
+
+    public User(Integer id, String email, String name, String password, List<Vote> votes, boolean voteToDay, Role role) {
+        super(id);
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.votes = votes;
+        this.voteToDay = voteToDay;
+        setRole(role);
+    }
+
+    public void setRole(Role r) {
+        this.role = new HashSet<>();
+        this.role.add(r);
     }
 
     public String getEmail() {
@@ -92,8 +112,8 @@ public class User extends AbstractBaseEntity{
         return role;
     }
 
-    public void setRole(Set<Role> role) {
-        this.role = role;
+    public void setRole(Collection<Role> role) {
+        this.role = CollectionUtils.isEmpty(role) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(role);
     }
 
     public boolean isVoteToDay() {
@@ -110,5 +130,24 @@ public class User extends AbstractBaseEntity{
 
     public void setVotes(List<Vote> votes) {
         this.votes = votes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null){
+            return false;
+        }
+        if (this.getClass() != Hibernate.getClass(o)){
+            return false;
+        }
+        return this.id != null
+                && this.id.equals(((User)o).id)
+                && this.name.equals(((User)o).name)
+                && this.email.equals(((User) o).email);
+    }
+    @Override
+    public String toString() {
+        return "Id user " + id +
+                "\nUser name " + name;
     }
 }
