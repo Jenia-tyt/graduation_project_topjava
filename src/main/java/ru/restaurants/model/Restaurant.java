@@ -1,5 +1,8 @@
 package ru.restaurants.model;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
 @Table(name = "restaurant", uniqueConstraints = @UniqueConstraint(columnNames = "name", name = "rest_unic_name_index"))
 public class Restaurant extends AbstractBaseEntity{

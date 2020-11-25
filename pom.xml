@@ -48,6 +48,7 @@
     <finalName>Rest</finalName>
     <defaultGoal>package</defaultGoal>
     <plugins>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -57,6 +58,7 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -65,6 +67,48 @@
           <argLine>-Dfile.encoding=UTF-8</argLine>
         </configuration>
       </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.cargo</groupId>
+        <artifactId>cargo-maven2-plugin</artifactId>
+        <version>1.8.2</version>
+        <configuration>
+          <container>
+            <containerId>tomcat9x</containerId>
+            <systemProperties>
+              <file.encoding>UTF-8</file.encoding>
+<!--              <spring.profiles.active>tomcat,datajpa</spring.profiles.active>-->
+            </systemProperties>
+            <dependencies>
+              <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+              </dependency>
+            </dependencies>
+          </container>
+          <configuration>
+            <configfiles>
+              <configfile>
+<!--                <file>src/main/resources/tomcat/context.xml</file>-->
+                <file>src/main/resources/tomcat/context.xml</file>
+                <todir>conf/Catalina/localhost/</todir>
+                <tofile>${project.build.finalName}.xml</tofile>
+              </configfile>
+            </configfiles>
+          </configuration>
+          <deployables>
+            <deployable>
+              <groupId>ru.restaurants</groupId>
+              <artifactId>Rating</artifactId>
+              <type>war</type>
+              <properties>
+                <context>${project.build.finalName}</context>
+              </properties>
+            </deployable>
+          </deployables>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 
@@ -101,6 +145,7 @@
       <version>${spring-data-jpa.version}</version>
     </dependency>
 
+<!--    ORM-->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
@@ -110,6 +155,11 @@
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>${hibernate-validator.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jcache</artifactId>
+      <version>${hibernate.version}</version>
     </dependency>
 
     <!--http://hibernate.org/validator/documentation/getting-started/#unified-expression-language-el-->
