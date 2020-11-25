@@ -10,7 +10,7 @@ import java.util.List;
 import static ru.restaurants.repository.UserDataTest.USER;
 import static ru.restaurants.repository.UserDataTest.USER_ID_15;
 
-public class VoteDateTest {
+public class VoteDataTest {
     public static final Integer VOTE_ID = 16;
     public static final Vote VOTE = new Vote(VOTE_ID, USER, LocalDateTime.of(2020,01, 30, 13,00, 00), 3);
     public static final List<Vote> LIST_VOTE_ALL_ID_REST_3 = Arrays.asList(VOTE);

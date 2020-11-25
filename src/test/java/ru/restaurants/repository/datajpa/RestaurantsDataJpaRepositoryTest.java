@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import ru.restaurants.model.Restaurant;
-import ru.restaurants.repository.DataTest;
 import ru.restaurants.service.RestaurantService;
 import ru.restaurants.util.execption.NotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import static ru.restaurants.repository.MenuDataTest.*;
+import static ru.restaurants.repository.RestDataTest.*;
 
 
 public class RestaurantsDataJpaRepositoryTest extends AbstractDataJpaTest{
@@ -26,46 +26,45 @@ public class RestaurantsDataJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     public void deleteNotFounded(){
-        assertThrows(NotFoundException.class, () -> service.delete(DataTest.REST_ID_NOT_FOUND));
+        assertThrows(NotFoundException.class, () -> service.delete(REST_ID_NOT_FOUND));
     }
 
     @Test
     public void getNotFounded() {
-        assertThrows(NotFoundException.class, () -> service.get(DataTest.REST_ID_NOT_FOUND));
+        assertThrows(NotFoundException.class, () -> service.get(REST_ID_NOT_FOUND));
     }
 
     @Test
     public void upDate(){
-        Restaurant r = DataTest.REST;
+        Restaurant r = REST;
         r.setName("Name UpDate");
-        r.addMenuInList(DataTest.NEW_MENU);
+        r.addMenuInList(NEW_MENU);
         Restaurant z = service.save(r);
         assertThat(z).isEqualTo(r);
     }
 
     @Test
     public void delete() {
-        service.delete(DataTest.REST_ID);
-        assertThrows(NotFoundException.class, () -> service.get(DataTest.REST_ID));
+        service.delete(REST_ID);
+        assertThrows(NotFoundException.class, () -> service.get(REST_ID));
     }
 
     @Test
     public void get() {
-        Restaurant r = service.get(DataTest.REST_ID);
-        Restaurant f = DataTest.REST;
-        assertThat(r).isEqualTo(DataTest.REST);
+        Restaurant r = service.get(REST_ID);
+        assertThat(r).isEqualTo(REST);
     }
 
     @Test
     public void getAll() {
-        assertThat(service.getAll()).isEqualTo(DataTest.LIST_REST);
+        assertThat(service.getAll()).isEqualTo(LIST_REST);
     }
 
     @Test
     public void create(){
-        Restaurant r = service.save(DataTest.getNew());
+        Restaurant r = service.save(getNew());
         int idNew = r.id();
-        Restaurant testR = DataTest.getNew();
+        Restaurant testR = getNew();
         testR.setId(idNew);
         Restaurant rBeforeSave = service.get(idNew);
         assertThat(r).isEqualTo(testR);
@@ -74,14 +73,14 @@ public class RestaurantsDataJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     public void getAllMenuForRest(){
-        assertThat(service.getAllMenuForRest(DataTest.REST_ID))
+        assertThat(service.getAllMenuForRest(REST_ID))
                 .usingElementComparatorIgnoringFields("id")
-                .isEqualTo(DataTest.MENU_OF_REST);
+                .isEqualTo(MENU_OF_REST);
     }
 
     @Test
     public void save (){
-        Restaurant r = DataTest.getNew();
+        Restaurant r = getNew();
         Restaurant f = service.save(r);
         assertThat(r).isEqualTo(f);
     }

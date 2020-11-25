@@ -9,7 +9,7 @@ import ru.restaurants.util.execption.NotFoundException;
 
 import java.util.List;
 
-import static ru.restaurants.repository.VoteDateTest.*;
+import static ru.restaurants.repository.VoteDataTest.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
