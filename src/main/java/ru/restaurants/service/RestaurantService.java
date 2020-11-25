@@ -3,6 +3,8 @@ package ru.restaurants.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Menu;
@@ -30,18 +32,20 @@ public class RestaurantService {
         return checkNotFoundWithId(repository.get(id), id);
     }
 
-
+    @CacheEvict(value = "restaurant", allEntries = true)
     public Restaurant save(Restaurant r) {
         LOG.info("Save restaurant r{}", r);
         Assert.notNull(r, "Restaurant doesn't be null");
         return repository.save(r);
     }
 
+    @Cacheable("restaurant")
     public List<Restaurant> getAll(){
         LOG.info("getAll restaurant");
         return repository.getAll();
     }
 
+    @CacheEvict(value = "restaurant", allEntries = true)
     public void delete (int id){
         LOG.info("delete restaurant id{}", id);
         checkNotFoundWithId(repository.delete(id), id);

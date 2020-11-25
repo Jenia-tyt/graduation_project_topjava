@@ -22,3 +22,4 @@ Maven;
 Git;
 JPA(Hibernate);
 Postgresql;
+Junit 5.

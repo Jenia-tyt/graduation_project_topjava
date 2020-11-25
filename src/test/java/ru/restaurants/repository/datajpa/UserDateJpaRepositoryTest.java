@@ -3,9 +3,12 @@ package ru.restaurants.repository.datajpa;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import ru.restaurants.model.Restaurant;
 import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.util.execption.NotFoundException;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;

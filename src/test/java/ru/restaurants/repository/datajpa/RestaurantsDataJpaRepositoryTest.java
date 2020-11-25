@@ -9,6 +9,8 @@ import ru.restaurants.model.Restaurant;
 import ru.restaurants.service.RestaurantService;
 import ru.restaurants.util.execption.NotFoundException;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.restaurants.repository.MenuDataTest.*;
 import static ru.restaurants.repository.RestDataTest.*;
@@ -83,5 +85,13 @@ public class RestaurantsDataJpaRepositoryTest extends AbstractDataJpaTest{
         Restaurant r = getNew();
         Restaurant f = service.save(r);
         assertThat(r).isEqualTo(f);
+    }
+
+    @Test
+    public void testCache() {
+        List<Restaurant> allRest = service.getAll();
+        service.delete(REST_ID);
+        List<Restaurant> allRest2 = service.getAll();
+        assertThat(allRest).isNotEqualTo(allRest2);
     }
 }
