@@ -19,7 +19,6 @@ public class MenuController {
     @Autowired
     private final MenuRepository repository;
 
-
     public MenuController(MenuRepository repository) {
         this.repository = repository;
     }

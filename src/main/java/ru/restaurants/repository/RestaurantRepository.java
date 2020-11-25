@@ -3,7 +3,6 @@ package ru.restaurants.repository;
 import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface RestaurantRepository {

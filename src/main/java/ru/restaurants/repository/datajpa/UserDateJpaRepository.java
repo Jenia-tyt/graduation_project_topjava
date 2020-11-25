@@ -4,8 +4,6 @@ import org.springframework.stereotype.Repository;
 import ru.restaurants.model.User;
 import ru.restaurants.repository.UserRepository;
 
-import java.util.List;
-
 @Repository
 public class UserDateJpaRepository implements UserRepository {
 

@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.repository.query.Param;
 import ru.restaurants.model.User;
 
-import java.util.List;
-
 
 @Transactional(readOnly = true)
 public interface CrudUser extends JpaRepository<User, Integer> {

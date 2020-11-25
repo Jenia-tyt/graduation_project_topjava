@@ -8,8 +8,6 @@ import org.springframework.util.Assert;
 import ru.restaurants.model.User;
 import ru.restaurants.repository.datajpa.UserDateJpaRepository;
 
-import java.util.List;
-
 import static ru.restaurants.util.ValidationUtil.*;
 
 @Service

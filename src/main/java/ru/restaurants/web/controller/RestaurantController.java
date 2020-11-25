@@ -9,8 +9,6 @@ import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
 
-import javax.transaction.Transactional;
-
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
 
 import java.util.List;

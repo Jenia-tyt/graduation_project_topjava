@@ -1,15 +1,11 @@
 package ru.restaurants.model;
 
-
-
-import net.bytebuddy.implementation.bind.annotation.Default;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.*;

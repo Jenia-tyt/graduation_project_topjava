@@ -5,13 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import ru.restaurants.model.User;
 import ru.restaurants.model.Vote;
 import ru.restaurants.repository.VoteRepository;
 
 import java.util.List;
 
-import static ru.restaurants.util.ValidationUtil.checkNotFound;
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
