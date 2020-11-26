@@ -1,0 +1,27 @@
+
+
+header {
+    background: none repeat scroll 0 0 #fa2222;
+    font-size: 30px;
+    padding: 5px 20px;
+    margin: 6px 0;
+}
+
+footer {
+    background: none repeat scroll 0 0 #a20202;
+    font-size: 20px;
+    padding: 5px 20px;
+    margin: 6px 0;
+}
+
+header, b, h2, div {
+    vertical-align: baseline;
+    text-align: center;
+}
+
+input, button, b {
+    font-size: 20px;
+}
+
+
+
