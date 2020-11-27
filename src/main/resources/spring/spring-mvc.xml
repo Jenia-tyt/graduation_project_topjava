@@ -11,7 +11,7 @@
     <context:component-scan base-package="ru.restaurants.**.web"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/WEB-INF/jsp"
+          p:prefix="/WEB-INF/jsp/"
           p:suffix=".jsp"/>
 
 
