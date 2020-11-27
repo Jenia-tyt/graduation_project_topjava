@@ -28,7 +28,7 @@ public class MenuDataTest {
     private static final Menu m5 = new Menu(12, r4, LocalDate.of(2020, Month.JANUARY, 30), "шампанское \"кристал\" 1 устрицы 1 черная икра 3");
     public static final List<Menu> ALL_MENU_OF_DATE_MENU_DATE = List.of(menu1, m2, m3, m4, m5);
 
-    private static final Menu m6 = new Menu(14, r4, LocalDate.of(2020, Month.NOVEMBER, 27), "шампанское \"кристал\" 1 устрицы 1 черная икра 3");
-    private static final Menu m7 = new Menu(13, r5, LocalDate.of(2020, Month.NOVEMBER, 27), "вода 100 хлебная мякиш 2 вода с хлебными крошками 3");
+    private static final Menu m6 = new Menu(14, r4, LocalDate.now(), "шампанское \"кристал\" 1 устрицы 1 черная икра 3");
+    private static final Menu m7 = new Menu(13, r5, LocalDate.now(), "вода 100 хлебная мякиш 2 вода с хлебными крошками 3");
     public static final List<Menu> ALL_MENU = List.of(menu1, m2, m3, m4, m5, menu2, menu3, m6, m7);
 }
