@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.restaurants.model.Menu;
 import ru.restaurants.repository.MenuRepository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -30,7 +30,7 @@ public class MenuDataJpaRepository implements MenuRepository {
     }
 
     @Override
-    public List<Menu> getAllDate(LocalDateTime date) {
+    public List<Menu> getAllDate(LocalDate date) {
         return crudMenu.getAllDate(date);
     }
 
@@ -48,4 +48,5 @@ public class MenuDataJpaRepository implements MenuRepository {
     public Menu save(Menu m) {
         return crudMenu.save(m);
     }
+
 }

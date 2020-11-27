@@ -24,7 +24,7 @@ public class Restaurant extends AbstractBaseEntity{
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "rest")
-    @OrderBy("dateTimeMenu DESC")
+    @OrderBy("dateMenu DESC")
     private List <Menu> menu;
 
     @Column(name = "rating")
@@ -90,7 +90,7 @@ public class Restaurant extends AbstractBaseEntity{
 
     private String menuOfDate (){
         Menu z = menu.stream()
-                .filter(m -> m.getDateTimeMenu().toLocalDate().equals(LocalDate.now()))
+                .filter(m -> m.getDateMenu().equals(LocalDate.now()))
                 .findFirst()
                 .orElse(null);
         return z != null ? z.getMenuRest() : null;

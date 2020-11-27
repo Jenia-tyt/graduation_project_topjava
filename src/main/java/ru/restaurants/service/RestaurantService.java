@@ -12,6 +12,7 @@ import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
 import ru.restaurants.web.controller.RestaurantController;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
@@ -51,8 +52,4 @@ public class RestaurantService {
         checkNotFoundWithId(repository.delete(id), id);
     }
 
-    public List<Menu> getAllMenuForRest(Integer id){
-        LOG.info("get all menu for restaurant id{}", id);
-        return checkNotFoundWithId(repository.getAllMenuForRest(id), id);
-    }
 }

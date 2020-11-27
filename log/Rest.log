@@ -9927,3 +9927,174 @@ Caused by: org.xml.sax.SAXParseException: cvc-complex-type.2.4.c: The matching w
 2020-11-27 18:42:11,019 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
 2020-11-27 18:42:11,380 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 360 ms
 2020-11-27 18:42:15,025 INFO  ru.restaurants.web.controller.RestaurantController.getAll:44 - getAll restaurant
+2020-11-27 20:38:52,705 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-11-27 20:38:52,921 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-27 20:38:52,988 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 57 ms. Found 4 JPA repository interfaces.
+2020-11-27 20:38:53,616 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-11-27 20:38:53,638 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:38:53,646 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:38:53,707 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-27 20:38:53,776 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-27 20:38:53,946 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-27 20:38:54,248 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-27 20:38:54,671 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-11-27 20:38:54,967 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-11-27 20:38:54,973 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-11-27 20:38:55,424 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-27 20:38:55,434 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-27 20:38:56,174 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3465 ms
+2020-11-27 20:38:56,188 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-11-27 20:38:56,551 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 361 ms
+2020-11-27 20:39:01,599 INFO  ru.restaurants.web.controller.RestaurantController.getAll:44 - getAll restaurant
+2020-11-27 20:41:20,107 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-11-27 20:41:20,356 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-27 20:41:20,434 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 70 ms. Found 4 JPA repository interfaces.
+2020-11-27 20:41:21,092 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-11-27 20:41:21,113 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:41:21,121 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:41:21,181 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-27 20:41:21,249 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-27 20:41:21,408 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-27 20:41:21,685 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-27 20:41:22,063 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-11-27 20:41:22,374 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-11-27 20:41:22,380 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-11-27 20:41:22,795 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-27 20:41:22,804 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-27 20:41:23,496 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3386 ms
+2020-11-27 20:41:23,521 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-11-27 20:41:23,843 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 322 ms
+2020-11-27 20:41:26,905 INFO  ru.restaurants.web.controller.RestaurantController.getAll:44 - getAll restaurant
+2020-11-27 20:42:04,114 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-11-27 20:42:04,361 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-27 20:42:04,434 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 64 ms. Found 4 JPA repository interfaces.
+2020-11-27 20:42:05,111 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-11-27 20:42:05,162 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:42:05,170 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:42:05,234 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-27 20:42:05,308 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-27 20:42:05,465 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-27 20:42:05,774 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-27 20:42:06,157 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-11-27 20:42:06,450 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-11-27 20:42:06,457 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-11-27 20:42:06,900 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-27 20:42:06,911 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-27 20:42:07,671 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3554 ms
+2020-11-27 20:42:07,686 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-11-27 20:42:08,052 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 366 ms
+2020-11-27 20:42:15,288 INFO  ru.restaurants.web.controller.RestaurantController.getAll:44 - getAll restaurant
+2020-11-27 20:42:53,345 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-11-27 20:42:53,574 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-27 20:42:53,646 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 63 ms. Found 4 JPA repository interfaces.
+2020-11-27 20:42:54,300 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-11-27 20:42:54,321 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:42:54,329 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:42:54,388 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-27 20:42:54,455 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-27 20:42:54,609 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-27 20:42:54,910 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-27 20:42:55,277 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-11-27 20:42:55,568 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-11-27 20:42:55,574 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-11-27 20:42:56,002 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-27 20:42:56,012 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-27 20:42:56,733 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3384 ms
+2020-11-27 20:42:56,748 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-11-27 20:42:57,121 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 373 ms
+2020-11-27 20:43:02,387 INFO  ru.restaurants.web.controller.RestaurantController.getAll:44 - getAll restaurant
+2020-11-27 20:44:15,053 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-11-27 20:44:15,476 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-27 20:44:15,601 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 110 ms. Found 4 JPA repository interfaces.
+2020-11-27 20:44:16,820 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-11-27 20:44:16,860 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:44:16,874 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:44:16,985 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-27 20:44:17,115 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-27 20:44:17,412 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-27 20:44:17,927 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-27 20:44:18,649 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-11-27 20:44:19,198 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-11-27 20:44:19,209 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-11-27 20:44:20,026 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-27 20:44:20,045 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-27 20:44:21,411 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 6353 ms
+2020-11-27 20:44:21,448 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-11-27 20:44:22,137 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 688 ms
+2020-11-27 20:44:25,428 INFO  ru.restaurants.web.controller.RestaurantController.getAll:44 - getAll restaurant
+2020-11-27 20:46:18,397 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-11-27 20:46:18,641 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-27 20:46:18,709 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 59 ms. Found 4 JPA repository interfaces.
+2020-11-27 20:46:19,367 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-11-27 20:46:19,389 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:46:19,397 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:46:19,459 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-27 20:46:19,531 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-27 20:46:19,687 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-27 20:46:19,981 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-27 20:46:20,375 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-11-27 20:46:20,664 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-11-27 20:46:20,670 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-11-27 20:46:21,111 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-27 20:46:21,121 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-27 20:46:21,874 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3475 ms
+2020-11-27 20:46:21,890 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-11-27 20:46:22,267 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 377 ms
+2020-11-27 20:46:27,091 INFO  ru.restaurants.web.controller.RestaurantController.getAll:44 - getAll restaurant
+2020-11-27 20:47:28,802 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-11-27 20:47:29,044 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-27 20:47:29,110 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 58 ms. Found 4 JPA repository interfaces.
+2020-11-27 20:47:29,827 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-11-27 20:47:29,848 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:47:29,855 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 20:47:29,916 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-27 20:47:29,984 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-27 20:47:30,140 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-27 20:47:30,423 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-27 20:47:30,829 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-11-27 20:47:31,128 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-11-27 20:47:31,134 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-11-27 20:47:31,561 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-27 20:47:31,571 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-27 20:47:32,433 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3627 ms
+2020-11-27 20:47:32,448 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-11-27 20:47:32,767 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 318 ms
+2020-11-27 20:47:35,987 INFO  ru.restaurants.web.controller.RestaurantController.getAll:44 - getAll restaurant
+2020-11-27 21:39:24,609 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-11-27 21:39:24,896 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-27 21:39:24,961 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 57 ms. Found 4 JPA repository interfaces.
+2020-11-27 21:39:25,612 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-11-27 21:39:25,634 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 21:39:25,642 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 21:39:25,725 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-27 21:39:25,793 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-27 21:39:25,948 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-27 21:39:26,224 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-27 21:39:26,598 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-11-27 21:39:26,896 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-11-27 21:39:26,903 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-11-27 21:39:27,342 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-27 21:39:27,353 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-27 21:39:28,097 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3486 ms
+2020-11-27 21:39:28,113 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-11-27 21:39:28,427 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 314 ms
+2020-11-27 21:39:32,024 INFO  ru.restaurants.web.controller.MenuController.getAllDate:43 - get all menu with data2020-11-27
+2020-11-27 23:23:10,539 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-11-27 23:23:10,823 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-27 23:23:10,889 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 58 ms. Found 4 JPA repository interfaces.
+2020-11-27 23:23:11,564 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-11-27 23:23:11,589 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 23:23:11,598 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-11-27 23:23:11,666 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-27 23:23:11,736 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-11-27 23:23:11,903 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-27 23:23:12,189 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-11-27 23:23:12,579 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-11-27 23:23:12,895 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-11-27 23:23:12,901 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-11-27 23:23:13,359 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-27 23:23:13,370 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-27 23:23:14,226 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3684 ms
+2020-11-27 23:23:14,242 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-11-27 23:23:14,560 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 318 ms
+2020-11-27 23:23:19,913 INFO  ru.restaurants.web.controller.MenuController.getAllDate:43 - get all menu with data2020-11-27

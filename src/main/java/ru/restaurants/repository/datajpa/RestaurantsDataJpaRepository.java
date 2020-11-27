@@ -38,8 +38,4 @@ public class RestaurantsDataJpaRepository implements RestaurantRepository {
         return crudRestaurant.findAll(SORT);
     }
 
-    @Override
-    public List<Menu> getAllMenuForRest(Integer idRest) {
-        return crudRestaurant.getAllMenuForRest(idRest);
-    }
 }

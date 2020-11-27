@@ -48,9 +48,5 @@ public class RestaurantController {
         checkNotFoundWithId(repository.delete(id), id);
     }
 
-    public List<Menu> getAllMenuForRest(Integer id){
-        LOG.info("get all menu for restaurant id{}", id);
-        return checkNotFoundWithId(repository.getAllMenuForRest(id), id);
-    }
 
 }

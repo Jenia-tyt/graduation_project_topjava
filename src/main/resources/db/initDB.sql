@@ -17,7 +17,7 @@ CREATE TABLE menu
 (
     id          INTEGER     PRIMARY KEY DEFAULT  nextval('global_seq'),
     id_rest     INTEGER     not null,
-    date_menu   TIMESTAMP   not null,
+    date_menu   date        not null,
     menu        VARCHAR     not null,
     UNIQUE (id_rest, date_menu),
     FOREIGN KEY (id_rest) REFERENCES restaurant (id) ON DELETE CASCADE
@@ -47,6 +47,7 @@ CREATE TABLE vote
     id_user     INTEGER     NOT NULL,
     date_vote   TIMESTAMP   NOT NULL,
     id_rest     INTEGER     NOT NULL,
+
     UNIQUE (id_user, date_vote),
     FOREIGN KEY (id_rest) REFERENCES restaurant(id) ON DELETE CASCADE,
     FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE CASCADE

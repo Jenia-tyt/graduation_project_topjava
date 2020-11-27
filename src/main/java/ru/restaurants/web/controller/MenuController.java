@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Menu;
 import ru.restaurants.repository.MenuRepository;
-import java.time.LocalDateTime;
+
+
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
@@ -34,7 +36,7 @@ public class MenuController {
     }
 
 
-    public List<Menu> getAllDate(LocalDateTime date) {
+    public List<Menu> getAllDate(LocalDate date) {
         LOG.info("get all menu with data{}", date.toString());
         return repository.getAllDate(date);
     }

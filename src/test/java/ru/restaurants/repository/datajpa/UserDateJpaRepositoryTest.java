@@ -39,7 +39,7 @@ class UserDateJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     void get() {
-        User user = userService.get(13);
+        User user = userService.get(USER_ID);
         assertThat(user).isEqualTo(USER);
     }
 

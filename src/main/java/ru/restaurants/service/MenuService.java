@@ -9,6 +9,7 @@ import ru.restaurants.model.Menu;
 import ru.restaurants.repository.MenuRepository;
 import ru.restaurants.web.controller.MenuController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class MenuService {
     }
 
 
-    public List<Menu> getAllDate(LocalDateTime date) {
+    public List<Menu> getAllDate(LocalDate date) {
         LOG.info("get all menu with data{}", date.toString());
         return repository.getAllDate(date);
     }
@@ -58,4 +59,6 @@ public class MenuService {
         Assert.notNull(m, "Id menu doen't be null");
         return repository.save(m);
     }
+
+
 }

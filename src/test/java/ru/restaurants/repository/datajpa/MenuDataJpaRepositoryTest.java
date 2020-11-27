@@ -10,6 +10,7 @@ import ru.restaurants.repository.RestDataTest;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.util.execption.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -78,4 +79,10 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
         Menu m = service.save(NEW_MENU);
         assertThat(m).isEqualTo(service.get(m.id()));
     }
+
+//    @Test
+//    void getToDay (){
+//        List <Menu> m = service.getAllDate(LocalDate.now());
+//        int i = 10;
+//    }
 }

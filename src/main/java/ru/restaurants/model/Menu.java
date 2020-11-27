@@ -9,7 +9,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 
 @Entity
@@ -23,7 +23,7 @@ public class Menu extends AbstractBaseEntity{
     private Restaurant rest;
 
     @Column(name = "date_menu")
-    private LocalDateTime dateTimeMenu;
+    private LocalDate dateMenu;
 
     @Column(name = "menu")
     @NotNull
@@ -32,18 +32,18 @@ public class Menu extends AbstractBaseEntity{
 
     public Menu() {}
 
-    public Menu( @NotNull Restaurant r, @NotBlank @NotNull LocalDateTime dateTimeMenu, @NotNull @NotBlank String menuRest) {
-        this(null, r, dateTimeMenu, menuRest);
+    public Menu( @NotNull Restaurant r, @NotBlank @NotNull LocalDate dateMenu, @NotNull @NotBlank String menuRest) {
+        this(null, r, dateMenu, menuRest);
     }
 
     public Menu (Menu m){
-        this(m.getId(), m.rest, m.getDateTimeMenu(), m.getMenuRest());
+        this(m.getId(), m.rest, m.getDateMenu(), m.getMenuRest());
     }
 
-    public Menu(Integer id, Restaurant r, LocalDateTime dateTimeMenu, String menuRest) {
+    public Menu(Integer id, Restaurant r, LocalDate dateMenu, String menuRest) {
         super(id);
         this.rest = r;
-        this.dateTimeMenu = dateTimeMenu;
+        this.dateMenu = dateMenu;
         this.menuRest = menuRest;
     }
 
@@ -55,12 +55,12 @@ public class Menu extends AbstractBaseEntity{
         this.rest = rest;
     }
 
-    public LocalDateTime getDateTimeMenu() {
-        return dateTimeMenu;
+    public LocalDate getDateMenu() {
+        return dateMenu;
     }
 
-    public void setDateTimeMenu(LocalDateTime dateTimeMenu) {
-        this.dateTimeMenu = dateTimeMenu;
+    public void setDateMenu(LocalDate dateMenu) {
+        this.dateMenu = dateMenu;
     }
 
     public String getMenuRest() {
@@ -74,9 +74,9 @@ public class Menu extends AbstractBaseEntity{
     @Override
     public String toString() {
         return  "Name rest" + rest.getName()  +
-                "Date menu: " + dateTimeMenu + "\n" +
+                "Date menu: " + dateMenu + "\n" +
                 "Menu: " + menuRest +
-                "Id rest: " + rest.getName();
+                "Id rest: " + rest.getId();
     }
 
     @Override
@@ -89,7 +89,7 @@ public class Menu extends AbstractBaseEntity{
         }
         return this.id != null
                 && this.id.equals(((Menu) o).id)
-                && this.dateTimeMenu.equals(((Menu) o).dateTimeMenu)
+                && this.dateMenu.equals(((Menu) o).dateMenu)
                 && this.rest.equals(((Menu) o).rest);
     }
 }

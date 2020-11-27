@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.restaurants.model.Menu;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public interface CrudMenu extends JpaRepository<Menu, Integer> {
     List<Menu> getAllMenuOfRest(@Param("id_rest") int id_rest);
 
     @Modifying
-    @Query("FROM Menu m WHERE m.dateTimeMenu=:date")
-    List<Menu> getAllDate(@Param("date") LocalDateTime date);
+    @Query("FROM Menu m WHERE m.dateMenu=:date")
+    List<Menu> getAllDate(@Param("date") LocalDate date);
+
 }

@@ -12,12 +12,18 @@
                     <thead>
                         <tr>
                             <th><spring:message code="rest.name"/></th>
+                            <th><spring:message code="rest.data"/></th>
+                            <th><spring:message code="rest.menu"/></th>
+                            <th><spring:message code="rest.rating"/></th>
                         </tr>
                     </thead>
                     <c:forEach var="restaurant" items="${rest}">
                         <jsp:useBean id="restaurant" scope="page" type="ru.restaurants.model.Restaurant"/>
                             <tr>
-                                <td><%=restaurant.getName()%></td>
+                                <td>${restaurant.name}</td>
+                                <td>${restaurant.menu.get(0).dateMenu}</td>
+                                <td>${restaurant.menu.get(0).menuRest}</td>
+                                <td>${restaurant.rating}</td>
                             </tr>
                     </c:forEach>
                 </table>

@@ -15,6 +15,4 @@ public interface RestaurantRepository {
 
     List<Restaurant> getAll();
 
-    List<Menu> getAllMenuForRest (Integer idRest);
-
 }

@@ -73,12 +73,6 @@ public class RestaurantsDataJpaRepositoryTest extends AbstractDataJpaTest{
         assertThat(r).isEqualTo(rBeforeSave);
     }
 
-    @Test
-    public void getAllMenuForRest(){
-        assertThat(service.getAllMenuForRest(REST_ID))
-                .usingElementComparatorIgnoringFields("id")
-                .isEqualTo(MENU_OF_REST);
-    }
 
     @Test
     public void save (){

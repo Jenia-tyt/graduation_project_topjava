@@ -17,7 +17,4 @@ public interface CrudRestaurant extends JpaRepository<Restaurant, Integer> {
     @Query("DELETE FROM Restaurant r WHERE r.id=:id")
     int delete (@Param("id") int id);
 
-    @Modifying
-    @Query ("FROM Menu m WHERE m.rest.id=:id")
-    List<Menu> getAllMenuForRest(@Param("id") int id);
 }
