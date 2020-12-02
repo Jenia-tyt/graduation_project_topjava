@@ -8,9 +8,9 @@ User;
 
 Admin;
 
-User votes from the estaurant where he will diner.
+User votes fo the restaurant's menu where he will diner.
 
-Admin updates a new menu for restaurants every day.
+Admin updates a restaurant's menu every day.
 
 Technology stack:
 
