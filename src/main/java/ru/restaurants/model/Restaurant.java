@@ -1,5 +1,6 @@
 package ru.restaurants.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -25,6 +26,7 @@ public class Restaurant extends AbstractBaseEntity{
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "rest")
     @OrderBy("dateMenu DESC")
+    @JsonIgnore
     private List <Menu> menu;
 
     @Column(name = "rating")

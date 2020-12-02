@@ -1,7 +1,5 @@
 package ru.restaurants.repository.datajpa;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -11,6 +9,7 @@ import ru.restaurants.util.execption.NotFoundException;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.restaurants.repository.MenuDataTest.*;
 import static ru.restaurants.repository.RestDataTest.*;

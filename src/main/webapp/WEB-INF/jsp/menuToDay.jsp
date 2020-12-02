@@ -11,19 +11,31 @@
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>
         <tr>
-            <th><spring:message code="rest.name"/></th>
-            <th><spring:message code="rest.data"/></th>
-            <th><spring:message code="rest.menu"/></th>
-            <th><spring:message code="rest.rating"/></th>
+            <th><spring:message code="menu.nameRest"/></th>
+            <th><spring:message code="menu.data"/></th>
+            <th><spring:message code="menu.menu"/></th>
+            <th><spring:message code="menu.rating"/></th>
+            <th></th>
         </tr>
         </thead>
         <c:forEach var="menu" items="${menu}">
             <jsp:useBean id="menu" scope="page" type="ru.restaurants.model.Menu"/>
             <tr>
-                <td>${menu.rest.name}</td>
+                <td>
+                    <a href="Rest/restaurant?id=${menu.rest.id()}&login=<%=request.getParameter("login")%>">
+                            ${menu.rest.name}
+                    </a>
+                </td>
                 <td>${menu.dateMenu}</td>
                 <td>${menu.menuRest}</td>
-                <td>${menu.rest.rating}</td>
+                <td>${menu.rating}</td>
+                <td>
+                    <form method="get" action="Rest/menuToDay/vote">
+                        <button type="submit" value="${menu.rest.id()}">
+                            <spring:message code="common.vote"/>
+                        </button>
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>

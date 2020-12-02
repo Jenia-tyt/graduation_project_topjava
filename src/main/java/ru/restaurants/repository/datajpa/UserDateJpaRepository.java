@@ -33,4 +33,5 @@ public class UserDateJpaRepository implements UserRepository {
     public User save(User user) {
         return crudUser.save(user);
     }
+
 }

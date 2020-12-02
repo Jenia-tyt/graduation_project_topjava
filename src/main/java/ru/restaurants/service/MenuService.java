@@ -7,10 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Menu;
 import ru.restaurants.repository.MenuRepository;
-import ru.restaurants.web.controller.MenuController;
+import ru.restaurants.web.controller.user.UserMenuRestController;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
@@ -18,7 +17,7 @@ import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
 @Service
 public class MenuService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MenuController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(UserMenuRestController.class);
 
     @Autowired
     private final MenuRepository repository;
@@ -39,7 +38,7 @@ public class MenuService {
     }
 
 
-    public List<Menu> getAllDate(LocalDate date) {
+    public List<Menu> getAllByDate(LocalDate date) {
         LOG.info("get all menu with data{}", date.toString());
         return repository.getAllDate(date);
     }
@@ -58,6 +57,13 @@ public class MenuService {
         LOG.info("Save menu{}", m);
         Assert.notNull(m, "Id menu doen't be null");
         return repository.save(m);
+    }
+
+    public void upDate(Menu m, int id){
+        LOG.info("Update menu with id{}", id);
+        Assert.notNull(m, "Menu doesn't be null");
+        checkNotFoundWithId(m, id);
+        repository.save(m);
     }
 
 

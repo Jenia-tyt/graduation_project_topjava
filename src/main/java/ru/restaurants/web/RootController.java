@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.service.RestaurantService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 
 @Controller
@@ -24,16 +25,20 @@ public class RootController {
         return "index";
     }
 
-    @GetMapping("/restaurants")
-    public String getRest(Model model) {
-        model.addAttribute("rest", serviceRest.getAll());
-        return "restaurants";
+    @GetMapping("/restaurant")
+    public String getRest(Model model, HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        model.addAttribute("nameRest", serviceRest.get(id).getName());
+        model.addAttribute("menu", serviceMenu.getAllMenuOfRest(id));
+        return "restaurant";
     }
 
     @GetMapping("/menuToDay")
     public String getMenuToDay(Model model){
         LocalDate dateToDay = LocalDate.now();
-        model.addAttribute("menu", serviceMenu.getAllDate(dateToDay));
+        model.addAttribute("menu", serviceMenu.getAllByDate(dateToDay));
         return "menuToDay";
     }
+
+
 }

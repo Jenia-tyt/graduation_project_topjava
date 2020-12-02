@@ -10,13 +10,13 @@ import ru.restaurants.repository.RestDataTest;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.util.execption.NotFoundException;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static ru.restaurants.repository.MenuDataTest.*;
+import static ru.restaurants.repository.RestDataTest.*;
 
 public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
 
@@ -50,13 +50,13 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     void getAllMenuOfRest() {
-        List<Menu> allMenuOfRest = service.getAllMenuOfRest(RestDataTest.REST_ID);
+        List<Menu> allMenuOfRest = service.getAllMenuOfRest(REST_ID);
         assertThat(allMenuOfRest).isEqualTo(MENU_OF_REST);
     }
 
     @Test
     void getAllDate() {
-        List<Menu> allMenuOfDate = service.getAllDate(MENU_DATA);
+        List<Menu> allMenuOfDate = service.getAllByDate(MENU_DATA);
         allMenuOfDate.sort(Comparator.comparing(m -> m.getRest().getName()));
         List<Menu> z = new ArrayList<>(ALL_MENU_OF_DATE_MENU_DATE);
         z.sort(Comparator.comparing(m -> m.getRest().getName()));
@@ -77,12 +77,10 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
     @Test
     void save() {
         Menu m = service.save(NEW_MENU);
+        Menu z = service.get(m.getId());
+        z.setRating(40);
+        Menu f = new Menu(z);
         assertThat(m).isEqualTo(service.get(m.id()));
     }
 
-//    @Test
-//    void getToDay (){
-//        List <Menu> m = service.getAllDate(LocalDate.now());
-//        int i = 10;
-//    }
 }

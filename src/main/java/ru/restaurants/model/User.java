@@ -1,5 +1,6 @@
 package ru.restaurants.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.util.CollectionUtils;
@@ -38,6 +39,7 @@ public class User extends AbstractBaseEntity{
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @OrderBy("dateVote DESC")
+    @JsonIgnore
     private List<Vote> votes;
 
     @Column(name = "vote_to_day")

@@ -7,19 +7,17 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
-import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
-import ru.restaurants.web.controller.RestaurantController;
+import ru.restaurants.web.controller.admin.AdminRestaurantRestController;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
 
 @Service
 public class RestaurantService {
-    private static final Logger LOG = LoggerFactory.getLogger(RestaurantController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AdminRestaurantRestController.class);
 
     @Autowired
     private final RestaurantRepository repository;
@@ -50,6 +48,13 @@ public class RestaurantService {
     public void delete (int id){
         LOG.info("delete restaurant id{}", id);
         checkNotFoundWithId(repository.delete(id), id);
+    }
+
+    @CacheEvict(value = "restaurant", allEntries = true)
+    public void update (Restaurant r, int id){
+        LOG.info("update restaurant with id{}", id);
+        Assert.notNull(r, "Restaurant doesn't be null");
+        checkNotFoundWithId(repository.save(r), r.id());
     }
 
 }

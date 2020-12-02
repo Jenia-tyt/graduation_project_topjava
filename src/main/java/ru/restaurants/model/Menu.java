@@ -1,6 +1,7 @@
 package ru.restaurants.model;
 
 
+import net.bytebuddy.implementation.bind.annotation.Default;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -30,21 +31,33 @@ public class Menu extends AbstractBaseEntity{
     @NotBlank
     private String menuRest;
 
+    @Column(name = "rating")
+    private Integer rating;
+
     public Menu() {}
 
-    public Menu( @NotNull Restaurant r, @NotBlank @NotNull LocalDate dateMenu, @NotNull @NotBlank String menuRest) {
-        this(null, r, dateMenu, menuRest);
+    public Menu( @NotNull Restaurant r, @NotBlank @NotNull LocalDate dateMenu, @NotNull @NotBlank String menuRest, Integer rating) {
+        this(null, r, dateMenu, menuRest, rating);
     }
 
     public Menu (Menu m){
-        this(m.getId(), m.rest, m.getDateMenu(), m.getMenuRest());
+        this(m.getId(), m.rest, m.getDateMenu(), m.getMenuRest(), m.getRating());
     }
 
-    public Menu(Integer id, Restaurant r, LocalDate dateMenu, String menuRest) {
+    public Menu(Integer id, Restaurant r, LocalDate dateMenu, String menuRest, Integer rating) {
         super(id);
         this.rest = r;
         this.dateMenu = dateMenu;
         this.menuRest = menuRest;
+        this.rating = rating == null ? 0 : rating;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
     }
 
     public Restaurant getRest() {
