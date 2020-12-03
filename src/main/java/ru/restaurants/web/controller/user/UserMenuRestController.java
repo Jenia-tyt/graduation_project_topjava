@@ -1,9 +1,11 @@
 package ru.restaurants.web.controller.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 import ru.restaurants.model.Menu;
 import ru.restaurants.service.MenuService;
 
@@ -37,14 +39,14 @@ public class UserMenuRestController {
         return service.getAllMenuOfRest(id);
     }
 
-    @GetMapping("/vote") //метод голосования надо допелить
-    public String vote(Model model, HttpServletRequest request) {
-        Menu m = service.get(13);
+    @PutMapping("/vote/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public String vote( Model model, @PathVariable int id ) {
+        Menu m = service.get(id);
         Integer count = m.getRating() + 1;
         m.setRating(count);
         service.save(m);
         model.addAttribute("menu", service.getAllByDate(LocalDate.now()));
         return "menuToDay";
     }
-
 }

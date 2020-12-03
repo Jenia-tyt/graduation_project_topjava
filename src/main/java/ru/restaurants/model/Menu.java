@@ -89,7 +89,8 @@ public class Menu extends AbstractBaseEntity{
         return  "Name rest" + rest.getName()  +
                 "Date menu: " + dateMenu + "\n" +
                 "Menu: " + menuRest +
-                "Id rest: " + rest.getId();
+                "Id rest: " + rest.getId() +
+                "Rating: " + rating;
     }
 
     @Override
@@ -103,6 +104,7 @@ public class Menu extends AbstractBaseEntity{
         return this.id != null
                 && this.id.equals(((Menu) o).id)
                 && this.dateMenu.equals(((Menu) o).dateMenu)
-                && this.rest.equals(((Menu) o).rest);
+                && this.rest.equals(((Menu) o).rest)
+                && this.rating.equals(((Menu) o).rating);
     }
 }

@@ -5,19 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.restaurants.model.Menu;
-import ru.restaurants.model.Restaurant;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.web.TestMatcher;
 import ru.restaurants.web.controller.admin.AbstractRestControllerTest;
 
-import java.time.LocalDate;
-
-import static org.assertj.core.api.Assertions.as;
 import static ru.restaurants.repository.MenuDataTest.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.restaurants.web.controller.user.UserMenuRestController.USER_MENU_TO_DAY;
@@ -47,5 +40,13 @@ class UserMenuRestControllerTest extends AbstractRestControllerTest {
 
     @Test
     void vote() throws Exception{
+        Menu m = service.get(MENU_ID);
+        m.setRating(m.getRating() + 1);
+
+        perform(MockMvcRequestBuilders.put(URL_USER + "vote/" + MENU_ID)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+
+        assertThat(m).isEqualTo(service.get(MENU_ID));
     }
 }

@@ -11769,3 +11769,200 @@ Menu: вода 100 хлебная мякиш 2 вода с хлебными кр
 2020-12-01 15:57:53,292 INFO  r.r.web.controller.user.UserMenuController.getAllByDate:42 - get all menu with data2020-12-01
 2020-12-01 16:03:07,783 WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver.logException:207 - Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; nested exception is java.lang.NumberFormatException: For input string: "null"]
 2020-12-02 11:13:22,578 INFO  r.r.web.controller.user.UserMenuController.getAllByDate:42 - get all menu with data2020-12-02
+2020-12-03 00:23:15,774 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-12-03 00:23:16,005 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-12-03 00:23:16,073 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 59 ms. Found 4 JPA repository interfaces.
+2020-12-03 00:23:16,717 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-12-03 00:23:16,737 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-12-03 00:23:16,745 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-12-03 00:23:16,807 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-12-03 00:23:16,871 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-03 00:23:17,018 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-03 00:23:17,309 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-12-03 00:23:17,685 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-12-03 00:23:17,976 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-12-03 00:23:17,983 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-12-03 00:23:18,410 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-03 00:23:18,421 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-12-03 00:23:19,179 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3402 ms
+2020-12-03 00:23:19,194 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-12-03 00:23:19,651 WARN  o.s.web.context.support.XmlWebApplicationContext.refresh:596 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminMenuRestController' method 
+ru.restaurants.web.controller.admin.AdminMenuRestController#create(Menu)
+to {POST [/admin/menuToDay], consumes [application/json], produces [application/json]}: There is already 'adminMenuController' bean method
+ru.restaurants.web.controller.admin.AdminMenuController#create(Menu) mapped.
+2020-12-03 00:23:19,654 ERROR org.springframework.web.servlet.DispatcherServlet.initServletBean:534 - Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminMenuRestController' method 
+ru.restaurants.web.controller.admin.AdminMenuRestController#create(Menu)
+to {POST [/admin/menuToDay], consumes [application/json], produces [application/json]}: There is already 'adminMenuController' bean method
+ru.restaurants.web.controller.admin.AdminMenuController#create(Menu) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:609)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:531)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:925)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:588)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:702)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:668)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:716)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:591)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:158)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1134)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1089)
+	at org.apache.catalina.core.StandardWrapper.load(StandardWrapper.java:983)
+	at org.apache.catalina.core.StandardContext.loadOnStartup(StandardContext.java:4864)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5173)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.ContainerBase.addChildInternal(ContainerBase.java:717)
+	at org.apache.catalina.core.ContainerBase.addChild(ContainerBase.java:690)
+	at org.apache.catalina.core.StandardHost.addChild(StandardHost.java:706)
+	at org.apache.catalina.startup.HostConfig.deployWAR(HostConfig.java:978)
+	at org.apache.catalina.startup.HostConfig.deployApps(HostConfig.java:493)
+	at org.apache.catalina.startup.HostConfig.check(HostConfig.java:1642)
+	at jdk.internal.reflect.GeneratedMethodAccessor1642.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.tomcat.util.modeler.BaseModelMBean.invoke(BaseModelMBean.java:288)
+	at java.management/com.sun.jmx.interceptor.DefaultMBeanServerInterceptor.invoke(DefaultMBeanServerInterceptor.java:809)
+	at java.management/com.sun.jmx.mbeanserver.JmxMBeanServer.invoke(JmxMBeanServer.java:801)
+	at org.apache.catalina.manager.ManagerServlet.check(ManagerServlet.java:1596)
+	at org.apache.catalina.manager.HTMLManagerServlet.upload(HTMLManagerServlet.java:294)
+	at org.apache.catalina.manager.HTMLManagerServlet.doPost(HTMLManagerServlet.java:212)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.filters.CsrfPreventionFilter.doFilter(CsrfPreventionFilter.java:211)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:666)
+	at org.apache.catalina.valves.RequestFilterValve.process(RequestFilterValve.java:348)
+	at org.apache.catalina.valves.RemoteAddrValve.invoke(RemoteAddrValve.java:53)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminMenuRestController' method 
+ru.restaurants.web.controller.admin.AdminMenuRestController#create(Menu)
+to {POST [/admin/menuToDay], consumes [application/json], produces [application/json]}: There is already 'adminMenuController' bean method
+ru.restaurants.web.controller.admin.AdminMenuController#create(Menu) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:644)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:611)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:316)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:395)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:286)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:723)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:284)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:256)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:215)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:203)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:206)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1847)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1784)
+	... 66 common frames omitted
+2020-12-03 00:23:22,123 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-12-03 00:23:22,195 WARN  o.s.web.context.support.XmlWebApplicationContext.refresh:596 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminMenuRestController' method 
+ru.restaurants.web.controller.admin.AdminMenuRestController#create(Menu)
+to {POST [/admin/menuToDay], consumes [application/json], produces [application/json]}: There is already 'adminMenuController' bean method
+ru.restaurants.web.controller.admin.AdminMenuController#create(Menu) mapped.
+2020-12-03 00:23:22,196 ERROR org.springframework.web.servlet.DispatcherServlet.initServletBean:534 - Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminMenuRestController' method 
+ru.restaurants.web.controller.admin.AdminMenuRestController#create(Menu)
+to {POST [/admin/menuToDay], consumes [application/json], produces [application/json]}: There is already 'adminMenuController' bean method
+ru.restaurants.web.controller.admin.AdminMenuController#create(Menu) mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1788)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:609)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:531)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:925)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:588)
+	at org.springframework.web.servlet.FrameworkServlet.configureAndRefreshWebApplicationContext(FrameworkServlet.java:702)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:668)
+	at org.springframework.web.servlet.FrameworkServlet.createWebApplicationContext(FrameworkServlet.java:716)
+	at org.springframework.web.servlet.FrameworkServlet.initWebApplicationContext(FrameworkServlet.java:591)
+	at org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:530)
+	at org.springframework.web.servlet.HttpServletBean.init(HttpServletBean.java:170)
+	at javax.servlet.GenericServlet.init(GenericServlet.java:158)
+	at org.apache.catalina.core.StandardWrapper.initServlet(StandardWrapper.java:1134)
+	at org.apache.catalina.core.StandardWrapper.loadServlet(StandardWrapper.java:1089)
+	at org.apache.catalina.core.StandardWrapper.allocate(StandardWrapper.java:761)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:135)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminMenuRestController' method 
+ru.restaurants.web.controller.admin.AdminMenuRestController#create(Menu)
+to {POST [/admin/menuToDay], consumes [application/json], produces [application/json]}: There is already 'adminMenuController' bean method
+ru.restaurants.web.controller.admin.AdminMenuController#create(Menu) mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:644)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:611)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:316)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:395)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:286)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:723)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:284)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:256)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:215)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:203)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:206)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1847)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1784)
+	... 36 common frames omitted
+2020-12-03 00:25:01,115 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:271 - Root WebApplicationContext: initialization started
+2020-12-03 00:25:01,355 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:128 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-12-03 00:25:01,440 INFO  o.s.d.r.config.RepositoryConfigurationDelegate.registerRepositoriesIn:188 - Finished Spring Data repository scanning in 77 ms. Found 4 JPA repository interfaces.
+2020-12-03 00:25:02,206 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'restaurant' created in EhcacheManager.
+2020-12-03 00:25:02,230 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-12-03 00:25:02,239 INFO  org.ehcache.jsr107.Eh107CacheManager.registerObject:389 - Registering Ehcache MBean javax.cache:type=CacheStatistics,CacheManager=file./Users/evgeny/Desktop/TomCat9/webapps/Rest/WEB-INF/classes/cache/ehcache.xml,Cache=restaurant
+2020-12-03 00:25:02,304 INFO  org.hibernate.jpa.internal.util.LogHelper.logPersistenceUnitInformation:31 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-12-03 00:25:02,384 INFO  org.hibernate.Version.logVersion:44 - HHH000412: Hibernate ORM core version 5.4.22.Final
+2020-12-03 00:25:02,540 INFO  org.hibernate.annotations.common.Version.<clinit>:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-03 00:25:02,891 INFO  org.hibernate.dialect.Dialect.<init>:170 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2020-12-03 00:25:03,306 INFO  org.hibernate.validator.internal.util.Version.<clinit>:21 - HV000001: Hibernate Validator 6.1.6.Final
+2020-12-03 00:25:03,632 WARN  org.hibernate.orm.cache.createCache:108 - HHH90001006: Missing cache[ru.restaurants.model.Restaurant] was created on-the-fly. The created cache will use a provider-specific default configuration: make sure you defined one. You can disable this warning by setting 'hibernate.javax.cache.missing_cache_strategy' to 'create'.
+2020-12-03 00:25:03,639 INFO  org.ehcache.core.EhcacheManager.createCache:305 - Cache 'ru.restaurants.model.Restaurant' created in EhcacheManager.
+2020-12-03 00:25:04,122 INFO  o.h.e.t.jta.platform.internal.JtaPlatformInitiator.initiateService:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-03 00:25:04,132 INFO  o.s.orm.jpa.LocalContainerEntityManagerFactoryBean.buildNativeEntityManagerFactory:434 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-12-03 00:25:04,886 INFO  org.springframework.web.context.ContextLoader.initWebApplicationContext:307 - Root WebApplicationContext initialized in 3767 ms
+2020-12-03 00:25:04,900 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:525 - Initializing Servlet 'mvc-dispatcher'
+2020-12-03 00:25:05,517 INFO  org.springframework.web.servlet.DispatcherServlet.initServletBean:547 - Completed initialization in 617 ms
+2020-12-03 00:25:16,243 INFO  r.r.web.controller.user.UserMenuRestController.getAllByDate:42 - get all menu with data2020-12-03
