@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -42,38 +43,37 @@ public class User extends AbstractBaseEntity{
     @JsonIgnore
     private List<Vote> votes;
 
-    @Column(name = "vote_to_day")
-    @NotNull
-    private boolean voteToDay;
+    @Column(name = "vote_last")
+    private LocalDate voteLast;
 
     public User() {
     }
 
     public User (User user){
-        this(user.getId(), user.getEmail(), user.getName(), user.getPassword(), user.getVotes(),user.isVoteToDay(), user.getRole());
+        this(user.getId(), user.getEmail(), user.getName(), user.getPassword(), user.getVotes(), user.getVoteLast(), user.getRole());
     }
 
-    public User(String email, String name, String password,  List<Vote> votes, Role role, Role... roles) {
-        this(null, email, name, password, votes, false, EnumSet.of(role, roles));
+    public User(String email, String name, String password,  List<Vote> votes, LocalDate voteLast, Role role, Role... roles) {
+        this(null, email, name, password, votes, voteLast, EnumSet.of(role, roles));
     }
 
-    public User(Integer id, String email, String name, String password, List<Vote> votes, boolean voteToDay, Collection<Role> role) {
+    public User(Integer id, String email, String name, String password, List<Vote> votes, LocalDate voteLast, Collection<Role> role) {
         super(id);
         this.email = email;
         this.name = name;
         this.password = password;
         this.votes = votes;
-        this.voteToDay = voteToDay;
+        this.voteLast = voteLast;
         setRole(role);
     }
 
-    public User(Integer id, String email, String name, String password, List<Vote> votes, boolean voteToDay, Role role) {
+    public User(Integer id, String email, String name, String password, List<Vote> votes, LocalDate voteLast, Role role) {
         super(id);
         this.email = email;
         this.name = name;
         this.password = password;
         this.votes = votes;
-        this.voteToDay = voteToDay;
+        this.voteLast = voteLast;
         setRole(role);
     }
 
@@ -114,12 +114,16 @@ public class User extends AbstractBaseEntity{
         this.role = CollectionUtils.isEmpty(role) ? EnumSet.noneOf(Role.class) : EnumSet.copyOf(role);
     }
 
-    public boolean isVoteToDay() {
-        return voteToDay;
+    public void setRole(Set<Role> role) {
+        this.role = role;
     }
 
-    public void setVoteToDay(boolean voteToDay) {
-        this.voteToDay = voteToDay;
+    public LocalDate getVoteLast() {
+        return voteLast;
+    }
+
+    public void setVoteLast(LocalDate voteLast) {
+        this.voteLast = voteLast;
     }
 
     public List<Vote> getVotes() {

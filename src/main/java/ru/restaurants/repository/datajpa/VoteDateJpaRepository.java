@@ -1,11 +1,11 @@
 package ru.restaurants.repository.datajpa;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import ru.restaurants.model.Vote;
 import ru.restaurants.repository.VoteRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -41,5 +41,10 @@ public class VoteDateJpaRepository implements VoteRepository {
     @Override
     public List<Vote> allVote() {
         return crudVote.findAll();
+    }
+
+
+    public Vote getVoteOfUserToDay(int idUser, LocalDate date) {
+        return crudVote.getVoteOfUserToDay(idUser, date);
     }
 }

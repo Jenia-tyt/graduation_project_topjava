@@ -18,8 +18,9 @@ import java.util.List;
 public class AdminMenuRestController {
 
     public static final String ADMIN_MENU_TO_DAY = "/admin/menuToDay";
+
     @Autowired
-    private MenuService service;
+    private final MenuService service;
 
     public AdminMenuRestController(MenuService service) {
         this.service = service;

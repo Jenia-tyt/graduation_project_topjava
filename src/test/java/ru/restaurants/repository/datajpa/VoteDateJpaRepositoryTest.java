@@ -7,6 +7,7 @@ import ru.restaurants.model.Vote;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.util.execption.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.restaurants.repository.VoteDataTest.*;
@@ -22,7 +23,7 @@ class VoteDateJpaRepositoryTest extends AbstractDataJpaTest{
     @Test
     void create() {
         Vote v = service.create(NEW_VOTE);
-        int id  = v.getId();
+        int id  = v.id();
         assertThat(v).isEqualTo(service.get(id));
     }
 
@@ -73,5 +74,11 @@ class VoteDateJpaRepositoryTest extends AbstractDataJpaTest{
     void allVote() {
         List<Vote> allVote = service.getAll();
         assertThat(allVote).isEqualTo(LIST_VOTE);
+    }
+
+    @Test
+    void getVoteOfUserToDay(){
+        Vote vote = service.getVoteOfUserToDay(15, LocalDate.now());
+        assertThat(vote).isEqualTo(VOTE_TO_DAY);
     }
 }

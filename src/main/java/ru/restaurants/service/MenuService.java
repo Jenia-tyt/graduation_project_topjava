@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Menu;
 import ru.restaurants.repository.MenuRepository;
+import ru.restaurants.repository.datajpa.MenuDataJpaRepository;
 import ru.restaurants.web.controller.user.UserMenuRestController;
 
 import java.time.LocalDate;
@@ -20,10 +21,9 @@ public class MenuService {
     private static final Logger LOG = LoggerFactory.getLogger(UserMenuRestController.class);
 
     @Autowired
-    private final MenuRepository repository;
+    private final MenuDataJpaRepository repository;
 
-
-    public MenuService(MenuRepository repository) {
+    public MenuService(MenuDataJpaRepository repository) {
         this.repository = repository;
     }
 
@@ -66,5 +66,10 @@ public class MenuService {
         repository.save(m);
     }
 
-
+    public Menu getMenuWithIdRestAndDate(int id, LocalDate date){
+        LOG.info("Get menu with id{} rest. and date is to day{}", id, date);
+        Assert.notNull(id, "Id doesn't be null");
+        Assert.notNull(date, "Date doesn't be null");
+        return repository.getMenuWithIdRestAndDateToDay(id, date);
+    }
 }

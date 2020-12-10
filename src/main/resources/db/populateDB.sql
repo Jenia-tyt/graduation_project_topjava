@@ -25,10 +25,10 @@ INSERT INTO menu (id_rest, menu)
 VALUES  (4, 'вода 100 хлебная мякиш 2 вода с хлебными крошками 3'),
         (5, 'шампанское "кристал" 1 устрицы 1 черная икра 3');
 
-INSERT INTO users (email, name, password)
-VALUES ('user@mail.ru', 'user', 'passwordUser'),
-       ('admin@mail.ru', 'admin', 'passwordAdmin'),
-       ('admin_user@gmail.com', 'admin_user', 'passwordAU');
+INSERT INTO users (email, name, password, vote_last)
+VALUES ('user@mail.ru', 'user', 'passwordUser', '2020-01-30'),
+       ('admin@mail.ru', 'admin', 'passwordAdmin', '2020-01-30'),
+       ('admin_user@gmail.com', 'admin_user', 'passwordAU', '2020-01-30');
 
 INSERT INTO role (user_id, role)
 VALUES (15, 'USER'),
@@ -37,5 +37,8 @@ VALUES (15, 'USER'),
        (17, 'USER');
 
 INSERT INTO vote (id_user, date_vote, id_rest)
-VALUES (15, '2020-01-30 13:00:00', 3),
-       (17, '2020-01-30 10:00:00', 5)
+VALUES (15, '2020-01-30', 3),
+       (17, '2020-01-30', 5);
+
+INSERT INTO vote (id_user, id_rest)
+VALUES (15, 5);

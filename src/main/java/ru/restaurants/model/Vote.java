@@ -5,6 +5,7 @@ import org.hibernate.Hibernate;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,7 +18,7 @@ public class Vote extends AbstractBaseEntity{
 
     @Column(name = "date_vote", nullable = false)
     @NotNull
-    private LocalDateTime dateVote;
+    private LocalDate dateVote;
 
     @Column(name = "id_rest")
     @NotNull
@@ -26,7 +27,7 @@ public class Vote extends AbstractBaseEntity{
     public Vote() {
     }
 
-    public Vote(Integer id, User user, LocalDateTime dateVote, int idRest) {
+    public Vote(Integer id, User user, LocalDate dateVote, int idRest) {
         super(id);
         this.user = user;
         this.dateVote = dateVote;
@@ -41,11 +42,11 @@ public class Vote extends AbstractBaseEntity{
         this.user = user;
     }
 
-    public LocalDateTime getDateVote() {
+    public LocalDate getDateVote() {
         return dateVote;
     }
 
-    public void setDateVote(LocalDateTime dateVoit) {
+    public void setDateVote(LocalDate dateVoit) {
         this.dateVote = dateVoit;
     }
 

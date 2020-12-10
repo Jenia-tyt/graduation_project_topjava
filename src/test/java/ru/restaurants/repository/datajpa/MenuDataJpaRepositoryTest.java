@@ -10,6 +10,8 @@ import ru.restaurants.repository.RestDataTest;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.util.execption.NotFoundException;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -25,9 +27,10 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     void duplicateCreateMenu(){
-        Menu m = MENU;
+        Menu m = new Menu(MENU);
         m.setId(null);
         assertThrows(DataAccessException.class, () -> service.save(m));
+
     }
 
     @Test
@@ -81,6 +84,14 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
         z.setRating(40);
         Menu f = new Menu(z);
         assertThat(m).isEqualTo(service.get(m.id()));
+    }
+
+    @Test
+    void getMenuWithIdRestAndDate(){
+        Menu m = service.getMenuWithIdRestAndDate(REST_ID, LocalDate.of(2020, Month.JANUARY, 30));
+        Menu m2 = MENU;
+        boolean z = m.equals(m2);
+        assertThat(m).isEqualTo(MENU);
     }
 
 }

@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import ru.restaurants.model.Vote;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface CrudVote extends JpaRepository<Vote, Integer> {
@@ -19,4 +20,7 @@ public interface CrudVote extends JpaRepository<Vote, Integer> {
     @Modifying
     @Query("FROM Vote v WHERE v.idRest=:idRest")
     List<Vote> getAllByRest(@Param("idRest") int idRest);
+
+    @Query ("FROM Vote v WHERE v.user.id=:idUser AND v.dateVote=:date")
+    Vote getVoteOfUserToDay(@Param("idUser") Integer idUser, @Param("date") LocalDate date);
 }

@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Vote;
 import ru.restaurants.repository.VoteRepository;
+import ru.restaurants.repository.datajpa.VoteDateJpaRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static ru.restaurants.util.ValidationUtil.checkNotFoundWithId;
@@ -17,9 +19,9 @@ public class VoteService {
     private static final Logger LOG = LoggerFactory.getLogger(VoteService.class);
 
     @Autowired
-    private final VoteRepository voteRepository;
+    private final VoteDateJpaRepository voteRepository;
 
-    public VoteService(VoteRepository voteRepository) {
+    public VoteService(VoteDateJpaRepository voteRepository) {
         this.voteRepository = voteRepository;
     }
 
@@ -55,4 +57,11 @@ public class VoteService {
         Assert.notNull(vote, "Vote doesn't be null");
         return voteRepository.save(vote);
     }
+
+    public Vote getVoteOfUserToDay(int idUser, LocalDate date){
+        LOG.info("Vote get of user to day");
+        Assert.notNull(idUser, "Id user doesn't be null");
+        return voteRepository.getVoteOfUserToDay(idUser, date);
+    }
+
 }

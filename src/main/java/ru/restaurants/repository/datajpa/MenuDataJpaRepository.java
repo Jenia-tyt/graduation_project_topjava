@@ -49,4 +49,7 @@ public class MenuDataJpaRepository implements MenuRepository {
         return crudMenu.save(m);
     }
 
+    public Menu getMenuWithIdRestAndDateToDay(int id, LocalDate date){
+        return crudMenu.getMenuWithIdRestAndDate(id, date);
+    }
 }

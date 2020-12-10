@@ -30,7 +30,7 @@ CREATE TABLE users
     email       VARCHAR     UNIQUE NOT NULL,
     name        VARCHAR     UNIQUE NOT NULL ,
     password    VARCHAR     NOT NULL,
-    vote_to_day bool        DEFAULT false NOT NULL
+    vote_last   date        default NULL
 );
 CREATE UNIQUE INDEX user_unic_index ON users (id);
 
@@ -46,7 +46,7 @@ CREATE TABLE vote
 (
     id          INTEGER     PRIMARY KEY DEFAULT nextval('global_seq'),
     id_user     INTEGER     NOT NULL,
-    date_vote   TIMESTAMP   NOT NULL,
+    date_vote   date        default now(),
     id_rest     INTEGER     NOT NULL,
 
     UNIQUE (id_user, date_vote),

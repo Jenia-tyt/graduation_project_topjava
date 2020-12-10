@@ -9,9 +9,8 @@ import ru.restaurants.model.Restaurant;
 import ru.restaurants.service.RestaurantService;
 import ru.restaurants.util.execption.NotFoundException;
 import ru.restaurants.web.TestMatcher;
+import ru.restaurants.web.AbstractRestControllerTest;
 import ru.restaurants.web.json.JsonUtil;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,9 +19,8 @@ import static ru.restaurants.web.TestUtil.readFromJson;
 import static ru.restaurants.web.controller.admin.AdminRestaurantRestController.RESTAURANT;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static ru.restaurants.repository.RestDataTest.*;
-import static ru.restaurants.repository.MenuDataTest.*;
 
-class AdminRestaurantRestControllerTest extends AbstractRestControllerTest{
+class AdminRestaurantRestControllerTest extends AbstractRestControllerTest {
 
     private static final String URL_ADMIN_REST = RESTAURANT + "/";
 

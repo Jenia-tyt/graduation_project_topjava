@@ -2,6 +2,7 @@ package ru.restaurants.repository;
 
 import ru.restaurants.model.Vote;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface VoteRepository {
@@ -14,4 +15,6 @@ public interface VoteRepository {
     Vote save (Vote vote);
 
     List<Vote> allVote();
+
+//    Vote getVoteOfUserToDay (int idUser, LocalDate date);
 }
