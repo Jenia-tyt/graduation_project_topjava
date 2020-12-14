@@ -37,7 +37,6 @@ public class VoteService {
 
     public List<Vote> getAllByRest(int idRest){
         LOG.info("Get all votes with id rest. {}", idRest);
-        Assert.notNull(idRest, "Id rest. doesn't be null");
         return checkNotFoundWithId(voteRepository.getAllByRest(idRest), idRest);
     }
 
@@ -46,10 +45,11 @@ public class VoteService {
         checkNotFoundWithId(voteRepository.delete(id), id);
     }
 
-    public void upDate(Vote vote){
+    public void upDate(Vote vote, Integer id){
         LOG.info("Vote id {} update ", vote.getId());
         Assert.notNull(vote, "Vote doesn't be null");
-        checkNotFoundWithId(voteRepository.save(vote), vote.getId());
+        Assert.notNull(id, "Id doesn't be null");
+        checkNotFoundWithId(voteRepository.save(vote), id);
     }
 
     public Vote create(Vote vote){
@@ -60,7 +60,7 @@ public class VoteService {
 
     public Vote getVoteOfUserToDay(int idUser, LocalDate date){
         LOG.info("Vote get of user to day");
-        Assert.notNull(idUser, "Id user doesn't be null");
+        Assert.notNull(date, "Date doesn't be null");
         return voteRepository.getVoteOfUserToDay(idUser, date);
     }
 

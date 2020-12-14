@@ -16,23 +16,19 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(AdminRestaurantRestController.RESTAURANT)
+@RequestMapping(value = AdminRestaurantRestController.RESTAURANT, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminRestaurantRestController {
 
-    public static final String RESTAURANT = "/admin/restaurant";
+    public static final String RESTAURANT = "/rest/admin/restaurant";
 
     @Autowired
     private final RestaurantService restService;
 
-    @Autowired
-    private final MenuService menuService;
-
-    public AdminRestaurantRestController(RestaurantService restService, MenuService menuService) {
+    public AdminRestaurantRestController(RestaurantService restService) {
         this.restService = restService;
-        this.menuService = menuService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Restaurant> getAllRest() {
         return restService.getAll();
     }

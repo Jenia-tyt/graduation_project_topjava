@@ -13,12 +13,6 @@
 
         <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
 
-<!--        <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"-->
-<!--              p:driverClassName="org.postgresql.Driver"-->
-<!--              p:url="${database.url}"-->
-<!--              p:username="${database.username}"-->
-<!--              p:password="${database.password}"/>-->
-
         <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
               p:driverClassName="org.postgresql.Driver"
               p:url="${database.url}"
@@ -30,9 +24,6 @@
                 <jdbc:script location="classpath:db/populateDB.sql"/>
         </jdbc:initialize-database>
 
-
-        <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-<!--        <beans profile="datajpa">-->
                 <context:component-scan base-package="ru.**.repository"/>
                 <jpa:repositories base-package="ru.**.repository"/>
 
@@ -72,7 +63,5 @@
 
                 <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
                       p:entityManagerFactory-ref="entityManagerFactory"/>
-
-<!--        </beans>-->
 
 </beans>

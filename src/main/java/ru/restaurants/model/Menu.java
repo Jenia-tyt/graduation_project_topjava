@@ -95,12 +95,10 @@ public class Menu extends AbstractBaseEntity{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o){
-            return true;
-        }
-        if (o == null || !getClass().equals(Hibernate.getClass(o))){
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
         return this.id != null
                 && this.id.equals(((Menu) o).id)
                 && this.dateMenu.equals(((Menu) o).dateMenu)

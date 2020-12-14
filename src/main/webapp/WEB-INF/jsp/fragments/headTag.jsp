@@ -6,12 +6,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><spring:message code="app.title"/></title>
         <base href="${pageContext.request.contextPath}"/>
-        <link rel="stylesheet" href="Rest/resources/css/style.css" type="text/css">
+        <link rel="stylesheet" href="Restaurant/resources/css/style.css" type="text/css">
 
-        <link rel="stylesheet" href="Rest/webjars/bootstrap/4.5.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="Rest/webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="Rest/webjars/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
-        <link rel="stylesheet" href="Rest/webjars/noty/3.1.4/lib/noty.css"/>
-        <link rel="shortcut icon" href="Rest/resources/images/icon.png">
+        <link rel="stylesheet" href="Restaurant/webjars/bootstrap/4.5.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Restaurant/webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="Restaurant/webjars/datatables/1.10.21/css/dataTables.bootstrap4.min.css">
+        <link rel="stylesheet" href="Restaurant/webjars/noty/3.1.4/lib/noty.css"/>
+        <link rel="shortcut icon" href="Restaurant/resources/images/icon.png">
 </head>
 

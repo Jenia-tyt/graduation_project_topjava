@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 
 @Controller
-@RequestMapping("/")
 public class RootController {
 
     @Autowired
@@ -25,20 +24,18 @@ public class RootController {
         return "index";
     }
 
-    @GetMapping("/restaurant")
-    public String getRest(Model model, HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        model.addAttribute("nameRest", serviceRest.get(id).getName());
-        model.addAttribute("menu", serviceMenu.getAllMenuOfRest(id));
-        return "restaurant";
-    }
+//    @GetMapping("/restaurant")
+//    public String getRest(Model model, HttpServletRequest request) {
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        model.addAttribute("nameRest", serviceRest.get(id).getName());
+//        model.addAttribute("menu", serviceMenu.getAllMenuOfRest(id));
+//        return "restaurant";
+//    }
 
-    @GetMapping("/menuToDay")
-    public String getMenuToDay(Model model){
-        LocalDate dateToDay = LocalDate.now();
-        model.addAttribute("menu", serviceMenu.getAllByDate(dateToDay));
-        return "menuToDay";
-    }
-
-
+//    @GetMapping("/menuToDay")
+//    public String getMenuToDay(Model model){
+//        LocalDate dateToDay = LocalDate.now();
+//        model.addAttribute("menu", serviceMenu.getAllByDate(dateToDay));
+//        return "menuToDay";
+//    }
 }

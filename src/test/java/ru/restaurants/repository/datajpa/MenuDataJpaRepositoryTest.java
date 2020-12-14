@@ -5,8 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import ru.restaurants.model.AbstractBaseEntity;
 import ru.restaurants.model.Menu;
-import ru.restaurants.repository.RestDataTest;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.util.execption.NotFoundException;
 
@@ -47,7 +47,7 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
     void getAll() {
         List<Menu> allMenu = service.getAll();
         List<Menu> z = new ArrayList<>(ALL_MENU);
-        z.sort(Comparator.comparing(m-> m.id()));
+        z.sort(Comparator.comparing(AbstractBaseEntity::id));
         assertThat(allMenu).isEqualTo(z);
     }
 
@@ -80,7 +80,7 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
     @Test
     void save() {
         Menu m = service.save(NEW_MENU);
-        Menu z = service.get(m.getId());
+        Menu z = service.get(m.id());
         z.setRating(40);
         Menu f = new Menu(z);
         assertThat(m).isEqualTo(service.get(m.id()));
@@ -89,9 +89,6 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
     @Test
     void getMenuWithIdRestAndDate(){
         Menu m = service.getMenuWithIdRestAndDate(REST_ID, LocalDate.of(2020, Month.JANUARY, 30));
-        Menu m2 = MENU;
-        boolean z = m.equals(m2);
         assertThat(m).isEqualTo(MENU);
     }
-
 }

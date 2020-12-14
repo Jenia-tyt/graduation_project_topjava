@@ -59,14 +59,14 @@ class UserDateJpaRepositoryTest extends AbstractDataJpaTest{
     void upDate() {
         User user = new User(USER_NEW_WITH_ID_66);
         user.setId(USER_ID);
-        userService.upDate(user);
+        userService.upDate(user, user.id());
         assertThat(user).isEqualTo(userService.get(USER_ID));
     }
 
     @Test
     void create() {
         User user = userService.create(USER_NEW_WITH_ID_66);
-        int id = user.getId();
+        int id = user.id();
         assertThat(user).isEqualTo(userService.get(id));
     }
 }

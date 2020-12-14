@@ -60,12 +60,10 @@ public class Vote extends AbstractBaseEntity{
 
     @Override
     public boolean equals(Object o) {
-        if (o == null){
-            return false;
-        }
-        if (this.getClass() != Hibernate.getClass(o)){
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
         return this.id != null
                 && this.id.equals(((Vote)o).id)
                 && this.dateVote.equals(((Vote)o).dateVote)

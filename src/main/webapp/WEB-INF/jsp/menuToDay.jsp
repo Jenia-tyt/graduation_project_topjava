@@ -22,7 +22,7 @@
             <jsp:useBean id="menu" scope="page" type="ru.restaurants.model.Menu"/>
             <tr>
                 <td>
-                    <a href="Rest/restaurant?id=${menu.rest.id()}&login=<%=request.getParameter("login")%>">
+                    <a href="Restaurant/rest/profile/restaurant?id=${menu.rest.id()}&login=<%=request.getParameter("login")%>">
                             ${menu.rest.name}
                     </a>
                 </td>
@@ -30,7 +30,7 @@
                 <td>${menu.menuRest}</td>
                 <td>${menu.rating}</td>
                 <td>
-                    <form method="get" action="Rest/menuToDay/vote">
+                    <form method="get" action="Restaurant/rest/profile/vote/${menu.id()}">
                         <button type="submit" value="${menu.rest.id()}">
                             <spring:message code="common.vote"/>
                         </button>
@@ -43,3 +43,4 @@
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
+

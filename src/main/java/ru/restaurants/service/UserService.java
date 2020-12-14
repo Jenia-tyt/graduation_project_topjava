@@ -37,10 +37,11 @@ public class UserService {
         checkNotFoundWithId(repository.delete(id), id);
     }
 
-    public void upDate(User user){
+    public void upDate(User user,Integer id){
         LOG.info("User update with");
         Assert.notNull(user, "User doesn't be null");
-        checkNotFoundWithId(repository.save(user), user.getId());
+        Assert.notNull(id, "Id doesn't be null");
+        checkNotFoundWithId(repository.save(user), id);
     }
 
     public User create(User user){

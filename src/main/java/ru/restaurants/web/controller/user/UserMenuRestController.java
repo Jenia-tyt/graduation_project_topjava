@@ -4,6 +4,7 @@ package ru.restaurants.web.controller.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.restaurants.model.Menu;
@@ -14,6 +15,7 @@ import ru.restaurants.service.RestaurantService;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -24,9 +26,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = UserMenuRestController.USER_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserMenuRestController {
-    public static final String USER_MENU_TO_DAY = "/user/menuToDay";
-    public static LocalTime time_11_00 = LocalTime.of(11, 00, 00);
-
+    public static final String USER_MENU_TO_DAY = "/rest/profile";
+    private static LocalTime time_11_00 = LocalTime.of(11, 00, 00);
 
     @Autowired
     private final MenuService menuService;
@@ -34,12 +35,10 @@ public class UserMenuRestController {
     @Autowired
     private final UserService userService;
 
-
     @Autowired
     private final VoteService voteService;
 
-
-    public UserMenuRestController(MenuService menuService, UserService userService, RestaurantService restaurantService, VoteService voteService) {
+    public UserMenuRestController(MenuService menuService, UserService userService, VoteService voteService) {
         this.menuService = menuService;
         this.userService = userService;
         this.voteService = voteService;
@@ -55,59 +54,60 @@ public class UserMenuRestController {
         return menuService.getAllByDate(date);
     }
 
+    @GetMapping("/restaurant")
+    public List<Menu> getAllMenuOfRest(Model model, HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        return menuService.getAllMenuOfRest(id);
+    }
+
     @GetMapping("/{id}")
     public List<Menu> getAllMenuForRest(@PathVariable Integer id) {
         return menuService.getAllMenuOfRest(id);
     }
 
-    //нужен рефакторинг много повторяющегося кода
     //нужно брать id из антификации юзера
     @PutMapping("/vote/{id}") //парметр id - id меню
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public String vote( Model model, @PathVariable int id ) {
+    public void vote(@PathVariable int id ) {
         LocalDateTime dateTime = LocalDateTime.now();
 
         Menu m = menuService.get(id);
+        Menu oldMenu;
         User user = userService.get(16);
+        Vote vote;
+        Vote newVote;
 
-        if (user.getVoteLast().isEqual(dateTime.toLocalDate())
-                && user.getVoteLast() != null
-                && dateTime.toLocalTime().isBefore(time_11_00)) {
+        if (m.getDateMenu().isEqual(dateTime.toLocalDate())) {
+            if (user.getVoteLast().isEqual(dateTime.toLocalDate())
+                    && user.getVoteLast() != null
+                    && dateTime.toLocalTime().isBefore(time_11_00)) {
 
-            Vote vote = voteService.getVoteOfUserToDay(16, dateTime.toLocalDate()); //обрати захаркорен юзер
+                vote = voteService.getVoteOfUserToDay(16, dateTime.toLocalDate());
 
-            voteService.delete(vote.id());                                          //удаляем старый голос
+                voteService.delete(vote.id());
 
-            Vote newVote = new Vote(null, user, dateTime.toLocalDate(), m.getRest().id());    //создаем в бд новый голос
-            voteService.create(newVote);
+                newVote = new Vote(null, user, dateTime.toLocalDate(), m.getRest().id());
+                voteService.create(newVote);
 
-            user.setVoteLast(dateTime.toLocalDate());               //надо отрефакторить мтеоды update они должны подваться с id
-            userService.upDate(user);
+                user.setVoteLast(dateTime.toLocalDate());
+                userService.upDate(user, user.id());
 
-            Menu oldMenu = menuService.getMenuWithIdRestAndDate(vote.getIdRest(), dateTime.toLocalDate());       //отзвать старый голос понижаем рейтинг на один
-            oldMenu.setRating(oldMenu.getRating() - 1);
-            menuService.upDate(oldMenu, oldMenu.id());
+                oldMenu = menuService.getMenuWithIdRestAndDate(vote.getIdRest(), dateTime.toLocalDate());
+                oldMenu.setRating(oldMenu.getRating() - 1);
+                menuService.upDate(oldMenu, oldMenu.id());
 
-            m.setRating(m.getRating() + 1);     //кладем новый рейтинг
-            menuService.upDate(m, m.id());
+                m.setRating(m.getRating() + 1);
+                menuService.upDate(m, m.id());
+            } else if (user.getVoteLast() == null || user.getVoteLast().isBefore(dateTime.toLocalDate())) {
+                newVote = new Vote(null, user, dateTime.toLocalDate(), m.getRest().id());
+                voteService.create(newVote);
 
-            model.addAttribute("menu", menuService.getAllByDate(LocalDate.now())); //кладем новую таблицу меню
-            return "menuToDay";
-        } else if (user.getVoteLast() == null || user.getVoteLast().isBefore(dateTime.toLocalDate())){ //добавить проверку чтор бы голосовать можно было за меню оторое сегоднешнее
-            Vote newVote = new Vote(null, user, dateTime.toLocalDate(), m.getRest().id());
-            voteService.create(newVote);
+                user.setVoteLast(dateTime.toLocalDate());
+                userService.upDate(user, user.id());
 
-            user.setVoteLast(dateTime.toLocalDate());               //надо отрефакторить мтеоды update они должны подваться с id
-            userService.upDate(user);
-
-            m.setRating(m.getRating() + 1);
-            menuService.upDate(m, m.id());
-
-            model.addAttribute("menu", menuService.getAllByDate(LocalDate.now()));
-            return "menuToDay";
-        }   else {
-                model.addAttribute("messages", "You voted to day");
-            return "menuToDay";
+                m.setRating(m.getRating() + 1);
+                menuService.upDate(m, m.id());
+            }
         }
     }
 }

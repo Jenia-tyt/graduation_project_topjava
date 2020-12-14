@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping(value = AdminMenuRestController.ADMIN_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminMenuRestController {
 
-    public static final String ADMIN_MENU_TO_DAY = "/admin/menuToDay";
+    public static final String ADMIN_MENU_TO_DAY = "/rest/admin/menuToDay";
 
     @Autowired
     private final MenuService service;

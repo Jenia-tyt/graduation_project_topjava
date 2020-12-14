@@ -31,7 +31,7 @@ class VoteDateJpaRepositoryTest extends AbstractDataJpaTest{
     void upDate() {
         Vote v = NEW_VOTE;
         v.setId(VOTE_ID);
-        service.upDate(v);
+        service.upDate(v, v.id());
         assertThat(v).isEqualTo(service.get(VOTE_ID));
     }
 
