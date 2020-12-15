@@ -1,7 +1,11 @@
 package ru.restaurants.util;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import ru.restaurants.model.AbstractBaseEntity;
 import ru.restaurants.util.execption.NotFoundException;
+
+import java.util.stream.Collectors;
 
 public class ValidationUtil {
 
@@ -41,5 +45,13 @@ public class ValidationUtil {
         } else if (entity.id() != id){
             throw new IllegalArgumentException(entity + " must be with id = "+ id);
         }
+    }
+
+    public static ResponseEntity<String> getErrorResponse(BindingResult result){
+        return ResponseEntity.unprocessableEntity().body(
+                result.getFieldErrors().stream()
+                .map(fe -> String.format("[%s] %s", fe.getField(), fe.getDefaultMessage()))
+                .collect(Collectors.joining("<br>"))
+        );
     }
 }

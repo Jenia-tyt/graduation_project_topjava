@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
     <div class="container">
-        <a class="navbar-brand" href="https://github.com/Jenia-tyt/graduation_project_topjava">
+        <a class="navbar-brand" href="Restaurant/login">
             <img src="Restaurant/resources/images/icon.png" width="32" height="32" class="rounded-circle">
             <spring:message code="app.title"/>
         </a>

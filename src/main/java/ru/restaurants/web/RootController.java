@@ -13,9 +13,18 @@ import java.time.LocalDate;
 @Controller
 public class RootController {
 
+    @Autowired
+    private final MenuService menuService;
+
+    private LocalDate date = LocalDate.now();
+
+    public RootController(MenuService menuService) {
+        this.menuService = menuService;
+    }
+
     @GetMapping("/")
     public String root() {
-        return "menuToDay";
+        return "redirect:menuToDay";
     }
 
     @GetMapping("/login")
@@ -31,5 +40,11 @@ public class RootController {
     @GetMapping("/restaurant")
     public String restaurant(){
         return "restaurant";
+    }
+
+    @GetMapping("/menuToDay")
+    public String menuToDay(Model model){
+        model.addAttribute("menu", menuService.getAllByDate(date)); //здесь отоброджение не должно быть сделано через модель, нужно подключить Jquery
+        return "menuToDay";
     }
 }
