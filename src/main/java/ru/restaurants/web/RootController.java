@@ -13,29 +13,23 @@ import java.time.LocalDate;
 @Controller
 public class RootController {
 
-    @Autowired
-    private RestaurantService serviceRest;
-
-    @Autowired
-    private MenuService serviceMenu;
-
     @GetMapping("/")
     public String root() {
-        return "index";
+        return "menuToDay";
     }
 
-//    @GetMapping("/restaurant")
-//    public String getRest(Model model, HttpServletRequest request) {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        model.addAttribute("nameRest", serviceRest.get(id).getName());
-//        model.addAttribute("menu", serviceMenu.getAllMenuOfRest(id));
-//        return "restaurant";
-//    }
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 
-//    @GetMapping("/menuToDay")
-//    public String getMenuToDay(Model model){
-//        LocalDate dateToDay = LocalDate.now();
-//        model.addAttribute("menu", serviceMenu.getAllByDate(dateToDay));
-//        return "menuToDay";
-//    }
+    @GetMapping("/users")
+    public String users(){
+        return "users";
+    }
+
+    @GetMapping("/restaurant")
+    public String restaurant(){
+        return "restaurant";
+    }
 }

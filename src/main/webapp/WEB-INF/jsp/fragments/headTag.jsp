@@ -6,8 +6,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><spring:message code="app.title"/></title>
         <base href="${pageContext.request.contextPath}"/>
-        <link rel="stylesheet" href="Restaurant/resources/css/style.css" type="text/css">
 
+        <link rel="stylesheet" href="Restaurant/resources/css/style.css" type="text/css">
         <link rel="stylesheet" href="Restaurant/webjars/bootstrap/4.5.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="Restaurant/webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="Restaurant/webjars/datatables/1.10.21/css/dataTables.bootstrap4.min.css">

@@ -4,30 +4,33 @@
 
 <jsp:include page="fragments/headTag.jsp"/>
 <html>
-    <body>
-        <jsp:include page="fragments/bodyHaeder.jsp"/>
-        <q><spring:message code="app.user"/><%=request.getParameter("login")%></q>
+<body>
+<jsp:include page="fragments/bodyHaeder.jsp"/>
+
+<div class="jumbotron pt-4">
+    <div class="container">
+        <h3 class="text-center"><spring:message code="rest.title"/></h3>
         <br>
-        <q><spring:message code="rest.name"/>${nameRest}</q>
-            <div>
-                <table border="1" cellpadding="8" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th><spring:message code="menu.data"/></th>
-                            <th><spring:message code="menu.menu"/></th>
-                            <th><spring:message code="menu.rating"/></th>
-                        </tr>
-                    </thead>
-                    <c:forEach var="menu" items="${menu}">
-                        <jsp:useBean id="menu" scope="page" type="ru.restaurants.model.Menu"/>
-                            <tr>
-                                <td>${menu.dateMenu}</td>
-                                <td>${menu.menuRest}</td>
-                                <td>${menu.rating}</td>
-                            </tr>
-                    </c:forEach>
-                </table>
-            </div>
-        <jsp:include page="fragments/footer.jsp"/>
-    </body>
+
+        <button class="btn btn-primary" onclick="add()">
+            <span class="fa fa-plus"></span>
+            <spring:message code="common.add"/>
+        </button>
+
+
+        <table class="table table-striped" id="datatable">
+            <thead>
+            <tr>
+                <th><spring:message code="rest.name"/></th>
+                <th><spring:message code="rest.rating"/></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<jsp:include page="fragments/footer.jsp"/>
+</body>
 </html>

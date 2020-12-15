@@ -6,40 +6,33 @@
 <html>
 <body>
 <jsp:include page="fragments/bodyHaeder.jsp"/>
-<q><spring:message code="app.user"/><%=request.getParameter("login")%></q>
-<div>
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
-        <tr>
-            <th><spring:message code="menu.nameRest"/></th>
-            <th><spring:message code="menu.data"/></th>
-            <th><spring:message code="menu.menu"/></th>
-            <th><spring:message code="menu.rating"/></th>
-            <th></th>
-        </tr>
-        </thead>
-        <c:forEach var="menu" items="${menu}">
-            <jsp:useBean id="menu" scope="page" type="ru.restaurants.model.Menu"/>
+
+<div class="jumbotron pt-4">
+    <div class="container">
+        <h3 class="text-center"><spring:message code="menu.title"/></h3>
+        <br>
+
+
+        <button class="btn btn-primary" onclick="add()">
+            <span class="fa fa-plus"></span>
+            <spring:message code="common.add"/>
+        </button>
+
+
+        <table class="table table-striped" id="datatable">
+            <thead>
             <tr>
-                <td>
-                    <a href="Restaurant/rest/profile/restaurant?id=${menu.rest.id()}&login=<%=request.getParameter("login")%>">
-                            ${menu.rest.name}
-                    </a>
-                </td>
-                <td>${menu.dateMenu}</td>
-                <td>${menu.menuRest}</td>
-                <td>${menu.rating}</td>
-                <td>
-                    <form method="get" action="Restaurant/rest/profile/vote/${menu.id()}">
-                        <button type="submit" value="${menu.rest.id()}">
-                            <spring:message code="common.vote"/>
-                        </button>
-                    </form>
-                </td>
+                <th><spring:message code="menu.nameRest"/></th>
+                <th><spring:message code="menu.menu"/></th>
+                <th><spring:message code="menu.rating"/></th>
+                <th></th>
+                <th></th>
             </tr>
-        </c:forEach>
-    </table>
+            </thead>
+        </table>
+    </div>
 </div>
+
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>

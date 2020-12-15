@@ -4,14 +4,12 @@ package ru.restaurants.web.controller.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.restaurants.model.Menu;
 import ru.restaurants.model.User;
 import ru.restaurants.model.Vote;
 import ru.restaurants.service.MenuService;
-import ru.restaurants.service.RestaurantService;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 
@@ -22,11 +20,10 @@ import java.time.LocalTime;
 import java.util.List;
 
 
-
 @RestController
-@RequestMapping(value = UserMenuRestController.USER_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
-public class UserMenuRestController {
-    public static final String USER_MENU_TO_DAY = "/rest/profile/menuToDay";
+@RequestMapping(value = UserMenuUIController.URL_UI_USER_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
+public class UserMenuUIController {
+    public static final String URL_UI_USER_MENU_TO_DAY = "/profile/menuToDay";
     private static LocalTime time_11_00 = LocalTime.of(11, 00, 00);
 
     @Autowired
@@ -38,14 +35,14 @@ public class UserMenuRestController {
     @Autowired
     private final VoteService voteService;
 
-    public UserMenuRestController(MenuService menuService, UserService userService, VoteService voteService) {
+    public UserMenuUIController(MenuService menuService, UserService userService, VoteService voteService) {
         this.menuService = menuService;
         this.userService = userService;
         this.voteService = voteService;
     }
 
     public static void setTime_11_00(LocalTime time_11_00) {
-        UserMenuRestController.time_11_00 = time_11_00;
+        UserMenuUIController.time_11_00 = time_11_00;
     }
 
     @GetMapping()
