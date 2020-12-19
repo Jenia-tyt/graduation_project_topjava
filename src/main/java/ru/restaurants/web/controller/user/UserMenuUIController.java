@@ -57,12 +57,18 @@ public class UserMenuUIController {
         return menuService.getAllMenuOfRest(id);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/all/{id}") //добавить тест
     public List<Menu> getAllMenuForRest(@PathVariable Integer id) {
         return menuService.getAllMenuOfRest(id);
     }
 
+    @GetMapping("/{id}")
+    public Menu get(@PathVariable Integer id) {
+        return menuService.get(id);
+    }
+
     //нужно брать id из антификации юзера
+    //когда голусешь до 11 голосоа сумируются
     @PutMapping("/vote/{id}") //парметр id - id меню
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void vote(@PathVariable int id ) {
@@ -75,9 +81,11 @@ public class UserMenuUIController {
         Vote newVote;
 
         if (m.getDateMenu().isEqual(dateTime.toLocalDate())) {
-            if (user.getVoteLast().isEqual(dateTime.toLocalDate())
-                    && user.getVoteLast() != null
+            if (user.getVoteLast() != null
+                    && voteService.getVoteOfUserToDay(16, dateTime.toLocalDate()).id() != id //сравнить последний голос был за это же меню или нет
+                    && user.getVoteLast().isEqual(dateTime.toLocalDate())
                     && dateTime.toLocalTime().isBefore(time_11_00)) {
+
 
                 vote = voteService.getVoteOfUserToDay(16, dateTime.toLocalDate());
 

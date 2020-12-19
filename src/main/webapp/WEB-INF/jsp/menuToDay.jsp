@@ -1,10 +1,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<jsp:include page="fragments/headTag.jsp"/>
 <html>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
+<script type="text/javascript" src="Restaurant/resources/js/GP.common.js" defer></script>
+<script type="text/javascript" src="Restaurant/resources/js/GP.menu.js" defer></script>
 <jsp:include page="fragments/bodyHaeder.jsp"/>
 
 <div class="jumbotron pt-4">
@@ -13,122 +15,86 @@
         <br>
 
 
-        <button class="btn btn-primary" onclick="add()">
-            <span class="fa fa-plus"></span>
-            <spring:message code="common.add"/>
+        <button class="btn btn-outline-primary" onclick="document.location='/Restaurant/users'">
+            <spring:message code="users.title"/>
         </button>
 
-
+<%--        в таблицу надо добавить кнопку удалить и редоктировтаь для admin и кнопку проголосовать для пользователя--%>
         <table class="table table-striped" id="datatable">
             <thead>
             <tr>
                 <th><spring:message code="menu.nameRest"/></th>
                 <th><spring:message code="menu.menu"/></th>
                 <th><spring:message code="menu.rating"/></th>
-                <th></th>
-                <th></th>
+                <th><spring:message code="menu.data"/></th>
+                <th>Голосовать</th>
+                <th>Редактор</th>
+                <th>Удаление</th>
             </tr>
             </thead>
-            <c:forEach items="${menu}" var="menu">
-                <jsp:useBean id="menu" scope="page" type="ru.restaurants.model.Menu"/>
-                    <tr>
-                        <td>${menu.rest.name}</td>
-                        <td>${menu.menuRest}</td>
-                        <td>${menu.rating}</td>
-                    </tr>
-            </c:forEach>
         </table>
     </div>
 </div>
 
-<%--форма редактирования меню ее нужно привести в поорядок и повесить на кнопку--%>
+
+<%--добавить datetimepicer--%>
+<%--добавить на рестораны ссылку на переход на страницу ресторанов--%>
 <div class="modal fade" tabindex="-1" id="editRow">
     <div class="modal-dialog">
         <div class="modal-content">
+
             <div class="modal-header">
                 <h4 class="modal-title" id="modalTitle"></h4>
                 <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
             </div>
+
             <div class="modal-body">
                 <form id="detailsForm">
                     <input type="hidden" id="id" name="id">
+                    <input type="hidden" id="id_rest" name="id_rest">
 
                     <div class="form-group">
-                        <label for="dateTime" class="col-form-label"><spring:message code="app.title"/></label>
-                        <input class="form-control" id="dateTime" name="dateTime" autocomplete="off"
-                               placeholder="<spring:message code="app.title"/>">
+                        <label for="dateMenu" class="col-form-label"><spring:message code="menu.data"/></label>
+                        <div class="form-group">
+                            <input type="date" th:value="*{date}" th:field="*{date}" class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"
+                                   placeholder="<spring:message code="menu.data"/>">
+                        </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="description" class="col-form-label"><spring:message
-                                code="app.title"/></label>
-                        <input type="text" class="form-control" id="description" name="description"
-                               placeholder="<spring:message code="app.title"/>">
+                        <label for="menuRest" class="col-form-label"><spring:message code="menu.menu"/></label>
+                        <input type="text" class="form-control" id="menuRest" name="menuRest"
+                               placeholder="<spring:message code="menu.menu"/>">
                     </div>
 
                     <div class="form-group">
-                        <label for="calories" class="col-form-label"><spring:message code="app.title"/></label>
-                        <input type="number" class="form-control" id="calories" name="calories" placeholder="1000">
+                        <label for="rating" class="col-form-label"><spring:message code="menu.rating"/></label>
+                        <input type="number" class="form-control" id="rating" name="rating"
+                               placeholder="<spring:message code="menu.rating"/>">
                     </div>
                 </form>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeNoty()">
                     <span class="fa fa-close"></span>
-                    <spring:message code="app.title"/>
+                    <spring:message code="common.cancel"/>
                 </button>
                 <button type="button" class="btn btn-primary" onclick="save()">
                     <span class="fa fa-check"></span>
-                    <spring:message code="app.title"/>
+                    <spring:message code="common.save"/>
                 </button>
             </div>
+
         </div>
     </div>
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>
 </body>
-
-<script type="text/javascript">
-    var UI_URl = '/profile/menuToDay/';
-    var oTable_dateTable;
-    var oTable_dateTable_parms;
-
-    $(function (){
-        oTable_dateTable = $('#datatable');
-        oTable_dateTable_parms = {
-            "bPaginate":false,
-            "bInfo":false,
-            "aoColums":[
-                {
-                    "mData" : "name"
-                },
-                {
-                    "mData" : "menuRest"
-                },
-                {
-                    "mData" : "rating"
-                },
-                {
-                    "orderable": false,
-                    "defaultContent": ""
-                },
-                {
-                    "orderable": false,
-                    "defaultContent": ""
-                }
-            ],
-            "order": [
-                [
-                    0,
-                    "asc"
-                ]
-            ]
-        };
-        oTable_dateTable.dataTable(oTable_dateTable_parms);
-        // makeEditable;
-    })
-</script>
-
+<jsp:include page="fragments/i18n.jsp">
+    <jsp:param name="page" value="menu"/>
+</jsp:include>
 </html>
+
 

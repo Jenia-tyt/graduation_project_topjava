@@ -6,13 +6,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfig;
 import ru.restaurants.model.Menu;
 import ru.restaurants.service.MenuService;
+import ru.restaurants.service.RestaurantService;
+import ru.restaurants.to.ToMenu;
 import ru.restaurants.util.ValidationUtil;
 
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,8 +24,17 @@ public class AdminMenuUIController {
     @Autowired
     private final MenuService service;
 
-    public AdminMenuUIController(MenuService service) {
+    @Autowired
+    private final RestaurantService restaurantService;
+
+//    public AdminMenuUIController(MenuService service) {
+//        this.service = service;
+//    }
+
+
+    public AdminMenuUIController(MenuService service, RestaurantService restaurantService) {
         this.service = service;
+        this.restaurantService = restaurantService;
     }
 
     @GetMapping()
@@ -46,23 +54,39 @@ public class AdminMenuUIController {
         service.delete(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createOrUpdate (@RequestBody Menu m, BindingResult result){
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public ResponseEntity<String> createOrUpdate (Menu m, BindingResult result){
+//        if (result.hasErrors()){
+//            return ValidationUtil.getErrorResponse(result);
+//        }
+//        if (m.isNew()){
+//            service.save(m);
+//        } else {
+//            service.upDate(m, m.id());
+//        }
+//        return ResponseEntity.ok().build();
+//    }
+
+    @PostMapping()
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<String> createOrUpdateTO (ToMenu m, BindingResult result){
         if (result.hasErrors()){
             return ValidationUtil.getErrorResponse(result);
         }
+        Menu menu = new Menu(m.getId(), restaurantService.get(m.getId_rest()), m.getDateMenu(), m.getMenuRest(), m.getRating());
         if (m.isNew()){
-            service.save(m);
+            service.save(menu);
         } else {
-            service.upDate(m, m.id());
+            service.upDate(menu, menu.id());
         }
         return ResponseEntity.ok().build();
     }
+
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void upDate(@RequestBody Menu m, @PathVariable int id){
         service.upDate(m, id);
     }
-
 }

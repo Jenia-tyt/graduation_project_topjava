@@ -16,8 +16,6 @@ public class RootController {
     @Autowired
     private final MenuService menuService;
 
-    private LocalDate date = LocalDate.now();
-
     public RootController(MenuService menuService) {
         this.menuService = menuService;
     }
@@ -43,8 +41,12 @@ public class RootController {
     }
 
     @GetMapping("/menuToDay")
-    public String menuToDay(Model model){
-        model.addAttribute("menu", menuService.getAllByDate(date)); //здесь отоброджение не должно быть сделано через модель, нужно подключить Jquery
+    public String menuToDay(){
         return "menuToDay";
+    }
+
+    @GetMapping("/menusOfRestaurant")
+    public String menusOfRestaurant(){
+        return "menusOfRestaurant";
     }
 }
