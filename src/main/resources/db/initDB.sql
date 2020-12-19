@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS menu;
 DROP TABLE IF EXISTS vote;
+DROP TABLE IF EXISTS menu;
 DROP TABLE IF EXISTS restaurant;
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS users;
@@ -47,10 +47,10 @@ CREATE TABLE vote
     id          INTEGER     PRIMARY KEY DEFAULT nextval('global_seq'),
     id_user     INTEGER     NOT NULL,
     date_vote   date        default now(),
-    id_rest     INTEGER     NOT NULL,
+    id_menu     INTEGER     NOT NULL,
 
     UNIQUE (id_user, date_vote),
-    FOREIGN KEY (id_rest) REFERENCES restaurant(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_menu) REFERENCES menu(id) ON DELETE CASCADE,
     FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE CASCADE
 );
 CREATE UNIQUE INDEX vote_unic_index ON vote (id)

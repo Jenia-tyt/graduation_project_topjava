@@ -1,12 +1,9 @@
 package ru.restaurants.model;
 
-import org.hibernate.Hibernate;
-
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "vote")
@@ -20,9 +17,9 @@ public class Vote extends AbstractBaseEntity{
     @NotNull
     private LocalDate dateVote;
 
-    @Column(name = "id_rest")
+    @Column(name = "id_menu")
     @NotNull
-    private Integer idRest;
+    private Integer idMenu;
 
     public Vote() {
     }
@@ -31,7 +28,7 @@ public class Vote extends AbstractBaseEntity{
         super(id);
         this.user = user;
         this.dateVote = dateVote;
-        this.idRest = idRest;
+        this.idMenu = idRest;
     }
 
     public User getUser() {
@@ -50,12 +47,12 @@ public class Vote extends AbstractBaseEntity{
         this.dateVote = dateVoit;
     }
 
-    public int getIdRest() {
-        return idRest;
+    public int getIdMenu() {
+        return idMenu;
     }
 
-    public void setIdRest(int idRest) {
-        this.idRest = idRest;
+    public void setIdMenu(int idRest) {
+        this.idMenu = idRest;
     }
 
     @Override
@@ -67,7 +64,7 @@ public class Vote extends AbstractBaseEntity{
         return this.id != null
                 && this.id.equals(((Vote)o).id)
                 && this.dateVote.equals(((Vote)o).dateVote)
-                && this.idRest.equals(((Vote) o).idRest)
+                && this.idMenu.equals(((Vote) o).idMenu)
                 && this.user.equals(((Vote) o).user);
     }
 
@@ -75,6 +72,6 @@ public class Vote extends AbstractBaseEntity{
     public String toString() {
         return "User with id " + user.id +
                 "voted " + dateVote +
-                "behind " + idRest;
+                "behind " + idMenu;
     }
 }

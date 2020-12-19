@@ -74,28 +74,28 @@ class UserMenuRestControllerTest extends AbstractRestControllerTest {
                 .andExpect(status().isNoContent())
                 .andDo(print());
 
-        assertThat(menuService.get(10)).isEqualTo(m3);
+        assertThat(menuService.get(10)).isEqualTo(m5);
     }
 
     @Test
     void voidBefore11() throws Exception {
 
-        setTime_11_00(LocalTime.now().plusHours(1));
+        setTime_11_00(LocalTime.now().plusHours(1));//изсеняем время голосования
 
-        perform(MockMvcRequestBuilders.put(URL_USER + "vote/14"));
+        perform(MockMvcRequestBuilders.put(URL_USER + "vote/14"));//голосуем  за 14
         Menu menu11AfterVote = menuService.get(14);
-        assertThat(m6).isNotEqualTo(menu11AfterVote);
+        assertThat(m6).isNotEqualTo(menu11AfterVote);//сравнили что голос прошел
 
-        Menu m = menuService.get(10);
+        Menu m = menuService.get(7);
         m.setDateMenu(LocalDate.now());
-        menuService.upDate(m, m.id());
+        menuService.upDate(m, m.id());  //обновляем меню 10 что бы сегоднеешнее
 
-        perform(MockMvcRequestBuilders.put(URL_USER + "vote/10"))
+        perform(MockMvcRequestBuilders.put(URL_USER + "vote/7")) //голосуем за 10 меню
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
         assertThat(m6).isEqualTo(menuService.get(14));
-        assertThat(m3).isNotEqualTo(menuService.get(10));
+        assertThat(m2).isNotEqualTo(menuService.get(7));
         setTime_11_00(LocalTime.of(11, 00, 00));
     }
 
@@ -105,6 +105,6 @@ class UserMenuRestControllerTest extends AbstractRestControllerTest {
                 .andDo(print())
                 .andExpect(status().isNoContent());
 
-        assertThat(menuService.get(10)).isEqualTo(m3);
+        assertThat(menuService.get(10)).isEqualTo(m5);
     }
 }

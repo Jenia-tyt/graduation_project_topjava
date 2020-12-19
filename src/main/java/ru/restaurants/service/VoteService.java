@@ -35,11 +35,6 @@ public class VoteService {
         return voteRepository.allVote();
     }
 
-    public List<Vote> getAllByRest(int idRest){
-        LOG.info("Get all votes with id rest. {}", idRest);
-        return checkNotFoundWithId(voteRepository.getAllByRest(idRest), idRest);
-    }
-
     public void delete(int id){
         LOG.info("Vote deleted with id {}", id);
         checkNotFoundWithId(voteRepository.delete(id), id);

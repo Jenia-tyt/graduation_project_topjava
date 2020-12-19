@@ -46,6 +46,7 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
     @Test
     void getAll() {
         List<Menu> allMenu = service.getAll();
+        allMenu.sort(Comparator.comparing(AbstractBaseEntity::id));
         List<Menu> z = new ArrayList<>(ALL_MENU);
         z.sort(Comparator.comparing(AbstractBaseEntity::id));
         assertThat(allMenu).isEqualTo(z);
@@ -87,8 +88,8 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
     }
 
     @Test
-    void getMenuWithIdRestAndDate(){
-        Menu m = service.getMenuWithIdRestAndDate(REST_ID, LocalDate.of(2020, Month.JANUARY, 30));
+    void getMenuWithIdMenuAndDate(){
+        Menu m = service.getMenuWithIdDate(MENU_ID, LocalDate.of(2020, Month.JANUARY, 30));
         assertThat(m).isEqualTo(MENU);
     }
 }

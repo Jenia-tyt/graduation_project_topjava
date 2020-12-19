@@ -36,12 +36,6 @@ class VoteDateJpaRepositoryTest extends AbstractDataJpaTest{
     }
 
     @Test
-    void getAllByRest() {
-        List<Vote> listAllByRest = service.getAllByRest(3);
-        assertThat(listAllByRest).isEqualTo(LIST_VOTE_ALL_ID_REST_3);
-    }
-
-    @Test
     void voteDuplicateCreate (){
         Vote v = VOTE;
         v.setId(VOTE_ID_66);

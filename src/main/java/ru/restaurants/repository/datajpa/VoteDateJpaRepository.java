@@ -23,10 +23,6 @@ public class VoteDateJpaRepository implements VoteRepository {
         return crudVote.findById(id).orElse(null);
     }
 
-    @Override
-    public List<Vote> getAllByRest(int idRest) {
-        return crudVote.getAllByRest(idRest);
-    }
 
     @Override
     public boolean delete(int id) {

@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping(value = UserMenuUIController.URL_UI_USER_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserMenuUIController {
     public static final String URL_UI_USER_MENU_TO_DAY = "/profile/menuToDay";
-    private static LocalTime time_11_00 = LocalTime.of(11, 00, 00);
+    private static LocalTime time_11_00 = LocalTime.of(14, 00, 00);
 
     @Autowired
     private final MenuService menuService;
@@ -81,34 +81,36 @@ public class UserMenuUIController {
         Vote newVote;
 
         if (m.getDateMenu().isEqual(dateTime.toLocalDate())) {
-            if (user.getVoteLast() != null
-                    && voteService.getVoteOfUserToDay(16, dateTime.toLocalDate()).id() != id //сравнить последний голос был за это же меню или нет
+            if (user.getVoteLast() == null || user.getVoteLast().isBefore(dateTime.toLocalDate())) {
+                newVote = new Vote(null, user, dateTime.toLocalDate(), m.id());
+                voteService.create(newVote);
+
+                user.setVoteLast(dateTime.toLocalDate());
+                userService.upDate(user, user.id());
+
+                m.setRating(m.getRating() + 1);
+                menuService.upDate(m, m.id());
+            } else if (user.getVoteLast() != null
+                    && (voteService.getVoteOfUserToDay(16, dateTime.toLocalDate()).getIdMenu()) != id
                     && user.getVoteLast().isEqual(dateTime.toLocalDate())
                     && dateTime.toLocalTime().isBefore(time_11_00)) {
 
+                Vote last = voteService.getVoteOfUserToDay(16, dateTime.toLocalDate());
+                int f = 0;
 
                 vote = voteService.getVoteOfUserToDay(16, dateTime.toLocalDate());
 
                 voteService.delete(vote.id());
 
-                newVote = new Vote(null, user, dateTime.toLocalDate(), m.getRest().id());
+                newVote = new Vote(null, user, dateTime.toLocalDate(), m.id());
                 voteService.create(newVote);
 
                 user.setVoteLast(dateTime.toLocalDate());
                 userService.upDate(user, user.id());
 
-                oldMenu = menuService.getMenuWithIdRestAndDate(vote.getIdRest(), dateTime.toLocalDate());
+                oldMenu = menuService.getMenuWithIdDate(vote.getIdMenu(), dateTime.toLocalDate());
                 oldMenu.setRating(oldMenu.getRating() - 1);
                 menuService.upDate(oldMenu, oldMenu.id());
-
-                m.setRating(m.getRating() + 1);
-                menuService.upDate(m, m.id());
-            } else if (user.getVoteLast() == null || user.getVoteLast().isBefore(dateTime.toLocalDate())) {
-                newVote = new Vote(null, user, dateTime.toLocalDate(), m.getRest().id());
-                voteService.create(newVote);
-
-                user.setVoteLast(dateTime.toLocalDate());
-                userService.upDate(user, user.id());
 
                 m.setRating(m.getRating() + 1);
                 menuService.upDate(m, m.id());

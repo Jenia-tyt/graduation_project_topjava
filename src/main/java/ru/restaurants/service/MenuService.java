@@ -66,9 +66,9 @@ public class MenuService {
         repository.save(m);
     }
 
-    public Menu getMenuWithIdRestAndDate(int id, LocalDate date){
-        LOG.info("Get menu with id{} rest. and date is to day{}", id, date);
+    public Menu getMenuWithIdDate(int id, LocalDate date){
+        LOG.info("Get menu with id{} and date is to day{}", id, date);
         Assert.notNull(date, "Date doesn't be null");
-        return repository.getMenuWithIdRestAndDateToDay(id, date);
+        return repository.getMenuWithIdDate(id, date);
     }
 }
