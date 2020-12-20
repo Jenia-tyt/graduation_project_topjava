@@ -8,6 +8,8 @@ import org.springframework.util.Assert;
 import ru.restaurants.model.User;
 import ru.restaurants.repository.datajpa.UserDateJpaRepository;
 
+import java.util.List;
+
 import static ru.restaurants.util.ValidationUtil.*;
 
 @Service
@@ -24,6 +26,11 @@ public class UserService {
     public User get (int id){
         LOG.info("Get user with id {}", id);
         return checkNotFoundWithId(repository.get(id), id);
+    }
+
+    public List<User> getAll (){
+        LOG.info("Get all users");
+        return repository.getAll();
     }
 
     public User getByEmail(String email){

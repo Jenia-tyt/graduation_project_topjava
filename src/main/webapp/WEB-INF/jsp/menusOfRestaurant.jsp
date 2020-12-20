@@ -48,13 +48,22 @@
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="id_rest" name="id_rest">
 
+<%--                    <div class="form-group">--%>
+<%--                        <label for="dateMenu" class="col-form-label"><spring:message code="menu.data"/></label>--%>
+<%--                        <div class="form-group">--%>
+<%--                            <input type="date" th:value="*{date}" th:field="*{date}" class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"--%>
+<%--                                   placeholder="<spring:message code="menu.data"/>">--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+
                     <div class="form-group">
                         <label for="dateMenu" class="col-form-label"><spring:message code="menu.data"/></label>
                         <div class="form-group">
-                            <input type="date" th:value="*{date}" th:field="*{date}" class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"
+                            <input type="text" class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"
                                    placeholder="<spring:message code="menu.data"/>">
                         </div>
                     </div>
+
 
                     <div class="form-group">
                         <label for="menuRest" class="col-form-label"><spring:message code="menu.menu"/></label>

@@ -35,11 +35,12 @@
     function save(){            //приходят не правильные параметры для сохранения меню, если этот метод использовать для сохранения и меню и ресторана то надо править URL
         $.ajax({
             type: "POST",
-            // url: URL_ADMIN + "/test",
             url: URL_ADMIN,
             data: form.serialize(),
             success: function (data){
+                debugger;
                 $('#editRow').modal('hide');
+                debugger;
                 ctx.updateTable();
             }
         })
@@ -71,7 +72,13 @@
         $("#modalTitle").html(i18n["editTitle"]);
         $.get('/Restaurant/profile/menuToDay/' + id, function (data) {
             $.each(data, function (key, value) {
-                form.find("input[name='" + key + "']").val(value);
+                console.log(value)
+                if (key === 'dateMenu'){
+                    let valueDate = value.join("-").toString();
+                    form.find("input[name='" + "dateMenu" + "']").val(valueDate);
+                }else {
+                    form.find("input[name='" + key + "']").val(value);
+                }
             });
             form.find("input[name='" + "id_rest" + "']").val(id_rest);
             $('#editRow').modal();
@@ -111,8 +118,6 @@
         })
     }
 
-
-
     var idRest;
     function renderRestaurant(data, type, row) {
         if (type === "display") {
@@ -122,11 +127,42 @@
 
 
     function set(id) {
-        $('#test').val(id);
         localStorage.setItem("id", id);
-        debugger;
+    }
+// ====================USERS+++++++++++++++++++++ наверно надо вынести в отдельный файл так как получается много дублируеющего кода
+    function renderEditBtnForUser(data, type, row) {
+        if (type === "display") {
+            return "<a onclick='updateRowForUser(" + row.id + ");'><span class='fa fa-pencil'></span></a>";
+        }
     }
 
-    // function get() {
-    //     return localStorage.getItem('id');
-    // }
+    function renderDeleteBtnFromUsers(data, type, row) {
+        if (type === "display") {
+            return "<a onclick='deleteRowForUser(" + row.id + ");'><span class='fa fa-remove'></span></a>";
+        }
+    }
+
+    function deleteRowForUser(id) {
+        if (confirm(i18n['common.confirm'])) {
+            $.ajax({
+                url: '/Restaurant/admin/users/' + id,
+                type: "DELETE"
+            }).done(function () {
+                ctx.updateTable();
+                // successNoty("common.deleted");
+            });
+        }
+    }
+ // тут надо отредоктировать всплывающее окно что бы заполнялдось и сохранялось
+    function updateRowForUser(id) {
+        debugger;
+        form.find(":input").val("");
+        $("#modalTitle").html(i18n["editTitle"]);
+        $.get('/Restaurant/admin/users/' + id, function (data) {
+            $.each(data, function (key, value) {
+                form.find("input[name='" + key + "']").val(value);
+            });
+            form.find("input[name='" + "id" + "']").val(id);
+            $('#editRow').modal();
+        });
+    }

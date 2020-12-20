@@ -27,10 +27,6 @@ public class AdminMenuUIController {
     @Autowired
     private final RestaurantService restaurantService;
 
-//    public AdminMenuUIController(MenuService service) {
-//        this.service = service;
-//    }
-
 
     public AdminMenuUIController(MenuService service, RestaurantService restaurantService) {
         this.service = service;
@@ -54,20 +50,6 @@ public class AdminMenuUIController {
         service.delete(id);
     }
 
-//    @PostMapping
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public ResponseEntity<String> createOrUpdate (Menu m, BindingResult result){
-//        if (result.hasErrors()){
-//            return ValidationUtil.getErrorResponse(result);
-//        }
-//        if (m.isNew()){
-//            service.save(m);
-//        } else {
-//            service.upDate(m, m.id());
-//        }
-//        return ResponseEntity.ok().build();
-//    }
-
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> createOrUpdateTO (ToMenu m, BindingResult result){
@@ -82,6 +64,8 @@ public class AdminMenuUIController {
         }
         return ResponseEntity.ok().build();
     }
+
+
 
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

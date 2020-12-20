@@ -56,6 +56,10 @@ var URL_USER_MENU = '/Restaurant/profile/menuToDay/';
                 ]
             ],
         });
+
+        // $('#dateMenu').datetimepicker({
+        //     format: 'Y-m-d H:i'
+        // });
         // добавить нормальный datetimepicker
     });
 

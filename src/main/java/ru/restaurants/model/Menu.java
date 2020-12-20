@@ -37,17 +37,17 @@ public class Menu extends AbstractBaseEntity{
 
     public Menu() {}
 
-    public Menu( @NotNull Restaurant r, @NotBlank @NotNull LocalDate dateMenu, @NotNull @NotBlank String menuRest, Integer rating) {
-        this(null, r, dateMenu, menuRest, rating);
+    public Menu( @NotNull Restaurant rest, @NotBlank @NotNull LocalDate dateMenu, @NotNull @NotBlank String menuRest, Integer rating) {
+        this(null, rest, dateMenu, menuRest, rating);
     }
 
     public Menu (Menu m){
         this(m.getId(), m.rest, m.getDateMenu(), m.getMenuRest(), m.getRating());
     }
 
-    public Menu(Integer id, Restaurant r, LocalDate dateMenu, String menuRest, Integer rating) {
+    public Menu(Integer id, Restaurant rest, LocalDate dateMenu, String menuRest, Integer rating) {
         super(id);
-        this.rest = r;
+        this.rest = rest;
         this.dateMenu = dateMenu;
         this.menuRest = menuRest;
         this.rating = rating == null ? 0 : rating;

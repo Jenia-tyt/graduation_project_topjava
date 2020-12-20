@@ -69,4 +69,9 @@ class UserDateJpaRepositoryTest extends AbstractDataJpaTest{
         int id = user.id();
         assertThat(user).isEqualTo(userService.get(id));
     }
+
+    @Test
+    void getAll(){
+        assertThat(allUsers).isEqualTo(userService.getAll());
+    }
 }

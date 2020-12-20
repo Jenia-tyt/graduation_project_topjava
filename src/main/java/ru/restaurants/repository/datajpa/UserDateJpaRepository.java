@@ -4,6 +4,8 @@ import org.springframework.stereotype.Repository;
 import ru.restaurants.model.User;
 import ru.restaurants.repository.UserRepository;
 
+import java.util.List;
+
 @Repository
 public class UserDateJpaRepository implements UserRepository {
 
@@ -32,6 +34,10 @@ public class UserDateJpaRepository implements UserRepository {
     @Override
     public User save(User user) {
         return crudUser.save(user);
+    }
+
+    public List<User> getAll(){
+        return crudUser.findAll();
     }
 
 }

@@ -25,12 +25,12 @@ $(function (){
             },
             {
                 "data":"dateMenu",
-                "render": function (date, type, row) {
-                    if (type === "display") {
-                        return date.reverse().toString().replaceAll(',','.');
-                    }
-                    return date;
-                }
+                // "render": function (date, type, row) {
+                //     if (type === "display") {
+                //         return date.reverse().toString().replaceAll(',','.');
+                //     }
+                //     return date;
+                // }
             },
             {
                 "render": renderEditBtn,
