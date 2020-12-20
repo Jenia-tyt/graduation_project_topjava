@@ -14,7 +14,6 @@ var URL_USER_MENU = '/Restaurant/profile/menuToDay/';
         makeEditable({
             "columns":[
                 {
-                    // "mData" : "rest.name",
                     "render": renderRestaurant,
                     "orderable": false,
                     "defaultContent": "",
@@ -47,9 +46,8 @@ var URL_USER_MENU = '/Restaurant/profile/menuToDay/';
                 {
                     "render": renderDeleteBtn,
                     "orderable": false,
-                    "defaultContent":""
+                    "defaultContent":"",
                 }
-
             ],
             "order": [
                 [
@@ -61,8 +59,14 @@ var URL_USER_MENU = '/Restaurant/profile/menuToDay/';
         // добавить нормальный datetimepicker
     });
 
-    function renderRestaurant(data, type, row) {
-        if (type === "display") {
-            return "<a href='/Restaurant/menusOfRestaurant'><span class='btn btn-success'>"+ row.rest.name +"</span></a>";
-        }
-    }
+    // function renderRestaurant(data, type, row) {
+    //     if (type === "display") {
+    //         // return "<a href='/Restaurant/menusOfRestaurant'><span class='btn btn-success'>"+ row.rest.name +"</span></a>";
+    //         return "<a onclick='upUrl("+ row.id +")' href='/Restaurant/menusOfRestaurant'><span class='btn btn-success'>"+ row.rest.name +"</span></a>"
+    //     }
+    // }
+
+    // function upUrl(id){
+    //     debugger;
+    //     ulr_menus = '/Restaurant/admin/menuToDay/3';
+    // }

@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping(value = UserMenuUIController.URL_UI_USER_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserMenuUIController {
     public static final String URL_UI_USER_MENU_TO_DAY = "/profile/menuToDay";
-    private static LocalTime time_11_00 = LocalTime.of(14, 00, 00);
+    private static LocalTime time_11_00 = LocalTime.of(11, 00, 00);
 
     @Autowired
     private final MenuService menuService;

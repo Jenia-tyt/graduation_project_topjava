@@ -1,5 +1,6 @@
     var form;
     var URL_ADMIN = '/Restaurant/admin/menuToDay';
+    var URL_ALL_MENU_REST;
 
     $.ajaxSetup({cache: false});
 
@@ -68,7 +69,7 @@
     function updateRow(id, id_rest) {
         form.find(":input").val("");
         $("#modalTitle").html(i18n["editTitle"]);
-        $.get(ctx.ajaxUrl + id, function (data) {
+        $.get('/Restaurant/profile/menuToDay/' + id, function (data) {
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
             });
@@ -109,3 +110,23 @@
             ctx.updateTable();
         })
     }
+
+
+
+    var idRest;
+    function renderRestaurant(data, type, row) {
+        if (type === "display") {
+            return "<a href='/Restaurant/menusOfRestaurant'><span class='btn btn-success' onclick='set("+row.rest.id +")'>"+ row.rest.name +"</span></a>"
+        }
+    }
+
+
+    function set(id) {
+        $('#test').val(id);
+        localStorage.setItem("id", id);
+        debugger;
+    }
+
+    // function get() {
+    //     return localStorage.getItem('id');
+    // }
