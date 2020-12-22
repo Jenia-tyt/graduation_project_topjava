@@ -56,7 +56,7 @@ public class AdminMenuUIController {
         if (result.hasErrors()){
             return ValidationUtil.getErrorResponse(result);
         }
-        Menu menu = new Menu(m.getId(), restaurantService.get(m.getId_rest()), m.getDateMenu(), m.getMenuRest(), m.getRating());
+        Menu menu = new Menu(m.getId(), restaurantService.get(m.getId_rest()), m.getDateMenu(), m.getMenuRest(), m.getRating());//вынестив отдельный метод
         if (m.isNew()){
             service.save(menu);
         } else {

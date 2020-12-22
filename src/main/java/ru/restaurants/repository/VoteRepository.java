@@ -14,4 +14,6 @@ public interface VoteRepository {
 
     List<Vote> allVote();
 
+    List<Vote> allVoteByUser(int idUser);
+
 }

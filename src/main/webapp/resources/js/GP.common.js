@@ -32,15 +32,13 @@
         ctx.datatableApi.clear().rows.add(data).draw();
     }
 
-    function save(){            //приходят не правильные параметры для сохранения меню, если этот метод использовать для сохранения и меню и ресторана то надо править URL
+    function save(){
         $.ajax({
             type: "POST",
             url: URL_ADMIN,
             data: form.serialize(),
             success: function (data){
-                debugger;
                 $('#editRow').modal('hide');
-                debugger;
                 ctx.updateTable();
             }
         })
@@ -52,14 +50,23 @@
         $("#editRow").modal();
     }
 
+    function addNewMenu(){
+        $("#modalTitle").html(i18n["addTitle"]);
+        form.find(":input").val("");
+        form.find("input[name='" + "id_rest" + "']").val(localStorage.getItem('idRest'));
+        $("#editRow").modal();
+    }
+
     var failedNote;
 
-    function closeNoty() { //закрытие всплывающих окон
+    function closeNoty() {
         if (failedNote) {
             failedNote.close();
             failedNote = undefined;
         }
     }
+
+
 
     function renderEditBtn(data, type, row) {
         if (type === "display") {
@@ -72,10 +79,9 @@
         $("#modalTitle").html(i18n["editTitle"]);
         $.get('/Restaurant/profile/menuToDay/' + id, function (data) {
             $.each(data, function (key, value) {
-                console.log(value)
                 if (key === 'dateMenu'){
-                    let valueDate = value.join("-").toString();
-                    form.find("input[name='" + "dateMenu" + "']").val(valueDate);
+                    let date = new Date(value).toLocaleString().substring(0,10).split('.').reverse().join("-");
+                    form.find("input[name='" + "dateMenu" + "']").val(date);
                 }else {
                     form.find("input[name='" + key + "']").val(value);
                 }
@@ -126,17 +132,20 @@
     }
 
 
-    function set(id) {
-        localStorage.setItem("id", id);
+    function set(idRest) {
+        localStorage.setItem("idRest", idRest);
     }
-// ====================USERS+++++++++++++++++++++ наверно надо вынести в отдельный файл так как получается много дублируеющего кода
+
+    // ==================== USERS+++++++++++++++++++++ наверно надо вынести в отдельный файл так как получается много дублируеющего кода
+
+
     function renderEditBtnForUser(data, type, row) {
         if (type === "display") {
             return "<a onclick='updateRowForUser(" + row.id + ");'><span class='fa fa-pencil'></span></a>";
         }
     }
 
-    function renderDeleteBtnFromUsers(data, type, row) {
+    function renderDeleteBtnForUsers(data, type, row) {
         if (type === "display") {
             return "<a onclick='deleteRowForUser(" + row.id + ");'><span class='fa fa-remove'></span></a>";
         }
@@ -153,16 +162,47 @@
             });
         }
     }
- // тут надо отредоктировать всплывающее окно что бы заполнялдось и сохранялось
-    function updateRowForUser(id) {
-        debugger;
+
+ // тут надо отредоктировать всплывающее окно что бы заполнялдось и сохранялось для юзера
+    function addEditUser(){
+        $("#modalTitle").html(i18n["addTitle"]);
         form.find(":input").val("");
-        $("#modalTitle").html(i18n["editTitle"]);
+        form.find("input[name='" + "id_rest" + "']").val(localStorage.getItem('idRest'));
+        $("#editRow").modal();
+    }
+
+    function updateRowForUser(id) {
+        form.find(":input").val("");
+        $("#modalTitle").html(i18n["editUser"]);
         $.get('/Restaurant/admin/users/' + id, function (data) {
             $.each(data, function (key, value) {
-                form.find("input[name='" + key + "']").val(value);
+                if (key === "role") {
+                    let str = value.sort().join('.');
+                    form.find("select[name='" + key + "']").val(str);
+                } else if (key === 'voteLast') {
+                    let date = new Date(value).toLocaleString().substring(0, 10).split('.').reverse().join("-");
+                    form.find("input[name='" + key + "']").val(date);
+                } else {
+                    form.find("input[name='" + key + "']").val(value);
+                }
             });
             form.find("input[name='" + "id" + "']").val(id);
             $('#editRow').modal();
         });
     }
+
+    function saveUser(){            //приходят не правильные параметры для сохранения меню, если этот метод использовать для сохранения и меню и ресторана то надо править URL
+        $.ajax({
+            type: "POST",
+            url: "/Restaurant/admin/users",
+            data: form.serialize(),
+            success: function (data){
+                $('#editRow').modal('hide');
+                ctx.updateTable();
+            }
+        })
+    }
+
+
+
+

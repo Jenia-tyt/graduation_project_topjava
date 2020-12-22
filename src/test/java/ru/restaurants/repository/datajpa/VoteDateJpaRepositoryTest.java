@@ -75,4 +75,10 @@ class VoteDateJpaRepositoryTest extends AbstractDataJpaTest{
         Vote vote = service.getVoteOfUserToDay(15, LocalDate.now());
         assertThat(vote).isEqualTo(VOTE_TO_DAY);
     }
+
+    @Test
+    void getAllVoteByUser(){
+        List<Vote> allVote = service.getAllVoteByUser(15);
+        assertThat(allVote).isEqualTo(LIST_ALL_VOTE_FOR_USERS_ID_15);
+    }
 }

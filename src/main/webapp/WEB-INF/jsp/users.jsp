@@ -1,5 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="fragments/headTag.jsp"/>
@@ -15,10 +16,6 @@
         <h3 class="text-center"><spring:message code="users.title"/></h3>
         <br>
 
-        <button class="btn btn-primary" onclick="add()">
-            <span class="fa fa-plus"></span>
-            <spring:message code="common.add"/>
-        </button>
 
         <table class="table table-striped" id="datatable">
             <thead>
@@ -46,27 +43,36 @@
             <div class="modal-body">
                 <form id="detailsForm">
                     <input type="hidden" id="id" name="id">
-                    <input type="hidden" id="id_rest" name="id_rest">
+
+                    <input type="date" hidden="hidden" th:value="*{date}" th:field="*{date}" id="voteLast" name="voteLast">
 
                     <div class="form-group">
-                        <label for="dateMenu" class="col-form-label"><spring:message code="menu.data"/></label>
-                        <div class="form-group">
-                            <input type="date" th:value="*{date}" th:field="*{date}" class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"
-                                   placeholder="<spring:message code="menu.data"/>">
-                        </div>
+                        <label for="name" class="col-form-label"><spring:message code="users.name"/></label>
+                        <input type="text" class="form-control" id="name" name="name"
+                               placeholder="<spring:message code="users.name"/>">
                     </div>
 
                     <div class="form-group">
-                        <label for="menuRest" class="col-form-label"><spring:message code="menu.menu"/></label>
-                        <input type="text" class="form-control" id="menuRest" name="menuRest"
-                               placeholder="<spring:message code="menu.menu"/>">
+                        <label for="email" class="col-form-label"><spring:message code="users.email"/></label>
+                        <input type="email" class="form-control" id="email" name="email"
+                               placeholder="<spring:message code="users.email"/>">
                     </div>
 
                     <div class="form-group">
-                        <label for="rating" class="col-form-label"><spring:message code="menu.rating"/></label>
-                        <input type="number" class="form-control" id="rating" name="rating" value="0"
-                               placeholder="<spring:message code="menu.rating"/>">
+                        <label for="password" class="col-form-label"><spring:message code="users.password"/></label>
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="<spring:message code="users.password"/>">
                     </div>
+
+                    <div class="form-group">
+                        <label for="role" class="col-form-label"><spring:message code="users.role"/></label>
+                        <select type="text" class="form-control" id="role"  name="role">
+                            <option value="USER">USER</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="ADMIN.USER">USER,ADMIN</option>
+                        </select>
+                    </div>
+
                 </form>
             </div>
 
@@ -75,7 +81,7 @@
                     <span class="fa fa-close"></span>
                     <spring:message code="common.cancel"/>
                 </button>
-                <button type="button" class="btn btn-primary" onclick="save()">
+                <button type="button" class="btn btn-primary" onclick="saveUser()">
                     <span class="fa fa-check"></span>
                     <spring:message code="common.save"/>
                 </button>

@@ -6,12 +6,19 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.restaurants.model.Role;
 import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
+import ru.restaurants.service.VoteService;
+import ru.restaurants.to.ToUser;
 import ru.restaurants.util.ValidationUtil;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Handler;
 
 
 @RestController
@@ -22,8 +29,12 @@ public class AdminUsersUIController {
     @Autowired
     private final UserService userService;
 
-    public AdminUsersUIController(UserService userService) {
+    @Autowired
+    private final VoteService voteService;
+
+    public AdminUsersUIController(UserService userService, VoteService voteService) {
         this.userService = userService;
+        this.voteService = voteService;
     }
 
     @GetMapping("/")
@@ -42,17 +53,59 @@ public class AdminUsersUIController {
         userService.delete(id);
     }
 
-    @PostMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<String> createOrUpdate (User user, BindingResult result){
+//    @PostMapping()
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public ResponseEntity<String> createOrUpdate (User user, BindingResult result){
+//        if (result.hasErrors()) {
+//            return ValidationUtil.getErrorResponse(result);
+//        }
+//        if (user.isNew()){
+//            userService.create(user);
+//        } else {
+//            userService.upDate(user, user.id());
+//        }
+//        return ResponseEntity.ok().build();
+//    }
+
+    @PostMapping()
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<String> createOrUpdate (ToUser toUser, BindingResult result){
         if (result.hasErrors()) {
             return ValidationUtil.getErrorResponse(result);
         }
+        User user = covertToUser(toUser);
+
         if (user.isNew()){
             userService.create(user);
         } else {
             userService.upDate(user, user.id());
         }
         return ResponseEntity.ok().build();
+    }
+
+    private User covertToUser (ToUser u){
+        String [] array = u.getRole().split("\\.");
+        Set<Role> roleSet = new HashSet<>();
+        for (String s : array) {
+            switch (s) {
+                case ("USER"):
+                    roleSet.add(Role.USER);
+                    break;
+                case ("ADMIN"):
+                    roleSet.add(Role.ADMIN);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        User user;
+        if (u.isNew()) {
+             user = new User(null, u.getEmail(), u.getName(), u.getPassword(), null, u.getVoteLast(), roleSet);
+        }
+        else {
+            user = new User(u.id(), u.getEmail(), u.getName(), u.getPassword(), voteService.getAllVoteByUser(u.id()), u.getVoteLast(), roleSet); //сюда дабавить все голосо пользователя
+        }
+        return user;
     }
 }

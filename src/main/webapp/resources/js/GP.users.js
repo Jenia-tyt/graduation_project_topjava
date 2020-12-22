@@ -28,7 +28,7 @@ $(function (){
                 "defaultContent": "",
             },
             {
-                "render": renderDeleteBtnFromUsers,
+                "render": renderDeleteBtnForUsers,
                 "orderable": false,
                 "defaultContent":"",
             }

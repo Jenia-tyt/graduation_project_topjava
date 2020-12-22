@@ -28,7 +28,7 @@ var URL_USER_MENU = '/Restaurant/profile/menuToDay/';
                     "data":"dateMenu",
                     "render": function (date, type, row) {
                         if (type === "display") {
-                            return date.reverse().toString().replaceAll(',','.');
+                            return new Date(date).toLocaleString().substring(0,10).split('.').join(".");
                         }
                         return date;
                     }
@@ -56,21 +56,5 @@ var URL_USER_MENU = '/Restaurant/profile/menuToDay/';
                 ]
             ],
         });
-
-        // $('#dateMenu').datetimepicker({
-        //     format: 'Y-m-d H:i'
-        // });
         // добавить нормальный datetimepicker
     });
-
-    // function renderRestaurant(data, type, row) {
-    //     if (type === "display") {
-    //         // return "<a href='/Restaurant/menusOfRestaurant'><span class='btn btn-success'>"+ row.rest.name +"</span></a>";
-    //         return "<a onclick='upUrl("+ row.id +")' href='/Restaurant/menusOfRestaurant'><span class='btn btn-success'>"+ row.rest.name +"</span></a>"
-    //     }
-    // }
-
-    // function upUrl(id){
-    //     debugger;
-    //     ulr_menus = '/Restaurant/admin/menuToDay/3';
-    // }

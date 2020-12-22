@@ -38,7 +38,6 @@
 
 
 <%--добавить datetimepicer--%>
-<%--добавить на рестораны ссылку на переход на страницу ресторанов--%>
 <div class="modal fade" tabindex="-1" id="editRow">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -58,16 +57,8 @@
                         <div class="form-group">
                             <input type="date" th:value="*{date}" th:field="*{date}" class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"
                                    placeholder="<spring:message code="menu.data" />">
-<%--                            th:value="*{date}"--%>
-<%--                            value="sighting.sightingDate"--%>
                         </div>
                     </div>
-
-<%--                    <div class="form-group">--%>
-<%--                        <label for="dateMenu" class="col-form-label"><spring:message code="menu.data"/></label>--%>
-<%--                        <input  class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"--%>
-<%--                                   placeholder="<spring:message code="menu.data"/>">--%>
-<%--                    </div>--%>
 
                     <div class="form-group">
                         <label for="menuRest" class="col-form-label"><spring:message code="menu.menu"/></label>

@@ -43,4 +43,9 @@ public class VoteDateJpaRepository implements VoteRepository {
     public Vote getVoteOfUserToDay(int idUser, LocalDate date) {
         return crudVote.getVoteOfUserToDay(idUser, date);
     }
+
+    @Override
+    public List<Vote> allVoteByUser(int idUser) {
+        return crudVote.getAllVoteByUser(idUser);
+    }
 }

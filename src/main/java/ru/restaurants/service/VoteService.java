@@ -53,10 +53,16 @@ public class VoteService {
         return voteRepository.save(vote);
     }
 
-    public Vote getVoteOfUserToDay(int idUser, LocalDate date){
+    public Vote getVoteOfUserToDay(Integer idUser, LocalDate date){
         LOG.info("Vote get of user to day");
         Assert.notNull(date, "Date doesn't be null");
+        Assert.notNull(idUser, "User's id doesn't be null");
         return voteRepository.getVoteOfUserToDay(idUser, date);
     }
 
+    public List<Vote> getAllVoteByUser(Integer idUser){
+        LOG.info("Get all vote be user with id {}", idUser);
+        Assert.notNull(idUser, "User's id doesn't be null");
+        return voteRepository.allVoteByUser(idUser);
+    }
 }

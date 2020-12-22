@@ -6,16 +6,16 @@
 <html>
 <body>
 <script type="text/javascript" src="Restaurant/resources/js/GP.common.js" defer></script>
-<script type="text/javascript" src="Restaurant/resources/js/GP.allMenuOfRestar.js" defer></script>
+<script type="text/javascript" src="Restaurant/resources/js/GP.menusOfRest.js" defer></script>
 <jsp:include page="fragments/bodyHaeder.jsp"/>
 
 <div class="jumbotron pt-4">
     <div class="container">
         <%--        сюда надо добьавить название ресторана--%>
-        <h3 class="text-center"><spring:message code="rest.allMenu"/></h3>
+            <h3 class="text-center"><spring:message code="rest.allMenu"/></h3>
         <br>
 
-        <button class="btn btn-primary" onclick="add()">
+        <button class="btn btn-primary" onclick="addNewMenu()">
             <span class="fa fa-plus"></span>
             <spring:message code="common.add"/>
         </button>
@@ -48,22 +48,13 @@
                     <input type="hidden" id="id" name="id">
                     <input type="hidden" id="id_rest" name="id_rest">
 
-<%--                    <div class="form-group">--%>
-<%--                        <label for="dateMenu" class="col-form-label"><spring:message code="menu.data"/></label>--%>
-<%--                        <div class="form-group">--%>
-<%--                            <input type="date" th:value="*{date}" th:field="*{date}" class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"--%>
-<%--                                   placeholder="<spring:message code="menu.data"/>">--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-
                     <div class="form-group">
                         <label for="dateMenu" class="col-form-label"><spring:message code="menu.data"/></label>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"
-                                   placeholder="<spring:message code="menu.data"/>">
+                            <input type="date" th:value="*{date}" th:field="*{date}" class="form-control" id="dateMenu" name="dateMenu" autocomplete="off"
+                                   placeholder="<spring:message code="menu.data" />">
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <label for="menuRest" class="col-form-label"><spring:message code="menu.menu"/></label>
@@ -73,7 +64,7 @@
 
                     <div class="form-group">
                         <label for="rating" class="col-form-label"><spring:message code="menu.rating"/></label>
-                        <input type="number" class="form-control" id="rating" name="rating" value="0"
+                        <input type="number" class="form-control" id="rating" name="rating"
                                placeholder="<spring:message code="menu.rating"/>">
                     </div>
                 </form>
@@ -93,6 +84,7 @@
         </div>
     </div>
 </div>
+
 
 <jsp:include page="fragments/footer.jsp"/>
 </body>

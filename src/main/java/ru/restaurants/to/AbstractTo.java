@@ -14,11 +14,11 @@ public abstract class AbstractTo implements HasId {
 
     @Override
     public Integer getId() {
-        return null;
+        return id;
     }
 
     @Override
     public void setId(Integer id) {
-
+        this.id=id;
     }
 }
