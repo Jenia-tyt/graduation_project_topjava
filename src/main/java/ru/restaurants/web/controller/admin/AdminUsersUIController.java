@@ -53,20 +53,6 @@ public class AdminUsersUIController {
         userService.delete(id);
     }
 
-//    @PostMapping()
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public ResponseEntity<String> createOrUpdate (User user, BindingResult result){
-//        if (result.hasErrors()) {
-//            return ValidationUtil.getErrorResponse(result);
-//        }
-//        if (user.isNew()){
-//            userService.create(user);
-//        } else {
-//            userService.upDate(user, user.id());
-//        }
-//        return ResponseEntity.ok().build();
-//    }
-
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> createOrUpdate (ToUser toUser, BindingResult result){

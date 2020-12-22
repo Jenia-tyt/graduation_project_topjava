@@ -13,16 +13,6 @@ public class ToUser extends AbstractTo {
     private String password;
     private String role;
 
-//    public ToUser(Integer id, String name, String voteLast, String email, String password, String role) {
-//        super(id);
-//        this.name = name;
-//        this.voteLast = voteLast;
-//        this.email = email;
-//        this.password = password;
-//        this.role = role;
-//    }
-
-
     public ToUser(Integer id, String name, LocalDate voteLast, String email, String password, String role) {
         super(id);
         this.name = name;
