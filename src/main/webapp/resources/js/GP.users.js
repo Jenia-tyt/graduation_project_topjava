@@ -18,6 +18,12 @@ $(function (){
             },
             {
                 "mData" : "email",
+                "render": function (data, type, row) {
+                    if (type === "display") {
+                        return "<a href='mailto:" + data + "'>" + data + "</a>";
+                    }
+                    return data;
+                }
             },
             {
                 "data":"role",
