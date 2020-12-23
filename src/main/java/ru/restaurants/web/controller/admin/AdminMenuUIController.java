@@ -66,8 +66,6 @@ public class AdminMenuUIController {
     }
 
 
-
-
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void upDate(@RequestBody Menu m, @PathVariable int id){

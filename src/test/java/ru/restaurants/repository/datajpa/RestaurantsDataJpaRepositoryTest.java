@@ -22,7 +22,7 @@ public class RestaurantsDataJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     public void duplicateCreateRestaurant(){
-        assertThrows(DataAccessException.class, ()-> service.save(new Restaurant(null, "restaurant1", 0)));
+        assertThrows(DataAccessException.class, ()-> service.save(new Restaurant(null, "restaurant1", null, 0)));
     }
 
     @Test

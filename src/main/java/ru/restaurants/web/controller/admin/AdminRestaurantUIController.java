@@ -9,7 +9,9 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurants.model.Restaurant;
+import ru.restaurants.service.MenuService;
 import ru.restaurants.service.RestaurantService;
+import ru.restaurants.to.ToRestaurant;
 import ru.restaurants.util.ValidationUtil;
 
 import java.net.URI;
@@ -25,8 +27,12 @@ public class AdminRestaurantUIController {
     @Autowired
     private final RestaurantService restService;
 
-    public AdminRestaurantUIController(RestaurantService restService) {
+    @Autowired
+    private final MenuService menuService;
+
+    public AdminRestaurantUIController(RestaurantService restService, MenuService menuService) {
         this.restService = restService;
+        this.menuService = menuService;
     }
 
     @GetMapping
@@ -45,15 +51,17 @@ public class AdminRestaurantUIController {
         restService.delete(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createOrUpdate(@RequestBody Restaurant rest, BindingResult result) {
+    @PostMapping()
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<String> createOrUpdate(ToRestaurant rest, BindingResult result) {
         if (result.hasErrors()){
             return ValidationUtil.getErrorResponse(result);
         }
+        Restaurant restaurant = covertToRestaurant(rest);
         if (rest.isNew()){
-            restService.save(rest);
+            restService.save(restaurant);
         } else {
-            restService.update(rest, rest.id());
+            restService.update(restaurant, rest.id());
         }
         return ResponseEntity.ok().build();
     }
@@ -62,5 +70,17 @@ public class AdminRestaurantUIController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void upDate(@RequestBody Restaurant rest, @PathVariable int id){
         restService.update(rest, id);
+    }
+
+    private Restaurant covertToRestaurant (ToRestaurant rest){
+        Restaurant restaurant;
+        if (rest.isNew()){
+            restaurant = new Restaurant(null, rest.getName(), null, rest.getRating());
+
+        } else {
+            restaurant = new Restaurant(rest.id(), rest.getName(), menuService.getAllMenuOfRest(rest.id()), rest.getRating());
+        }
+
+        return restaurant;
     }
 }

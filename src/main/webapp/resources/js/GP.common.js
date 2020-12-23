@@ -4,7 +4,7 @@
 
     $.ajaxSetup({cache: false});
 
-    function makeEditable(datatableOpts) { //разобарать что как работает
+    function makeEditable(datatableOpts) { //разобарать какк выводить ошибки
         ctx.datatableApi = $("#datatable").DataTable(
             // https://api.jquery.com/jquery.extend/#jQuery-extend-deep-target-object1-objectN
             $.extend(true, datatableOpts,
@@ -13,8 +13,8 @@
                         "url": ctx.ajaxUrl,
                         "dataSrc": ""
                     },
-                    "paging": false,
-                    "info": true
+                    "paging": true,
+                    "info": true,
                 }
             ));
 
@@ -66,6 +66,17 @@
         }
     }
 
+    function successNoty(key) { //высплывающие уведомления
+        closeNoty();
+        debugger;
+        new Noty({
+            text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + i18n[key],
+            type: 'success',
+            layout: "bottomRight",
+            timeout: 1000
+        }).show();
+    }
+
 
 
     function renderEditBtn(data, type, row) {
@@ -74,7 +85,7 @@
         }
     }
 
-    function updateRow(id, id_rest) {
+    function updateRow(id, id_rest) { //переписать через кусловие
         form.find(":input").val("");
         $("#modalTitle").html(i18n["editTitle"]);
         $.get('/Restaurant/profile/menuToDay/' + id, function (data) {
@@ -104,7 +115,7 @@
                 type: "DELETE"
             }).done(function () {
                 ctx.updateTable();
-                // successNoty("common.deleted");
+                successNoty("common.deleted");
             });
         }
     }
@@ -191,7 +202,7 @@
         });
     }
 
-    function saveUser(){            //приходят не правильные параметры для сохранения меню, если этот метод использовать для сохранения и меню и ресторана то надо править URL
+    function saveUser(){
         $.ajax({
             type: "POST",
             url: "/Restaurant/admin/users",
@@ -203,6 +214,59 @@
         })
     }
 
+    // =============================Restaurants++++++++++++++++++++
 
+    function renderEditBtnForRest(data, type, row) {
+        if (type === "display") {
+            return "<a onclick='updateRowForRest(" + row.id + ");'><span class='fa fa-pencil'></span></a>";
+        }
+    }
+
+    function updateRowForRest(id) { //переписать через условие
+        form.find(":input").val("");
+        $("#modalTitle").html(i18n["editTitle"]);
+        $.get("/Restaurant/admin/restaurant/" + id, function (data) {
+            $.each(data, function (key, value) {
+                form.find("input[name='" + key + "']").val(value);
+            });
+            $('#editRow').modal();
+        });
+    }
+
+    function renderDeleteBtnForRest(data, type, row) {
+        if (type === "display") {
+            return "<a onclick='deleteRowForRest(" + row.id + ");'><span class='fa fa-remove'></span></a>";
+        }
+    }
+
+    function renderRestaurantForPageRest(data, type, row) {
+        if (type === "display") {
+            return "<a href='/Restaurant/menusOfRestaurant'><span class='btn btn-success' onclick='set("+row.id +")'>"+ row.name +"</span></a>"
+        }
+    }
+
+    function deleteRowForRest(id) {
+        if (confirm(i18n['common.confirm'])) {
+            $.ajax({
+                url: "/Restaurant/admin/restaurant/" + id,
+                type: "DELETE"
+            }).done(function () {
+                ctx.updateTableRest();
+                // successNoty("common.deleted");
+            });
+        }
+    }
+
+    function saveForRest(){
+        $.ajax({
+            type: "POST",
+            url: "/Restaurant/admin/restaurant",
+            data: form.serialize(),
+            success: function (data){
+                $('#editRow').modal('hide');
+                ctx.updateTableRest();
+            }
+        })
+    }
 
 

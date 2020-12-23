@@ -19,6 +19,10 @@
             <spring:message code="users.title"/>
         </button>
 
+        <button class="btn btn-outline-primary" onclick="document.location='/Restaurant/restaurant'">
+            <spring:message code="rest.title"/>
+        </button>
+
 <%--        в таблицу надо добавить кнопку удалить и редоктировтаь для admin и кнопку проголосовать для пользователя--%>
         <table class="table table-striped" id="datatable">
             <thead>

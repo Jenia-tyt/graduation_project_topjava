@@ -35,17 +35,18 @@ public class Restaurant extends AbstractBaseEntity{
     public Restaurant() {
     }
 
-    public Restaurant(@NotBlank @NotNull @Size(min = 3, max = 30) String name, Integer rating) {
-       this(null, name, rating);
+    public Restaurant(@NotBlank @NotNull @Size(min = 3, max = 30) String name, List<Menu> menus, Integer rating) {
+       this(null, name, menus, rating);
     }
 
     public Restaurant (Restaurant r){
-        this(r.getId(), r.name, r.rating);
+        this(r.getId(), r.name, r.getMenu(), r.rating);
     }
 
-    public Restaurant (Integer id, String name, Integer rating){
+    public Restaurant (Integer id, String name, List<Menu> menus, Integer rating){
         super(id);
         this.name = name;
+        this.menu=menus;
         this.rating = rating;
     }
 
@@ -85,16 +86,8 @@ public class Restaurant extends AbstractBaseEntity{
 
     @Override
     public String toString() {
-        return "ID" + getId() + "\n" +
+        return "ID: " + getId() + "\n" +
                 "Название ресторана: " + name +"\n" +
                 "рейтинг: " + rating + "\n";
-    }
-
-    private String menuOfDate (){
-        Menu z = menu.stream()
-                .filter(m -> m.getDateMenu().equals(LocalDate.now()))
-                .findFirst()
-                .orElse(null);
-        return z != null ? z.getMenuRest() : null;
     }
 }
