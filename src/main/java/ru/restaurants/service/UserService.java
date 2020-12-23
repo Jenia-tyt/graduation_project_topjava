@@ -17,7 +17,8 @@ public class UserService {
     private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
-    private UserDateJpaRepository repository;
+    private final UserDateJpaRepository repository;
+
 
     public UserService(UserDateJpaRepository repository) {
         this.repository = repository;
