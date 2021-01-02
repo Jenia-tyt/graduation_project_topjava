@@ -40,6 +40,7 @@
             success: function (data){
                 $('#editRow').modal('hide');
                 ctx.updateTable();
+                successNoty("common.saved")
             }
         })
     }
@@ -76,8 +77,6 @@
             timeout: 1000
         }).show();
     }
-
-
 
     function renderEditBtn(data, type, row) {
         if (type === "display") {
@@ -169,7 +168,7 @@
                 type: "DELETE"
             }).done(function () {
                 ctx.updateTable();
-                // successNoty("common.deleted");
+                successNoty("common.deleted");
             });
         }
     }
@@ -210,6 +209,7 @@
             success: function (data){
                 $('#editRow').modal('hide');
                 ctx.updateTable();
+                successNoty("common.saved")
             }
         })
     }
@@ -252,7 +252,7 @@
                 type: "DELETE"
             }).done(function () {
                 ctx.updateTableRest();
-                // successNoty("common.deleted");
+                successNoty("common.deleted");
             });
         }
     }
@@ -265,6 +265,7 @@
             success: function (data){
                 $('#editRow').modal('hide');
                 ctx.updateTableRest();
+                successNoty("common.saved");
             }
         })
     }
