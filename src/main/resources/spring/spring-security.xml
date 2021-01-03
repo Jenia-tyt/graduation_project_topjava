@@ -14,11 +14,22 @@
         <intercept-url pattern="/**" access="isAuthenticated()"/>
     </http>
 
+    <http>
+        <intercept-url pattern="/login" access="permitAll()"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <form-login login-page="/login" default-target-url="/Restaurant/menuToDay"
+                            authentication-failure-url="/login?error=true"
+                            login-processing-url="/spring_security_check"/>
+        <logout logout-success-url="/login"/>
+        <csrf disabled="true"/>
+    </http>
+
     <authentication-manager>
         <authentication-provider>
             <user-service>
-                <user name="user@yandex.ru" password="{noop}password" authorities="ROLE_USER"/>
-                <user name="admin@gmail.com" password="{noop}admin" authorities="ROLE_ADMIN"/>
+                <user name="user@mail.ru" password="{noop}passwordUser" authorities="ROLE_USER"/>
+                <user name="admin@mail.ru" password="{noop}passwordAdmin" authorities="ROLE_ADMIN"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>
