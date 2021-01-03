@@ -68,7 +68,6 @@ public class UserMenuUIController {
     }
 
     //нужно брать id из антификации юзера
-    //когда голусешь до 11 голосоа сумируются
     @PutMapping("/vote/{id}") //парметр id - id меню
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void vote(@PathVariable int id ) {

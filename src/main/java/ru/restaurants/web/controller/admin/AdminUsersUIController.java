@@ -14,6 +14,7 @@ import ru.restaurants.to.ToUser;
 import ru.restaurants.util.ValidationUtil;
 
 import javax.annotation.PostConstruct;
+import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -57,7 +58,10 @@ public class AdminUsersUIController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> createOrUpdate (ToUser toUser, BindingResult result){
         if (result.hasErrors()) {
-            return ValidationUtil.getErrorResponse(result);
+//            return ValidationUtil.getErrorResponse(result);
+            StringBuilder builder = new StringBuilder();
+            result.getFieldErrors().forEach(fe -> builder.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
+            return new ResponseEntity<>(builder.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
         }
         User user = covertToUser(toUser);
 
@@ -69,7 +73,7 @@ public class AdminUsersUIController {
         return ResponseEntity.ok().build();
     }
 
-    private User covertToUser (ToUser u){
+    private User covertToUser (@Valid ToUser u){
         String [] array = u.getRole().split("\\.");
         Set<Role> roleSet = new HashSet<>();
         for (String s : array) {

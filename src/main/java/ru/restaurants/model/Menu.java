@@ -106,4 +106,5 @@ public class Menu extends AbstractBaseEntity{
                 && this.rest.equals(((Menu) o).rest)
                 && this.rating.equals(((Menu) o).rating);
     }
+
 }

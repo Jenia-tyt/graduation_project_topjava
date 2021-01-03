@@ -14,6 +14,7 @@ import ru.restaurants.service.RestaurantService;
 import ru.restaurants.to.ToRestaurant;
 import ru.restaurants.util.ValidationUtil;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -53,9 +54,12 @@ public class AdminRestaurantUIController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> createOrUpdate(ToRestaurant rest, BindingResult result) {
+    public ResponseEntity<String> createOrUpdate(@Valid ToRestaurant rest, BindingResult result) {
         if (result.hasErrors()){
-            return ValidationUtil.getErrorResponse(result);
+//            return ValidationUtil.getErrorResponse(result);
+            StringBuilder builder = new StringBuilder();
+            result.getFieldErrors().forEach(fe -> builder.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
+            return new ResponseEntity<>(builder.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
         }
         Restaurant restaurant = covertToRestaurant(rest);
         if (rest.isNew()){

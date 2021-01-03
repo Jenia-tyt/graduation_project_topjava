@@ -1,9 +1,11 @@
 package ru.restaurants.to;
 import ru.restaurants.model.Menu;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class ToRestaurant extends AbstractTo{
+    @NotEmpty
     private String name;
 
     private List<Menu> menu;

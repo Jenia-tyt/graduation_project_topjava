@@ -12,6 +12,7 @@ import ru.restaurants.service.RestaurantService;
 import ru.restaurants.to.ToMenu;
 import ru.restaurants.util.ValidationUtil;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -52,9 +53,13 @@ public class AdminMenuUIController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> createOrUpdateTO (ToMenu m, BindingResult result){
+    public ResponseEntity<String> createOrUpdateTO (@Valid ToMenu m, BindingResult result){
         if (result.hasErrors()){
-            return ValidationUtil.getErrorResponse(result);
+            StringBuilder builder = new StringBuilder();
+//            return ValidationUtil.getErrorResponse(result);
+            result.getFieldErrors().forEach(fe -> builder.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
+            return new ResponseEntity<>(builder.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
+
         }
         Menu menu = new Menu(m.getId(), restaurantService.get(m.getId_rest()), m.getDateMenu(), m.getMenuRest(), m.getRating());//вынестив отдельный метод
         if (m.isNew()){

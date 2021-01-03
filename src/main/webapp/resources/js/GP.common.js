@@ -19,13 +19,22 @@
             ));
 
         form = $('#detailsForm');
-        // $(document).ajaxError(function (event, jqXHR, options, jsExc) { //вот здесь выводятся ошибки надо разобраться с этим
-        //     failNoty(jqXHR);
-        // });
+        $(document).ajaxError(function (event, jqXHR, options, jsExc) { //вот здесь выводятся ошибки надо разобраться с этим
+            failNoty(jqXHR);
+        });
 
         // solve problem with cache in IE: https://stackoverflow.com/a/4303862/548473
         $.ajaxSetup({cache: false});
+    }
 
+    function failNoty(jqXHR) {
+        closeNoty();
+        var errorInfo = jqXHR.responseText;//тут не правильно надо обрабатывать страницу ошибки а она не json
+        failedNote = new Noty({
+            text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo,//.statusText + "<br>" + errorInfo.statusText,//.details.join("<br>"),// + "<br>",// + errorInfo.details.join("<br>"),
+            type: "error",
+            layout: "bottomRight"
+        }).show();
     }
 
     function updateTableByData(data) {
@@ -69,7 +78,6 @@
 
     function successNoty(key) { //высплывающие уведомления
         closeNoty();
-        debugger;
         new Noty({
             text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + i18n[key],
             type: 'success',
