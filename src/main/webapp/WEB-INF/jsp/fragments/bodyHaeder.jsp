@@ -32,8 +32,8 @@
                     <a class="dropdown-toggle nav-link my-1 ml-2" data-toggle="dropdown">ru</a>
 <%--                    локализация, надо сделать что бы работала локализация--%>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/login?lang=en">English</a>
-                        <a class="dropdown-item" href="/login?lang=ru">Русский</a>
+                        <a class="dropdown-item" href="Restaurant/login?lang=en">English</a>
+                        <a class="dropdown-item" href="Restaurant/login?lang=ru">Русский</a>
                     </div>
                 </li>
             </ul>
