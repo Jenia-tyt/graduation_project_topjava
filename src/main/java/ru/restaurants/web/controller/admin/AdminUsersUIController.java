@@ -56,7 +56,7 @@ public class AdminUsersUIController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> createOrUpdate (ToUser toUser, BindingResult result){
+    public ResponseEntity<String> createOrUpdate (@Valid ToUser toUser, BindingResult result){
         if (result.hasErrors()) {
 //            return ValidationUtil.getErrorResponse(result);
             StringBuilder builder = new StringBuilder();
@@ -73,7 +73,7 @@ public class AdminUsersUIController {
         return ResponseEntity.ok().build();
     }
 
-    private User covertToUser (@Valid ToUser u){
+    private User covertToUser (ToUser u){
         String [] array = u.getRole().split("\\.");
         Set<Role> roleSet = new HashSet<>();
         for (String s : array) {

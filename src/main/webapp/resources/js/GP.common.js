@@ -210,6 +210,7 @@
     }
 
     function saveUser(){
+        debugger;
         $.ajax({
             type: "POST",
             url: "/Restaurant/admin/users",
@@ -278,4 +279,18 @@
         })
     }
 
+    // =====================REG=============
+    function saveReg(){
+        debugger;
+        $.ajax({
+            type: "POST",
+            url: "/Restaurant/register",
+            data: form.serialize(),
+            success: function (data){
+                $('#editRow').modal('hide');
+                ctx.updateTable();
+                successNoty("common.saved")
+            }
+        })
+    }
 

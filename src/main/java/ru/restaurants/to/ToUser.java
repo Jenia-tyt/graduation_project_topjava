@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 public class ToUser extends AbstractTo {
     @NotEmpty
+    @NotNull
     private String name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -49,4 +49,9 @@ public class RootController {
     public String menusOfRestaurant(){
         return "menusOfRestaurant";
     }
+
+    @GetMapping("/register")
+    public String register (){
+        return "register";
+    }
 }

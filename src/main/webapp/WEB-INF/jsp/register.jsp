@@ -5,36 +5,52 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-
 <body>
+<script type="text/javascript" src="Restaurant/resources/js/GP.common.js" defer></script>
 <jsp:include page="fragments/bodyHaeder.jsp"/>
 
 <div class="jumbotron pt-4">
     <div class="container">
-        <%--@elvariable id="userTo" type="ru.javawebinar.topjava.to.UserTo"--%>
+<%--        @elvariable id="ToUser" type="ru.restaurants.to.ToUser"--%>
         <div class="row">
             <div class="col-5 offset-3">
-                <h3>${userTo.name} <spring:message code="${register ? 'app.register' : 'app.profile'}"/></h3>
-                <form:form class="form-group" modelAttribute="userTo" method="post" action="${register ? 'profile/register' : 'profile'}"
-                           charset="utf-8" accept-charset="UTF-8">
+                <h3> <spring:message code="common.registered"/></h3>
+                <form class="form-group"  method="post" modelAttribute="ToUser" action="Restaurant/register"
+                      charset="UTF-8" accept-charset="UTF-8">
 
-                    <input name="id" value="${userTo.id}" type="hidden">
-                    <topjava:inputField labelCode="user.name" name="name"/>
-                    <topjava:inputField labelCode="user.email" name="email"/>
-                    <topjava:inputField labelCode="user.password" name="password" inputType="password"/>
-                    <topjava:inputField labelCode="user.caloriesPerDay" name="caloriesPerDay" inputType="number"/>
+                    <input type="text" hidden="hidden" name="role" id="role" value="USER">
 
-                    <div class="text-right">
-                        <a class="btn btn-secondary" href="#" onclick="window.history.back()">
-                            <span class="fa fa-close"></span>
-                            <spring:message code="common.cancel"/>
-                        </a>
-                        <button type="submit" class="btn btn-primary">
-                            <span class="fa fa-check"></span>
-                            <spring:message code="common.save"/>
-                        </button>
-                    </div>
-                </form:form>
+<%--                    нужна валидация на 0--%>
+                    <label for="name" class="col-form-label"><spring:message code="users.name"/></label>
+                    <br>
+                    <input type="text" name="name" id="name" class="form-control ${status.error ? 'is-invalid' : '' }" placeholder="name"/>
+                    <br>
+
+                    <label for="email" class="col-form-label"><spring:message code="users.email"/></label>
+                    <br>
+                    <input type="email" name="email" class="form-control ${status.error ? 'is-invalid' : '' }" id="email" placeholder="email"/>
+                    <br>
+
+                    <label for="password" class="col-form-label"><spring:message code="users.password"/></label>
+                    <br>
+                    <input type="password" name="password" class="form-control ${status.error ? 'is-invalid' : '' }" id="password" placeholder="password"/>
+                    <br>
+
+                <div class="text-right">
+                    <a class="btn btn-secondary" onclick="window.history.back()">
+                        <span class="fa fa-close"></span>
+                        <spring:message code="common.cancel"/>
+                    </a>
+<%--                    <button type="submit" class="btn btn-primary">--%>
+<%--                        <span class="fa fa-check"></span>--%>
+<%--                        <spring:message code="common.save"/>--%>
+<%--                    </button>--%>
+                    <button type="submit" class="btn btn-primary" href="Restaurant/">
+                        <span class="fa fa-check"></span>
+                        <spring:message code="common.save"/>
+                    </button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
