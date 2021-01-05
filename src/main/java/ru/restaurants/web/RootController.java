@@ -1,24 +1,19 @@
 package ru.restaurants.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import ru.restaurants.service.MenuService;
-import ru.restaurants.service.RestaurantService;
 
-import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import ru.restaurants.AuthorizedUser;
+import ru.restaurants.model.User;
+import ru.restaurants.to.ToUser;
+
 
 @Controller
 public class RootController {
-
-    @Autowired
-    private final MenuService menuService;
-
-    public RootController(MenuService menuService) {
-        this.menuService = menuService;
-    }
 
     @GetMapping("/")
     public String root() {
@@ -27,6 +22,11 @@ public class RootController {
 
     @GetMapping("/login")
     public String login(){
+        return "login";
+    }
+
+    @PostMapping("/logout")
+    public String logout(){
         return "login";
     }
 
@@ -53,5 +53,11 @@ public class RootController {
     @GetMapping("/register")
     public String register (){
         return "register";
+    }
+
+    @GetMapping("/profile")
+    public String profile(ModelMap model, @AuthenticationPrincipal AuthorizedUser authUser){
+        model.addAttribute("toUser", authUser.getUserTo());
+        return "profile";
     }
 }

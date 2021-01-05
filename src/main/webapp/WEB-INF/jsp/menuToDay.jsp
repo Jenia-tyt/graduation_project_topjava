@@ -16,19 +16,6 @@
         <h3 class="text-center"><spring:message code="menu.title"/></h3>
         <br>
 
-        <sec:authorize access="isAuthenticated()">
-            <sec:authorize access="hasRole('ROLE_ADMIN')">
-                <button class="btn btn-outline-primary" onclick="document.location='/Restaurant/users'">
-                    <spring:message code="users.title"/>
-                </button>
-
-                <button class="btn btn-outline-primary" onclick="document.location='/Restaurant/restaurant'">
-                    <spring:message code="rest.title"/>
-                </button>
-            </sec:authorize>
-        </sec:authorize>
-
-
         <table class="table table-striped" id="datatable">
             <thead>
             <tr>
@@ -37,8 +24,6 @@
                 <th><spring:message code="menu.rating"/></th>
                 <th><spring:message code="menu.data"/></th>
                 <th>Голосовать</th>
-<%--                <th>Редактор</th>--%>
-<%--                <th>Удаление</th>--%>
             </tr>
             </thead>
         </table>

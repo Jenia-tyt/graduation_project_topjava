@@ -19,6 +19,8 @@
             <spring:message code="common.add"/>
         </button>
 
+        <h3></h3>
+
         <table class="table table-striped" id="datatable">
             <thead>
             <tr>

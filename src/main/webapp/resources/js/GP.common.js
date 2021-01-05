@@ -192,6 +192,8 @@
                 } else if (key === 'voteLast') {
                     let date = new Date(value).toLocaleString().substring(0, 10).split('.').reverse().join("-");
                     form.find("input[name='" + key + "']").val(date);
+                } else if (key === 'password'){
+                    form.find("input[name='" + key + "']").val('');
                 } else {
                     form.find("input[name='" + key + "']").val(value);
                 }
