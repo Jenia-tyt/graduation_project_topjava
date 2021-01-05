@@ -41,11 +41,7 @@
                         <span class="fa fa-close"></span>
                         <spring:message code="common.cancel"/>
                     </a>
-<%--                    <button type="submit" class="btn btn-primary">--%>
-<%--                        <span class="fa fa-check"></span>--%>
-<%--                        <spring:message code="common.save"/>--%>
-<%--                    </button>--%>
-                    <button type="submit" class="btn btn-primary" href="Restaurant/">
+                    <button type="submit" class="btn btn-primary">
                         <span class="fa fa-check"></span>
                         <spring:message code="common.save"/>
                     </button>

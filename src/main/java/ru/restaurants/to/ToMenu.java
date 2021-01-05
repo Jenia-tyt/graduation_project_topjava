@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class ToMenu extends AbstractTo{
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private int id_rest;
 

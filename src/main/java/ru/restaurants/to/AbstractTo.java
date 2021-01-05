@@ -2,7 +2,9 @@ package ru.restaurants.to;
 
 import ru.restaurants.HasId;
 
-public abstract class AbstractTo implements HasId {
+import java.io.Serializable;
+
+public abstract class AbstractTo implements HasId, Serializable {
     protected Integer id;
 
     public AbstractTo() {

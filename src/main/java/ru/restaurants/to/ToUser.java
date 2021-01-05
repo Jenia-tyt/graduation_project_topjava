@@ -9,6 +9,8 @@ import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class ToUser extends AbstractTo {
+    private static final long serialVersionUID = 1L;
+
     @NotEmpty
     @NotNull
     private String name;

@@ -5,6 +5,8 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 public class ToRestaurant extends AbstractTo{
+    private static final long serialVersionUID = 1L;
+
     @NotEmpty
     private String name;
 

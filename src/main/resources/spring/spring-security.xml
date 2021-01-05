@@ -14,6 +14,8 @@
         <intercept-url pattern="/**" access="isAuthenticated()"/>
     </http>
 
+    <beans:bean class="org.springframework.security.crypto.factory.PasswordEncoderFactories" id="passwordEncoder" factory-method="createDelegatingPasswordEncoder"/>
+
     <http>
         <intercept-url pattern="/login" access="permitAll()"/>
         <intercept-url pattern="/register" access="permitAll()"/>
@@ -28,11 +30,13 @@
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="user@mail.ru" password="{noop}passwordUser" authorities="ROLE_USER"/>
-                <user name="admin@mail.ru" password="{noop}passwordAdmin" authorities="ROLE_ADMIN"/>
-            </user-service>
+        <authentication-provider user-service-ref="UserService">
+            <password-encoder ref="passwordEncoder"/>
+<!--        <authentication-provider>-->
+<!--            <user-service>-->
+<!--                <user name="user@mail.ru" password="{noop}passwordUser" authorities="ROLE_USER"/>-->
+<!--                <user name="admin@mail.ru" password="{noop}passwordAdmin" authorities="ROLE_ADMIN"/>-->
+<!--            </user-service>-->
         </authentication-provider>
     </authentication-manager>
 </beans:beans>
