@@ -145,7 +145,7 @@
     var idRest;
     function renderRestaurant(data, type, row) {
         if (type === "display") {
-            return "<a href='/Restaurant/menusOfRestaurant'><span class='btn btn-success' onclick='set("+row.rest.id +")'>"+ row.rest.name +"</span></a>"
+            return row.rest.name
         }
     }
 
@@ -181,14 +181,6 @@
         }
     }
 
- // тут надо отредоктировать всплывающее окно что бы заполнялдось и сохранялось для юзера
-    function addEditUser(){
-        $("#modalTitle").html(i18n["addTitle"]);
-        form.find(":input").val("");
-        form.find("input[name='" + "id_rest" + "']").val(localStorage.getItem('idRest'));
-        $("#editRow").modal();
-    }
-
     function updateRowForUser(id) {
         form.find(":input").val("");
         $("#modalTitle").html(i18n["editUser"]);
@@ -210,7 +202,6 @@
     }
 
     function saveUser(){
-        debugger;
         $.ajax({
             type: "POST",
             url: "/Restaurant/admin/users",
@@ -279,18 +270,4 @@
         })
     }
 
-    // =====================REG=============
-    function saveReg(){
-        debugger;
-        $.ajax({
-            type: "POST",
-            url: "/Restaurant/register",
-            data: form.serialize(),
-            success: function (data){
-                $('#editRow').modal('hide');
-                ctx.updateTable();
-                successNoty("common.saved")
-            }
-        })
-    }
 

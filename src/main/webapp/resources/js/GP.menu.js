@@ -38,16 +38,16 @@ var URL_USER_MENU = '/Restaurant/profile/menuToDay/';
                     "orderable": false,
                     "defaultContent": "",
                 },
-                {
-                    "render": renderEditBtn,
-                    "orderable": false,
-                    "defaultContent": "",
-                },
-                {
-                    "render": renderDeleteBtn,
-                    "orderable": false,
-                    "defaultContent":"",
-                }
+                // {
+                //     "render": renderEditBtn,
+                //     "orderable": false,
+                //     "defaultContent": "",
+                // },
+                // {
+                //     "render": renderDeleteBtn,
+                //     "orderable": false,
+                //     "defaultContent":"",
+                // }
             ],
             "order": [
                 [

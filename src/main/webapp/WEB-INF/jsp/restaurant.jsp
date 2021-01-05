@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label for="rating" class="col-form-label"><spring:message code="rest.rating"/></label>
                         <input type="text" class="form-control" id="rating" name="rating"
-                               placeholder="<spring:message code="menu.menu"/>">
+                               placeholder="<spring:message code="rest.rating"/>">
                     </div>
 
                 </form>

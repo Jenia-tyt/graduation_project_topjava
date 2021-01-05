@@ -23,7 +23,7 @@ public class ToUser extends AbstractTo {
     private String email;
 
     @NotNull
-    @Size(min = 4, max = 30)
+    @Size(min = 4, max = 100)
     private String password;
 
     private String role;

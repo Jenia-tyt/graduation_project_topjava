@@ -1,7 +1,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
@@ -14,16 +16,19 @@
         <h3 class="text-center"><spring:message code="menu.title"/></h3>
         <br>
 
+        <sec:authorize access="isAuthenticated()">
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <button class="btn btn-outline-primary" onclick="document.location='/Restaurant/users'">
+                    <spring:message code="users.title"/>
+                </button>
 
-        <button class="btn btn-outline-primary" onclick="document.location='/Restaurant/users'">
-            <spring:message code="users.title"/>
-        </button>
+                <button class="btn btn-outline-primary" onclick="document.location='/Restaurant/restaurant'">
+                    <spring:message code="rest.title"/>
+                </button>
+            </sec:authorize>
+        </sec:authorize>
 
-        <button class="btn btn-outline-primary" onclick="document.location='/Restaurant/restaurant'">
-            <spring:message code="rest.title"/>
-        </button>
 
-<%--        в таблицу надо добавить кнопку удалить и редоктировтаь для admin и кнопку проголосовать для пользователя--%>
         <table class="table table-striped" id="datatable">
             <thead>
             <tr>
@@ -32,8 +37,8 @@
                 <th><spring:message code="menu.rating"/></th>
                 <th><spring:message code="menu.data"/></th>
                 <th>Голосовать</th>
-                <th>Редактор</th>
-                <th>Удаление</th>
+<%--                <th>Редактор</th>--%>
+<%--                <th>Удаление</th>--%>
             </tr>
             </thead>
         </table>
