@@ -1,6 +1,7 @@
 package ru.restaurants.web;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,11 +32,13 @@ public class RootController {
     }
 
     @GetMapping("/users")
+    @PreAuthorize("hasRole('ADMIN')")
     public String users(){
         return "users";
     }
 
     @GetMapping("/restaurant")
+    @PreAuthorize("hasRole('ADMIN')")
     public String restaurant(){
         return "restaurant";
     }
