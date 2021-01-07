@@ -23,10 +23,13 @@ public class ToUser extends AbstractTo {
     private String email;
 
     @NotNull
+    @NotEmpty
     @Size(min = 4, max = 100)
     private String password;
 
     private String role;
+
+    public ToUser(){}
 
     public ToUser(Integer id, String name, LocalDate voteLast, String email, String password, String role) {
         super(id);

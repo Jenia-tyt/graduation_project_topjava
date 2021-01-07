@@ -2,6 +2,8 @@ package ru.restaurants.to;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 public class ToMenu extends AbstractTo{
@@ -10,11 +12,15 @@ public class ToMenu extends AbstractTo{
     private int id_rest;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotEmpty
     private LocalDate dateMenu;
-    private String menuRest;
-    private int rating;
 
-    public ToMenu(Integer id, int id_rest, LocalDate dateMenu, String menuRest, int rating) {
+    @NotEmpty
+    @NotNull
+    private String menuRest;
+    private Integer rating;
+
+    public ToMenu(Integer id, int id_rest, LocalDate dateMenu, String menuRest, Integer rating) {
         this.id = id;
         this.id_rest = id_rest;
         this.dateMenu = dateMenu;
@@ -56,11 +62,11 @@ public class ToMenu extends AbstractTo{
         this.menuRest = menuRest;
     }
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 }

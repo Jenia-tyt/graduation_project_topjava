@@ -1,4 +1,4 @@
-package ru.restaurants.web;
+package ru.restaurants.web.controller;
 
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -33,7 +33,8 @@ public class RootController {
 
     @GetMapping("/users")
     @PreAuthorize("hasRole('ADMIN')")
-    public String users(){
+    public String users(ModelMap modelMap){
+        modelMap.addAttribute(new ToUser());
         return "users";
     }
 
@@ -54,7 +55,8 @@ public class RootController {
     }
 
     @GetMapping("/register")
-    public String register (){
+    public String register (ModelMap modelMap){
+        modelMap.addAttribute("toUser", new ToUser());
         return "register";
     }
 

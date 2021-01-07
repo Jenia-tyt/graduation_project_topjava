@@ -79,7 +79,7 @@ public class AdminRestaurantUIController {
     private Restaurant covertToRestaurant (ToRestaurant rest){
         Restaurant restaurant;
         if (rest.isNew()){
-            restaurant = new Restaurant(null, rest.getName(), null, rest.getRating());
+            restaurant = new Restaurant(null, rest.getName(), null, 0);
 
         } else {
             restaurant = new Restaurant(rest.id(), rest.getName(), menuService.getAllMenuOfRest(rest.id()), rest.getRating());

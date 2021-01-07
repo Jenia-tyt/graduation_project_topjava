@@ -1,6 +1,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="rest" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <jsp:include page="fragments/headTag.jsp"/>
@@ -41,7 +43,7 @@
             </div>
 
             <div class="modal-body">
-                <form id="detailsForm">
+                <form:form id="detailsForm">
                     <input type="hidden" id="id" name="id">
 
                     <input type="date" hidden="hidden" th:value="*{date}" th:field="*{date}" id="voteLast" name="voteLast">
@@ -73,7 +75,7 @@
                         </select>
                     </div>
 
-                </form>
+                </form:form>
             </div>
 
             <div class="modal-footer">
@@ -81,7 +83,7 @@
                     <span class="fa fa-close"></span>
                     <spring:message code="common.cancel"/>
                 </button>
-                <button type="button" class="btn btn-primary" onclick="saveUser()">
+                <button type="button" class="btn btn-primary" onclick="updateUser()">
                     <span class="fa fa-check"></span>
                     <spring:message code="common.save"/>
                 </button>

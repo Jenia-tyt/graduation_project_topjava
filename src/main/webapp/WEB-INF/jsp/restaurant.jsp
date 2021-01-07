@@ -42,7 +42,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title" id="modalTitle"></h4>
+                <h4 class="modal-title"><spring:message code="rest.add"/></h4>
                 <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
             </div>
 
@@ -60,8 +60,8 @@
 
                     <div class="form-group">
                         <label for="rating" class="col-form-label"><spring:message code="rest.rating"/></label>
-                        <input type="text" class="form-control" id="rating" name="rating"
-                               placeholder="<spring:message code="rest.rating"/>">
+                        <input type="number" class="form-control" id="rating" name="rating"
+                               placeholder="<spring:message code="rest.rating"/>" readonly >
                     </div>
 
                 </form>

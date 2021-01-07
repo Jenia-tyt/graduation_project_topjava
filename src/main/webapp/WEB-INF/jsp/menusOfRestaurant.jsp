@@ -12,13 +12,20 @@
 <div class="jumbotron pt-4">
     <div class="container">
         <%--        сюда надо добьавить название ресторана--%>
-            <h3 class="text-center"><spring:message code="rest.allMenu"/></h3>
+        <h3 class="text-center"><spring:message code="rest.allMenu"/>
+<%--            <script>--%>
+<%--                let z = localStorage.getItem("name");--%>
+<%--                document.writeln(z)--%>
+<%--            </script>--%>
+        </h3>
         <br>
 
         <button class="btn btn-primary" onclick="addNewMenu()">
             <span class="fa fa-plus"></span>
             <spring:message code="common.add"/>
         </button>
+
+            <h3></h3>
 
         <table class="table table-striped" id="datatable">
             <thead>
@@ -64,8 +71,8 @@
 
                     <div class="form-group">
                         <label for="rating" class="col-form-label"><spring:message code="menu.rating"/></label>
-                        <input type="number" class="form-control" id="rating" name="rating"
-                               placeholder="<spring:message code="menu.rating"/>">
+                        <input type="number"  class="form-control" id="rating" name="rating"
+                               placeholder="<spring:message code="menu.ratingTitle"/>" readonly>
                     </div>
                 </form>
             </div>

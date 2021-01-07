@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.restaurants.model.Role;
@@ -11,21 +12,17 @@ import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.to.ToUser;
-import ru.restaurants.util.ValidationUtil;
 
-import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Handler;
 
 
 @RestController
-@RequestMapping(value = AdminUsersUIController.ADMIM_USERS, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = AdminUsersUIController.ADMIN_USERS, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminUsersUIController {
-    public static final String ADMIM_USERS = "/admin/users";
+    public static final String ADMIN_USERS = "/admin/users";
 
     @Autowired
     private final UserService userService;
@@ -58,9 +55,9 @@ public class AdminUsersUIController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> createOrUpdate (@Valid ToUser toUser, BindingResult result){
         if (result.hasErrors()) {
-//            return ValidationUtil.getErrorResponse(result);
             StringBuilder builder = new StringBuilder();
-            result.getFieldErrors().forEach(fe -> builder.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
+            builder.append("<br>");
+            result.getFieldErrors().forEach(fe -> builder.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>").append("<br>"));
             return new ResponseEntity<>(builder.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
         }
         User user = covertToUser(toUser);

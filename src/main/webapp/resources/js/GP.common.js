@@ -203,15 +203,16 @@
         });
     }
 
-    function saveUser(){
+    function updateUser(){
         $.ajax({
             type: "POST",
+            // url: "/Restaurant/register/update", //здесьм метод обновления залогининого пользователя
             url: "/Restaurant/admin/users",
             data: form.serialize(),
-            success: function (data){
+            success: function (date){
                 $('#editRow').modal('hide');
                 ctx.updateTable();
-                successNoty("common.saved")
+                successNoty("common.saved");
             }
         })
     }
@@ -243,7 +244,8 @@
 
     function renderRestaurantForPageRest(data, type, row) {
         if (type === "display") {
-            return "<a href='/Restaurant/menusOfRestaurant'><span class='btn btn-success' onclick='set("+row.id +")'>"+ row.name +"</span></a>"
+            return "<a href='/Restaurant/menusOfRestaurant'><span class='btn btn-success' onclick='set(" + row.id + ")'>"+ row.name +"</span></a>"
+
         }
     }
 
