@@ -26,7 +26,6 @@
                                 <a class="btn btn-info mr-1" href="/Restaurant/restaurant"><spring:message code="rest.title"/></a>
 
                                 <a class="btn btn-info mr-1" href="/Restaurant/users"><spring:message code="users.title"/></a>
-
                             </sec:authorize>
 
 <%--                            ссылка на профиль--%>
@@ -39,13 +38,13 @@
                     </sec:authorize>
 
                     <sec:authorize access="isAnonymous()">
-                            <form id="login_form" class="form-inline my-2" action="${pageContext.request.contextPath}/spring_security_check" method="post">
+                            <form:form id="login_form" class="form-inline my-2" action="${pageContext.request.contextPath}/spring_security_check" method="post">
                                 <input class="form-control mr-1" type="text" placeholder="Email" name="username">
                                 <input class="form-control mr-1" type="password" placeholder="Password" name="password">
                                 <button class="btn btn-success" type="submit">
                                     <span class="fa fa-sign-in"></span>
                                 </button>
-                            </form>
+                            </form:form>
                     </sec:authorize>
 
                 </li>

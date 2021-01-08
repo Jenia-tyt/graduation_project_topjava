@@ -1,6 +1,7 @@
 package ru.restaurants.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.util.CollectionUtils;
@@ -30,6 +31,7 @@ public class User extends AbstractBaseEntity{
     @NotNull
     @Size(min = 4, max = 100)
     @Column(name = "password")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private String password;
 
     @Enumerated(EnumType.STRING)
