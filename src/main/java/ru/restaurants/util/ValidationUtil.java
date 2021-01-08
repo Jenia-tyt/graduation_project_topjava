@@ -75,7 +75,8 @@ public class ValidationUtil {
                 case ("email") -> "Email";
                 default -> (name);
             };
+        } else {
+            return name;
         }
-        return name;
     }
 }
