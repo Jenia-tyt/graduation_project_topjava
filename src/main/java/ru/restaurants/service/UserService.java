@@ -14,6 +14,9 @@ import ru.restaurants.AuthorizedUser;
 import ru.restaurants.model.User;
 import ru.restaurants.repository.datajpa.UserDateJpaRepository;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -69,7 +72,15 @@ public class UserService implements UserDetailsService {
         return repository.save(prepareToSave(user));
     }
 
-//    надо венуть авторизованного юзера
+    public void updateLastVote(User user, LocalDate date){
+        LOG.info("User's {} last vote update", user);
+        Assert.notNull(user, "User does,'t be null");
+        Assert.notNull(date, "Date does,'t be null");
+        user.setVoteLast(date);
+        repository.save(user);
+    }
+
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = repository.getByEmail(email.toLowerCase());

@@ -4,8 +4,12 @@ package ru.restaurants.web.controller.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import ru.restaurants.AuthorizedUser;
 import ru.restaurants.model.Menu;
 import ru.restaurants.model.User;
 import ru.restaurants.model.Vote;
@@ -67,15 +71,14 @@ public class UserMenuUIController {
         return menuService.get(id);
     }
 
-    //нужно брать id из антификации юзера
-    @PutMapping("/vote/{id}") //парметр id - id меню
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void vote(@PathVariable int id ) {
+    @PutMapping("/vote/{id}")
+    public ResponseEntity<String> vote(@PathVariable int id, @AuthenticationPrincipal AuthorizedUser authorizedUser, HttpServletRequest request) {
         LocalDateTime dateTime = LocalDateTime.now();
+        Integer idUser = authorizedUser.getId();
 
         Menu m = menuService.get(id);
         Menu oldMenu;
-        User user = userService.get(16);
+        User user = userService.get(idUser);
         Vote vote;
         Vote newVote;
 
@@ -84,28 +87,26 @@ public class UserMenuUIController {
                 newVote = new Vote(null, user, dateTime.toLocalDate(), m.id());
                 voteService.create(newVote);
 
-                user.setVoteLast(dateTime.toLocalDate());
-                userService.upDate(user, user.id());
+                userService.updateLastVote(user, dateTime.toLocalDate());
 
                 m.setRating(m.getRating() + 1);
                 menuService.upDate(m, m.id());
+
+                return new ResponseEntity<>(HttpStatus.OK);
+
             } else if (user.getVoteLast() != null
-                    && (voteService.getVoteOfUserToDay(16, dateTime.toLocalDate()).getIdMenu()) != id
+                    && (voteService.getVoteOfUserToDay(idUser, dateTime.toLocalDate()).getIdMenu()) != id
                     && user.getVoteLast().isEqual(dateTime.toLocalDate())
                     && dateTime.toLocalTime().isBefore(time_11_00)) {
 
-                Vote last = voteService.getVoteOfUserToDay(16, dateTime.toLocalDate());
-                int f = 0;
-
-                vote = voteService.getVoteOfUserToDay(16, dateTime.toLocalDate());
+                vote = voteService.getVoteOfUserToDay(idUser, dateTime.toLocalDate());
 
                 voteService.delete(vote.id());
 
                 newVote = new Vote(null, user, dateTime.toLocalDate(), m.id());
                 voteService.create(newVote);
 
-                user.setVoteLast(dateTime.toLocalDate());
-                userService.upDate(user, user.id());
+                userService.updateLastVote(user, dateTime.toLocalDate());
 
                 oldMenu = menuService.getMenuWithIdDate(vote.getIdMenu(), dateTime.toLocalDate());
                 oldMenu.setRating(oldMenu.getRating() - 1);
@@ -113,7 +114,12 @@ public class UserMenuUIController {
 
                 m.setRating(m.getRating() + 1);
                 menuService.upDate(m, m.id());
+                return new ResponseEntity<>(HttpStatus.OK);
             }
         }
+        String stringBuilder = authorizedUser.getUserTo().getName() +
+                ((request.getHeader("Accept-Language").startsWith("ru")) ? " сегодня уже голосовал" : " voted to day");
+
+        return new ResponseEntity<>(stringBuilder, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }

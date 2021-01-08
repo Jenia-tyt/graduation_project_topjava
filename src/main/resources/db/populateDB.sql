@@ -31,7 +31,7 @@ INSERT INTO menu (id_rest, menu, rating)
 VALUES (5, 'шампанское "кристал" 1 устрицы 1 черная икра 3', 1);
 
 INSERT INTO users (email, name, password, vote_last)
-VALUES ('user@mail.ru', 'user', '{noop}passwordUser', '2020-01-30'),
+VALUES ('user@mail.ru', 'user', '{noop}passwordUser', now()),
        ('admin@mail.ru', 'admin', '{noop}passwordAdmin', '2020-01-30'),
        ('admin_user@gmail.com', 'admin_user', '{noop}passwordAU', '2020-01-30');
 

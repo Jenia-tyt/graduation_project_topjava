@@ -59,7 +59,6 @@ public class AdminUsersUIController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<String> createOrUpdate (@Valid ToUser toUser, BindingResult result, HttpServletRequest request){
         if (result.hasErrors()) {
-//            return errorResult(result);
             return getErrorResponse(result, request);
         }
         User user = covertToUser(toUser);

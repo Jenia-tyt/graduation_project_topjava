@@ -14,6 +14,7 @@
 <div class="jumbotron pt-4">
     <div class="container">
         <h3 class="text-center"><spring:message code="menu.title"/></h3>
+        <h4 class="text-center"><spring:message code="menu.description"/></h4>
         <br>
 
         <table class="table table-striped" id="datatable">
@@ -28,6 +29,12 @@
             </thead>
         </table>
     </div>
+</div>
+
+<div>
+    <c:if test="${param.error}">
+        <div class="error"><spring:message code="error.login"/></div>
+    </c:if>
 </div>
 
 
