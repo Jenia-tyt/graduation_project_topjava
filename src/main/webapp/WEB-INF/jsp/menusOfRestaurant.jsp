@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:include page="fragments/headTag.jsp"/>
 <html>
+<jsp:include page="fragments/headTag.jsp"/>
 <body>
 <script type="text/javascript" src="Restaurant/resources/js/GP.common.js" defer></script>
 <script type="text/javascript" src="Restaurant/resources/js/GP.menusOfRest.js" defer></script>
@@ -12,20 +12,14 @@
 <div class="jumbotron pt-4">
     <div class="container">
         <%--        сюда надо добьавить название ресторана--%>
-        <h3 class="text-center"><spring:message code="rest.allMenu"/>
-<%--            <script>--%>
-<%--                let z = localStorage.getItem("name");--%>
-<%--                document.writeln(z)--%>
-<%--            </script>--%>
-        </h3>
+        <h3 class="text-center"><spring:message code="rest.allMenu"/></h3>
         <br>
 
         <button class="btn btn-primary" onclick="addNewMenu()">
             <span class="fa fa-plus"></span>
             <spring:message code="common.add"/>
         </button>
-
-            <h3></h3>
+        <h3></h3>
 
         <table class="table table-striped" id="datatable">
             <thead>

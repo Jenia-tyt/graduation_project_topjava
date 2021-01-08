@@ -11,8 +11,8 @@ public class ToMenu extends AbstractTo{
     private Integer id;
     private int id_rest;
 
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotEmpty
     private LocalDate dateMenu;
 
     @NotEmpty

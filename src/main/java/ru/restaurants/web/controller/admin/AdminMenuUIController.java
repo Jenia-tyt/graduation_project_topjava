@@ -13,9 +13,12 @@ import ru.restaurants.service.RestaurantService;
 import ru.restaurants.to.ToMenu;
 import ru.restaurants.util.ValidationUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
+
+import static ru.restaurants.util.ValidationUtil.getErrorResponse;
 
 @RestController
 @RequestMapping(value = AdminMenuUIController.ADMIN_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -54,13 +57,10 @@ public class AdminMenuUIController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> createOrUpdateTO (@Valid ToMenu m, BindingResult result){
+    public ResponseEntity<String> createOrUpdateTO (@Valid ToMenu m, BindingResult result, HttpServletRequest request){
         if (result.hasErrors()){
-            StringBuilder builder = new StringBuilder();
-//            return ValidationUtil.getErrorResponse(result);
-            result.getFieldErrors().forEach(fe -> builder.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>"));
-            return new ResponseEntity<>(builder.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
-
+            return getErrorResponse(result, request);
+//            return errorResult(result);
         }
         Menu menu = new Menu(m.getId(), restaurantService.get(m.getId_rest()), m.getDateMenu(), m.getMenuRest(), m.getRating());//вынестив отдельный метод
         if (m.isNew()){

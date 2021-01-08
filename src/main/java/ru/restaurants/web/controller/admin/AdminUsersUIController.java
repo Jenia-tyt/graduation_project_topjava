@@ -13,10 +13,14 @@ import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.to.ToUser;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static ru.restaurants.util.ValidationUtil.getErrorResponse;
+
 
 
 @RestController
@@ -53,12 +57,10 @@ public class AdminUsersUIController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> createOrUpdate (@Valid ToUser toUser, BindingResult result){
+    public ResponseEntity<String> createOrUpdate (@Valid ToUser toUser, BindingResult result, HttpServletRequest request){
         if (result.hasErrors()) {
-            StringBuilder builder = new StringBuilder();
-            builder.append("<br>");
-            result.getFieldErrors().forEach(fe -> builder.append(fe.getField()).append(" ").append(fe.getDefaultMessage()).append("<br>").append("<br>"));
-            return new ResponseEntity<>(builder.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
+//            return errorResult(result);
+            return getErrorResponse(result, request);
         }
         User user = covertToUser(toUser);
 
