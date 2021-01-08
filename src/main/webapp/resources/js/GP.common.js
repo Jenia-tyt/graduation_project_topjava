@@ -156,6 +156,14 @@
     }
 
 
+
+    function renderRestaurantRating(data, type, row) {
+        if (type === "display") {
+            return row.rest.rating
+        }
+    }
+
+
     function set(idRest) {
         localStorage.setItem("idRest", idRest);
     }

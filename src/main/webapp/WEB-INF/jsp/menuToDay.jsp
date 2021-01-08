@@ -21,6 +21,7 @@
             <thead>
             <tr>
                 <th><spring:message code="menu.nameRest"/></th>
+                <th><spring:message code="rest.rating"/></th>
                 <th><spring:message code="menu.menu"/></th>
                 <th><spring:message code="menu.rating"/></th>
                 <th><spring:message code="menu.data"/></th>

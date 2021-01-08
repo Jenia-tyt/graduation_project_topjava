@@ -19,6 +19,11 @@ var URL_USER_MENU = '/Restaurant/profile/menuToDay/';
                     "defaultContent": "",
                 },
                 {
+                    "render": renderRestaurantRating,
+                    "orderable": false,
+                    "defaultContent": "",
+                },
+                {
                     "mData" : "menuRest"
                 },
                 {
