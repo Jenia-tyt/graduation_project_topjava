@@ -13,6 +13,7 @@ public class ToUser extends AbstractTo {
 
     @NotEmpty
     @NotNull
+    @Size(min = 3, max = 30)
     private String name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

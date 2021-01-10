@@ -33,7 +33,7 @@
                     <br>
 
                     <div class="text-right">
-                        <a class="btn btn-secondary" onclick="window.history.back()">
+                        <a class="btn btn-secondary" onclick="location.href = 'Restaurant/users'">
                             <span class="fa fa-close"></span>
                             <spring:message code="common.cancel"/>
                         </a>

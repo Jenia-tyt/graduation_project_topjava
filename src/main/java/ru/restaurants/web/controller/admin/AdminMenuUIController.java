@@ -17,6 +17,8 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
+import static ru.restaurants.util.Convector.covertToMenu;
+
 
 @RestController
 @RequestMapping(value = AdminMenuUIController.ADMIN_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -56,7 +58,7 @@ public class AdminMenuUIController {
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<ErrorInfo> createOrUpdateTO (@Valid ToMenu m){
-        Menu menu = new Menu(m.getId(), restaurantService.get(m.getId_rest()), m.getDateMenu(), m.getMenuRest(), m.getRating());
+        Menu menu = covertToMenu(m, restaurantService);
         if (m.isNew()){
             service.save(menu);
         } else {

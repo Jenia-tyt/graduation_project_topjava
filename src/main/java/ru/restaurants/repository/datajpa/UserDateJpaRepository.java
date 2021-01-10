@@ -40,4 +40,5 @@ public class UserDateJpaRepository implements UserRepository {
         return crudUser.findAll();
     }
 
+
 }

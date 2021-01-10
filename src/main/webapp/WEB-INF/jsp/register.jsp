@@ -28,7 +28,7 @@
                     <rest:inputField name="password" labelCode="users.password" inputType="password"/>
 
                 <div class="text-right">
-                    <a class="btn btn-secondary" onclick="window.history.back()">
+                    <a class="btn btn-secondary" onclick="location.href = 'Restaurant/login'">
                         <span class="fa fa-close"></span>
                         <spring:message code="common.cancel"/>
                     </a>

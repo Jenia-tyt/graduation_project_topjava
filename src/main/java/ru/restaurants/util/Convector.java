@@ -1,10 +1,13 @@
 package ru.restaurants.util;
 
+import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.model.Role;
 import ru.restaurants.model.User;
 import ru.restaurants.service.MenuService;
+import ru.restaurants.service.RestaurantService;
 import ru.restaurants.service.VoteService;
+import ru.restaurants.to.ToMenu;
 import ru.restaurants.to.ToRestaurant;
 import ru.restaurants.to.ToUser;
 
@@ -47,6 +50,10 @@ public class Convector {
             restaurant = new Restaurant(rest.id(), rest.getName(), menuService.getAllMenuOfRest(rest.id()), rest.getRating());
         }
         return restaurant;
+    }
+
+    public static Menu covertToMenu (ToMenu m, RestaurantService restaurantService){
+        return new Menu(m.getId(), restaurantService.get(m.getId_rest()), m.getDateMenu(), m.getMenuRest(), m.getRating());
     }
 
 }

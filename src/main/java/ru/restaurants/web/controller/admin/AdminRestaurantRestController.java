@@ -9,10 +9,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.service.RestaurantService;
+import ru.restaurants.to.ToRestaurant;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
+import static ru.restaurants.util.Convector.covertToRestaurant;
 
 
 @RestController
@@ -24,8 +27,12 @@ public class AdminRestaurantRestController {
     @Autowired
     private final RestaurantService restService;
 
-    public AdminRestaurantRestController(RestaurantService restService) {
+    @Autowired
+    private final MenuService menuService;
+
+    public AdminRestaurantRestController(RestaurantService restService, MenuService menuService) {
         this.restService = restService;
+        this.menuService = menuService;
     }
 
     @GetMapping
@@ -45,8 +52,8 @@ public class AdminRestaurantRestController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> save(@RequestBody Restaurant rest) {
-        Restaurant r = restService.save(rest);
+    public ResponseEntity<Restaurant> save(@RequestBody @Valid ToRestaurant toRest) {
+        Restaurant r = restService.save(covertToRestaurant(toRest, menuService));
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(RESTAURANT + "/{id}")
                 .buildAndExpand(r.getId()).toUri();
@@ -55,7 +62,8 @@ public class AdminRestaurantRestController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void upDate(@RequestBody Restaurant rest, @PathVariable int id){
+    public void upDate(@RequestBody @Valid ToRestaurant toRest, @PathVariable int id){
+        Restaurant rest = covertToRestaurant(toRest, menuService);
         restService.update(rest, id);
     }
 }
