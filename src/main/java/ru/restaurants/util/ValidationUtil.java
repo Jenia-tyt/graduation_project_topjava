@@ -1,13 +1,11 @@
 package ru.restaurants.util;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
+import org.slf4j.Logger;
 import ru.restaurants.model.AbstractBaseEntity;
+import ru.restaurants.util.execption.ErrorType;
 import ru.restaurants.util.execption.NotFoundException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.stream.Collectors;
 
 public class ValidationUtil {
 
@@ -49,34 +47,27 @@ public class ValidationUtil {
         }
     }
 
-    public static ResponseEntity<String> getErrorResponse(BindingResult result, HttpServletRequest request) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("<br>");
-        result.getFieldErrors().forEach(fe -> builder.append(String.format("[%s] %s", replaceNameField(fe.getField(), request), fe.getDefaultMessage())).append("<br><br>"));
-        return new ResponseEntity<>(builder.toString(), HttpStatus.UNPROCESSABLE_ENTITY);
+    public static Throwable getRootCause(Throwable t) {
+        Throwable result = t;
+        Throwable cause;
+
+        while (null != (cause = result.getCause()) && (result != cause)) {
+            result = cause;
+        }
+        return result;
     }
 
-    private static String replaceNameField(String name, HttpServletRequest request) {
-        if (request.getHeader("Accept-Language").startsWith("ru")) {
-            return switch (name) {
-                case ("dateMenu") -> "Дата меню";
-                case ("name") -> "Имя";
-                case ("menuRest") -> "Меню ресторана";
-                case ("password") -> "Пароль";
-                case ("email") -> "Email";
-                default -> (name);
-            };
-        } else if (request.getHeader("Accept-Language").startsWith("en")) {
-            return switch (name) {
-                case ("dateMenu") -> "Date menu";
-                case ("name") -> "Name";
-                case ("menuRest") -> "Restaurant's menu";
-                case ("password") -> "Password";
-                case ("email") -> "Email";
-                default -> (name);
-            };
+    public static String getMessage(Throwable e) {
+        return e.getLocalizedMessage() != null ? e.getLocalizedMessage() : e.getClass().getName();
+    }
+
+    public static Throwable logAndGetRootCause(Logger log, HttpServletRequest req, Exception e, boolean logStackTrace, ErrorType errorType) {
+        Throwable rootCause = ValidationUtil.getRootCause(e);
+        if (logStackTrace) {
+            log.error(errorType + " at request " + req.getRequestURL(), rootCause);
         } else {
-            return name;
+            log.warn("{} at request  {}: {}", errorType, req.getRequestURL(), rootCause.toString());
         }
+        return rootCause;
     }
 }

@@ -35,12 +35,12 @@ public class MenuDataJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     void deleteNotFounded(){
-        assertThrows(NotFoundException.class, ()-> service.delete(NOT_ID_MENU));
+        assertThrows(NotFoundException.class, ()-> service.delete(NOT_FOUND_ID_MENU));
     }
 
     @Test
     void getNotFounded(){
-        assertThrows(NotFoundException.class, ()-> service.get(NOT_ID_MENU));
+        assertThrows(NotFoundException.class, ()-> service.get(NOT_FOUND_ID_MENU));
     }
 
     @Test

@@ -8,7 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class ResourceTest extends AbstractRestControllerTest {
+public class ResourceTest extends AbstractControllerTest {
 
     @Test
     void resource () throws Exception{

@@ -35,9 +35,9 @@
 
     function failNoty(jqXHR) {
         closeNoty();
-        var errorInfo = jqXHR.responseText;//тут не правильно надо обрабатывать страницу ошибки а она не json
+        var errorInfo = jqXHR.responseJSON;
         failedNote = new Noty({
-            text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo,//.statusText + "<br>" + errorInfo.statusText,//.details.join("<br>"),// + "<br>",// + errorInfo.details.join("<br>"),
+            text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
             type: "error",
             layout: "bottomRight"
         }).show();
@@ -82,7 +82,7 @@
         }
     }
 
-    function successNoty(key) { //высплывающие уведомления
+    function successNoty(key) {
         closeNoty();
         new Noty({
             text: "<span class='fa fa-lg fa-check'></span> &nbsp;" + i18n[key],
@@ -135,7 +135,7 @@
 
     function renderVoteBtn(date, type, row){
         if (type === "display") {
-            return "<a onclick='vote(" + row.id + ")'><span class='btn btn-primary'><img src='Restaurant/resources/images/icon2.png' width=30 height=30></span></a>"; //сюда надо повеситть функцию голосовать и сделать подсвечивающуюся кнопку
+            return "<a onclick='vote(" + row.id + ")'><span class='btn btn-primary'><img src='Restaurant/resources/images/icon2.png' width=30 height=30></span></a>";
         }
     }
 

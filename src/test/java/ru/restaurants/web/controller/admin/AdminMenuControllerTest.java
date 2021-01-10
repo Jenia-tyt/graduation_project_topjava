@@ -9,7 +9,7 @@ import ru.restaurants.model.Menu;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.util.execption.NotFoundException;
 import ru.restaurants.web.TestMatcher;
-import ru.restaurants.web.AbstractRestControllerTest;
+import ru.restaurants.web.AbstractControllerTest;
 import ru.restaurants.web.json.JsonUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,7 +22,7 @@ import static ru.restaurants.repository.RestDataTest.REST_ID;
 import static ru.restaurants.web.controller.admin.AdminMenuRestController.ADMIN_MENU_TO_DAY;
 import static ru.restaurants.web.TestUtil.*;
 
-class AdminMenuRestControllerTest extends AbstractRestControllerTest {
+class AdminMenuControllerTest extends AbstractControllerTest {
     private static final String URL_ADMIN = ADMIN_MENU_TO_DAY + "/";
 
     @Autowired
@@ -78,4 +78,12 @@ class AdminMenuRestControllerTest extends AbstractRestControllerTest {
 
         assertThat(service.get(MENU_ID)).isEqualTo(menu);
     }
+
+    @Test
+    void notFoundExceptionDelete() throws Exception {
+        perform(MockMvcRequestBuilders.delete(URL_ADMIN + NOT_FOUND_ID_MENU).contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+    }
+
 }

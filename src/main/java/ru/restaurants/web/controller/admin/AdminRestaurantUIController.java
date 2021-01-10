@@ -4,24 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.service.RestaurantService;
 import ru.restaurants.to.ToRestaurant;
-import ru.restaurants.util.ValidationUtil;
+import ru.restaurants.util.execption.ErrorInfo;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
 
-import static ru.restaurants.util.ValidationUtil.getErrorResponse;
-
-
+import static ru.restaurants.util.Convector.covertToRestaurant;
 
 @RestController
 @RequestMapping(value = AdminRestaurantUIController.RESTAURANT, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -58,11 +51,8 @@ public class AdminRestaurantUIController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> createOrUpdate(@Valid ToRestaurant rest, BindingResult result, HttpServletRequest request) {
-        if (result.hasErrors()){
-            return getErrorResponse(result, request);
-        }
-        Restaurant restaurant = covertToRestaurant(rest);
+    public ResponseEntity<ErrorInfo> createOrUpdate(@Valid ToRestaurant rest) {
+        Restaurant restaurant = covertToRestaurant(rest, menuService);
         if (rest.isNew()){
             restService.save(restaurant);
         } else {
@@ -77,15 +67,4 @@ public class AdminRestaurantUIController {
         restService.update(rest, id);
     }
 
-    private Restaurant covertToRestaurant (ToRestaurant rest){
-        Restaurant restaurant;
-        if (rest.isNew()){
-            restaurant = new Restaurant(null, rest.getName(), null, 0);
-
-        } else {
-            restaurant = new Restaurant(rest.id(), rest.getName(), menuService.getAllMenuOfRest(rest.id()), rest.getRating());
-        }
-
-        return restaurant;
-    }
 }

@@ -12,7 +12,7 @@ import static ru.restaurants.repository.RestDataTest.*;
 
 public class MenuDataTest {
     public static final Integer MENU_ID = 6;
-    public static final int NOT_ID_MENU = 999;
+    public static final int NOT_FOUND_ID_MENU = 999;
     public static final Menu MENU = new Menu(MENU_ID, REST, LocalDate.of(2020, Month.JANUARY, 30), "компот 1 макороны 2 суп 3", 0);
     public static final Menu NEW_MENU = new Menu( REST, LocalDate.of(2044, Month.JANUARY, 1), "новое меню", 0);
     public static final LocalDate MENU_DATA = LocalDate.of(2020, Month.JANUARY, 30);

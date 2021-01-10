@@ -9,7 +9,7 @@ import ru.restaurants.model.User;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.service.UserService;
 import ru.restaurants.web.TestMatcher;
-import ru.restaurants.web.AbstractRestControllerTest;
+import ru.restaurants.web.AbstractControllerTest;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,7 +23,7 @@ import static ru.restaurants.web.controller.user.UserMenuRestController.USER_MEN
 import static ru.restaurants.repository.RestDataTest.REST_ID;
 import static ru.restaurants.web.controller.user.UserMenuRestController.*;
 
-class UserMenuRestControllerTest extends AbstractRestControllerTest {
+class UserMenuControllerTest extends AbstractControllerTest {
     private static final String URL_USER = USER_MENU_TO_DAY + "/";
 
     @Autowired

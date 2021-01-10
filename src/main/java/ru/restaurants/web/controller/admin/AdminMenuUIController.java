@@ -4,21 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.restaurants.model.Menu;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.service.RestaurantService;
 import ru.restaurants.to.ToMenu;
-import ru.restaurants.util.ValidationUtil;
+import ru.restaurants.util.execption.ErrorInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
-import static ru.restaurants.util.ValidationUtil.getErrorResponse;
 
 @RestController
 @RequestMapping(value = AdminMenuUIController.ADMIN_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -57,12 +55,8 @@ public class AdminMenuUIController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<String> createOrUpdateTO (@Valid ToMenu m, BindingResult result, HttpServletRequest request){
-        if (result.hasErrors()){
-            return getErrorResponse(result, request);
-//            return errorResult(result);
-        }
-        Menu menu = new Menu(m.getId(), restaurantService.get(m.getId_rest()), m.getDateMenu(), m.getMenuRest(), m.getRating());//вынестив отдельный метод
+    public ResponseEntity<ErrorInfo> createOrUpdateTO (@Valid ToMenu m){
+        Menu menu = new Menu(m.getId(), restaurantService.get(m.getId_rest()), m.getDateMenu(), m.getMenuRest(), m.getRating());
         if (m.isNew()){
             service.save(menu);
         } else {

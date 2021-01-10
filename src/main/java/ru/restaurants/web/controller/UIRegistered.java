@@ -23,6 +23,8 @@ import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
+import static ru.restaurants.util.Convector.covertToUser;
+
 @Controller
 @RequestMapping(value = UIRegistered.URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class UIRegistered {
@@ -47,11 +49,11 @@ public class UIRegistered {
         }
         if (authUser.getUserTo().getId().equals(toUser.getId())){
             authUser.update(toUser);
-            User user = covertToUser(toUser);
+            User user = covertToUser(toUser,voteService);
             userService.create(user);
             status.setComplete();
         } else {
-            User user = covertToUser(toUser);
+            User user = covertToUser(toUser, voteService);
             userService.create(user);
         }
         return "redirect:/menuToDay";
@@ -65,35 +67,9 @@ public class UIRegistered {
             model.addAttribute("error", builder);
             return "register";
         } else {
-            User user = covertToUser(toUser);
+            User user = covertToUser(toUser, voteService);
             userService.create(user);
             return "redirect:/login?message=app.registered";
         }
-    }
-
-    private User covertToUser (ToUser u){
-        String [] array = u.getRole().split("\\.");
-        Set<Role> roleSet = new HashSet<>();
-        for (String s : array) {
-            switch (s) {
-                case ("USER"):
-                    roleSet.add(Role.USER);
-                    break;
-                case ("ADMIN"):
-                    roleSet.add(Role.ADMIN);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        User user;
-        if (u.isNew()) {
-            user = new User(null, u.getEmail(), u.getName(), u.getPassword(), null, u.getVoteLast(), roleSet);
-        }
-        else {
-            user = new User(u.id(), u.getEmail(), u.getName(), u.getPassword(), voteService.getAllVoteByUser(u.id()), u.getVoteLast(), roleSet); //сюда дабавить все голосо пользователя
-        }
-        return user;
     }
 }
