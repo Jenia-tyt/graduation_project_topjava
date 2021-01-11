@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Menu;
-import ru.restaurants.repository.MenuRepository;
 import ru.restaurants.repository.datajpa.MenuDataJpaRepository;
 import ru.restaurants.web.controller.user.UserMenuRestController;
 

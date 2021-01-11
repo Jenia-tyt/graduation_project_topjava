@@ -17,14 +17,13 @@ import ru.restaurants.service.MenuService;
 import ru.restaurants.service.RestaurantService;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
+import ru.restaurants.util.execption.VoteException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-
-
 
 @RestController
 @RequestMapping(value = UserMenuRestController.USER_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -62,7 +61,7 @@ public class UserMenuRestController {
     }
 
     @GetMapping("/restaurant")
-    public List<Menu> getAllMenuOfRest(Model model, HttpServletRequest request) {
+    public List<Menu> getAllMenuOfRest(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
         return menuService.getAllMenuOfRest(id);
     }
@@ -72,12 +71,12 @@ public class UserMenuRestController {
         return menuService.getAllMenuOfRest(id);
     }
 
-    //нужно брать id из антификации юзера
     @PutMapping("/vote/{id}")
     public ResponseEntity<String> vote(@PathVariable int id, @AuthenticationPrincipal AuthorizedUser authorizedUser, HttpServletRequest request) {
         LocalDateTime dateTime = LocalDateTime.now();
 
         Integer idUser = authorizedUser.getId();
+        String nameUserAUth = authorizedUser.getUserTo().getName();
 
         Menu m = menuService.get(id);
         Menu oldMenu;
@@ -137,9 +136,6 @@ public class UserMenuRestController {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }
-        String stringBuilder = authorizedUser.getUserTo().getName() +
-                ((request.getHeader("Accept-Language").startsWith("ru")) ? " сегодня уже голосовал" : " voted to day");
-
-        return new ResponseEntity<>(stringBuilder, HttpStatus.UNPROCESSABLE_ENTITY);
+        throw new VoteException(nameUserAUth);
     }
 }

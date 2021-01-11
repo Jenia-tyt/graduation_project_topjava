@@ -2,15 +2,11 @@ package ru.restaurants.web.controller;
 
 
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.restaurants.AuthorizedUser;
-import ru.restaurants.model.User;
 import ru.restaurants.to.ToUser;
 
 

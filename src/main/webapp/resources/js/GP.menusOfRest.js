@@ -1,6 +1,4 @@
 var URL_ALL_MENU_REST = '/Restaurant/admin/menuToDay/';
-// надо денамически изменять юрл !!!!!!!!!!!!!!!
-
 
 var cat = localStorage.getItem('idRest')
 

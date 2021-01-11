@@ -146,6 +146,7 @@ public class User extends AbstractBaseEntity{
         if (this.getClass() != Hibernate.getClass(o)){
             return false;
         }
+        if (!super.equals(o)) return false;
         return this.id != null
                 && this.id.equals(((User)o).id)
                 && this.name.equals(((User)o).name)

@@ -14,9 +14,7 @@ import ru.restaurants.AuthorizedUser;
 import ru.restaurants.model.User;
 import ru.restaurants.repository.datajpa.UserDateJpaRepository;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 

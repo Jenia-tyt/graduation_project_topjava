@@ -28,25 +28,10 @@ public class AdminUsersUIController {
     @Autowired
     private final VoteService voteService;
 
-//    @Autowired
-//    private final UniqueMailAndNameValidator uniqueMailAndNameValidator;
-
-//    @InitBinder
-//    protected void initBinder(WebDataBinder binder) {
-//        binder.addValidators(uniqueMailAndNameValidator);
-//    }
-
     public AdminUsersUIController(UserService userService, VoteService voteService) {
         this.userService = userService;
         this.voteService = voteService;
     }
-
-
-//    public AdminUsersUIController(UserService userService, VoteService voteService, UniqueMailAndNameValidator uniqueMailAndNameValidator) {
-//        this.userService = userService;
-//        this.voteService = voteService;
-//        this.uniqueMailAndNameValidator = uniqueMailAndNameValidator;
-//    }
 
     @GetMapping("/")
     public List<User> getAll(){

@@ -28,17 +28,11 @@
                             authentication-failure-url="/login?error=true"
                             login-processing-url="/spring_security_check"/>
         <logout logout-success-url="/login"/>
-<!--        <csrf disabled="true"/>-->
     </http>
 
     <authentication-manager>
         <authentication-provider user-service-ref="UserService">
             <password-encoder ref="passwordEncoder"/>
-<!--        <authentication-provider>-->
-<!--            <user-service>-->
-<!--                <user name="user@mail.ru" password="{noop}passwordUser" authorities="ROLE_USER"/>-->
-<!--                <user name="admin@mail.ru" password="{noop}passwordAdmin" authorities="ROLE_ADMIN"/>-->
-<!--            </user-service>-->
         </authentication-provider>
     </authentication-manager>
 </beans:beans>

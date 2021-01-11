@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Vote;
-import ru.restaurants.repository.VoteRepository;
 import ru.restaurants.repository.datajpa.VoteDateJpaRepository;
 
 import java.time.LocalDate;

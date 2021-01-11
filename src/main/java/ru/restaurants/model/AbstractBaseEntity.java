@@ -51,6 +51,7 @@ public class AbstractBaseEntity implements Persistable<Integer> {
         if (o == null || !getClass().equals(Hibernate.getClass(o))){
             return false;
         }
+        if (!super.equals(o)) return false;
         return id != null && id.equals(((AbstractBaseEntity) o).id);
     }
 

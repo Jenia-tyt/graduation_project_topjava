@@ -2,7 +2,6 @@ package ru.restaurants.repository.datajpa;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
-import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
 
