@@ -2,29 +2,23 @@ package ru.restaurants.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import ru.restaurants.AuthorizedUser;
-import ru.restaurants.model.Role;
 import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.to.ToUser;
-import ru.restaurants.web.UniqueMailAndNameValidator;
 
 import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.Set;
 
 import static ru.restaurants.util.Convector.covertToUser;
+import static ru.restaurants.util.ErrorMessages.messageErrorForEmailAndName;
 
 @Controller
 @RequestMapping(value = UIRegistered.URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -82,16 +76,5 @@ public class UIRegistered {
             }
         }
         return "register";
-    }
-
-    private void messageErrorForEmailAndName(DataIntegrityViolationException e, BindingResult result){
-        String message = e.getMessage();
-        if (message != null) {
-            if (message.contains("users_name_key")){
-                result.rejectValue("name", "error.name");
-            } else if (message.contains("users_email_key")) {
-                result.rejectValue("email", "error.email");
-            }
-        }
     }
 }

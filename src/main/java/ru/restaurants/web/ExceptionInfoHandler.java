@@ -26,13 +26,12 @@ import static ru.restaurants.util.execption.ErrorType.*;
 public class ExceptionInfoHandler {
     private static final Logger log = LoggerFactory.getLogger(ExceptionInfoHandler.class);
 
-    public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
-//    public static final String EXCEPTION_DUPLICATE_DATETIME = "exception.meal.duplicateDateTime";
+    public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";//поменять занечени и добавить а бандел
+    public static final String EXCEPTION_DUPLICATE_NAME = "exception.user.duplicateName";
 
     private static final Map<String, String> CONSTRAINS_I18N_MAP = Map.of(
-            "users_unique_email_idx", EXCEPTION_DUPLICATE_EMAIL);
-//    ,
-//            "meals_unique_user_datetime_idx", EXCEPTION_DUPLICATE_DATETIME);
+            "users_email_key", EXCEPTION_DUPLICATE_EMAIL,
+            "users_name_key", EXCEPTION_DUPLICATE_NAME);
 
     private final MessageSourceAccessor messageSourceAccessor;
 
@@ -83,12 +82,18 @@ public class ExceptionInfoHandler {
         return logAndGetErrorInfo(req, e, true, APP_ERROR);
     }
 
+    @ExceptionHandler(VoteException.class)
+    public ResponseEntity<ErrorInfo> VoteError(HttpServletRequest req, VoteException e) {
+        String str =e.getMessage() + " " + messageSourceAccessor.getMessage("error.vote.description");
+        return logAndGetErrorInfo(req, e, true, VOTE_ERROR, str);
+    }
+
     private ResponseEntity<ErrorInfo> logAndGetErrorInfo(HttpServletRequest req, Exception e, boolean logStackTrace, ErrorType errorType, String... details) {
         Throwable rootCause = ValidationUtil.logAndGetRootCause(log, req, e, logStackTrace, errorType);
         return ResponseEntity.status(errorType.getStatus())
                 .body(new ErrorInfo(req.getRequestURL(), errorType,
-                        messageSourceAccessor.getMessage(errorType.getErrorCode()),
-                        details.length != 0 ? details : new String[]{ValidationUtil.getMessage(rootCause)})
+                messageSourceAccessor.getMessage(errorType.getErrorCode()),
+                details.length != 0 ? details : new String[]{ValidationUtil.getMessage(rootCause)})
                 );
     }
 }

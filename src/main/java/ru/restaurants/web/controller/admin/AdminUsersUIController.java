@@ -5,15 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.*;
 import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.to.ToUser;
 import ru.restaurants.util.execption.ErrorInfo;
-import ru.restaurants.web.UniqueMailAndNameValidator;
 
 import javax.validation.Valid;
 import java.util.List;

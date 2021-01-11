@@ -66,5 +66,4 @@ public class AdminRestaurantUIController {
     public void upDate(@RequestBody Restaurant rest, @PathVariable int id){
         restService.update(rest, id);
     }
-
 }

@@ -1,6 +1,7 @@
 package ru.restaurants.web.controller.user;
 
 
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,12 +19,18 @@ import ru.restaurants.service.MenuService;
 import ru.restaurants.service.RestaurantService;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
+import ru.restaurants.util.execption.ErrorInfo;
+import ru.restaurants.util.execption.ErrorType;
+import ru.restaurants.util.execption.VoteException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+
+import static ru.restaurants.util.execption.ErrorType.VALIDATION_ERROR;
+import static ru.restaurants.util.execption.ErrorType.VOTE_ERROR;
 
 
 @RestController
@@ -67,7 +74,7 @@ public class UserMenuUIController {
         return menuService.getAllMenuOfRest(id);
     }
 
-    @GetMapping("/all/{id}") //добавить тест
+    @GetMapping("/all/{id}")
     public List<Menu> getAllMenuForRest(@PathVariable Integer id) {
         return menuService.getAllMenuOfRest(id);
     }
@@ -78,10 +85,11 @@ public class UserMenuUIController {
     }
 
     @PutMapping("/vote/{id}")
-    public ResponseEntity<String> vote(@PathVariable int id, @AuthenticationPrincipal AuthorizedUser authorizedUser, HttpServletRequest request) {
+    public ResponseEntity<ErrorInfo> vote(@PathVariable int id, @AuthenticationPrincipal AuthorizedUser authorizedUser, HttpServletRequest request) {
         LocalDateTime dateTime = LocalDateTime.now();
 
         Integer idUser = authorizedUser.getId();
+        String nameUserAUth = authorizedUser.getUserTo().getName();
 
         Menu m = menuService.get(id);
         Menu oldMenu;
@@ -141,10 +149,6 @@ public class UserMenuUIController {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
         }
-        String stringBuilder = authorizedUser.getUserTo().getName() +
-                ((request.getHeader("Accept-Language").startsWith("ru")) ? " сегодня уже голосовал" : " voted to day");
-
-        return new ResponseEntity<>(stringBuilder, HttpStatus.UNPROCESSABLE_ENTITY);
+        throw new VoteException(nameUserAUth);
     }
-
 }

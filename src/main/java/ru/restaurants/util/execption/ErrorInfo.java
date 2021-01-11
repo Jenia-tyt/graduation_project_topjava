@@ -12,4 +12,8 @@ public class ErrorInfo {
         this.typeMessage = typeMessage;
         this.details = details;
     }
+
+    public ErrorType getType() {
+        return type;
+    }
 }

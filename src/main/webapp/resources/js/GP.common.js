@@ -1,12 +1,10 @@
     var form;
     var URL_ADMIN = '/Restaurant/admin/menuToDay';
-    var URL_ALL_MENU_REST;
 
     $.ajaxSetup({cache: false});
 
-    function makeEditable(datatableOpts) { //разобарать какк выводить ошибки
+    function makeEditable(datatableOpts) {
         ctx.datatableApi = $("#datatable").DataTable(
-            // https://api.jquery.com/jquery.extend/#jQuery-extend-deep-target-object1-objectN
             $.extend(true, datatableOpts,
                 {
                     "ajax": {
@@ -15,15 +13,24 @@
                     },
                     "paging": true,
                     "info": true,
+                    "language": {
+                        "info":             i18n["common.info"],
+                        "search":           i18n["common.search"],
+                        "lengthMenu":       i18n["common.lengthMenu"],
+                        "loadingRecords":   i18n["common.loadingRecords"],
+                        "processing":       i18n["common.processing"],
+                        "paginate": {
+                            "next":         i18n["common.paginate.next"],
+                            "previous":     i18n["common.paginate.previous"]},
+                    }
                 }
             ));
 
         form = $('#detailsForm');
-        $(document).ajaxError(function (event, jqXHR, options, jsExc) { //вот здесь выводятся ошибки надо разобраться с этим
+        $(document).ajaxError(function (event, jqXHR, options, jsExc) {
             failNoty(jqXHR);
         });
 
-        // solve problem with cache in IE: https://stackoverflow.com/a/4303862/548473
         $.ajaxSetup({cache: false});
 
         var token = $("meta[name='_csrf']").attr("content");
@@ -139,7 +146,7 @@
         }
     }
 
-    function vote(id) {  //сюда надо накинуть ошибку что ты уже голосовал сегодня или это в java?
+    function vote(id) {
         $.ajax({
             type:"PUT",
             url:URL_USER_MENU + "vote/"+id
@@ -220,7 +227,6 @@
     function updateUser(){
         $.ajax({
             type: "POST",
-            // url: "/Restaurant/register/update", //здесьм метод обновления залогининого пользователя
             url: "/Restaurant/admin/users",
             data: form.serialize(),
             success: function (date){

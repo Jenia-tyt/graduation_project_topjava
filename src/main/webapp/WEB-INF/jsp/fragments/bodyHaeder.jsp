@@ -28,7 +28,6 @@
                                 <a class="btn btn-info mr-1" href="/Restaurant/users"><spring:message code="users.title"/></a>
                             </sec:authorize>
 
-<%--                            ссылка на профиль--%>
                             <a class="btn btn-info mr-1" href="Restaurant/profile"><spring:message code="app.user"/><sec:authentication property="principal.userTo.name"/></a>
 
                             <button class="btn btn-primary my-1" type="submit">
@@ -50,21 +49,17 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="dropdown-toggle nav-link my-1 ml-2" data-toggle="dropdown">ru</a>
-<%--                    локализация, надо сделать что бы работала локализация--%>
+                    <a class="dropdown-toggle nav-link my-1 ml-2" data-toggle="dropdown">${pageContext.response.locale}</a>
                     <div class="dropdown-menu">
-<%--                        <a class="dropdown-item" href="Restaurant/login?lang=en">English</a>--%>
-<%--                        <a class="dropdown-item" href="Restaurant/login?lang=ru">Русский</a>--%>
-                            <a class="dropdown-item" href="${requestScope['javax.servlet.forward.request_uri']}?lang=en">English</a>
-                            <a class="dropdown-item" href="${requestScope['javax.servlet.forward.request_uri']}?lang=ru">Русский</a>
+                        <a class="dropdown-item" href="${requestScope['javax.servlet.forward.request_uri']}?lang=en">English</a>
+                        <a class="dropdown-item" href="${requestScope['javax.servlet.forward.request_uri']}?lang=ru">Русский</a>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
-
-    </div>
-
 </nav>
+
+
 
 
