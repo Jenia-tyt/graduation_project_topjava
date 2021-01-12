@@ -1,1 +1,1 @@
-web: play run --http.port=$PORT $PLAY_OPTS
+web:    java $JAVA_OPTS -Dspring.profiles.active="heroku" --port $PORT target/*.war
