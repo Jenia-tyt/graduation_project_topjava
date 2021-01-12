@@ -4,6 +4,8 @@ DROP TABLE IF EXISTS restaurant;
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS users;
 
+CREATE SEQUENCE global_seq START WITH 1;
+
 CREATE TABLE restaurant
 (
     id              INTEGER     PRIMARY KEY DEFAULT nextval('global_seq'),
