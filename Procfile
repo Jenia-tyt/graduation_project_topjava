@@ -1,1 +1,1 @@
-web: node login.jsp
+web:login.jsp
