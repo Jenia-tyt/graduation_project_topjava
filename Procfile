@@ -1,1 +1,1 @@
-web: java -war target/Rest.war
+web: java $JAVA_OPTS -cp target/Rest.jar --port 37825 target/*.war`
