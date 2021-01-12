@@ -1,4 +1,5 @@
 package ru.restaurants.to;
+import org.hibernate.validator.constraints.SafeHtml;
 import ru.restaurants.model.Menu;
 
 import javax.validation.constraints.NotEmpty;
@@ -8,8 +9,10 @@ public class ToRestaurant extends AbstractTo{
     private static final long serialVersionUID = 1L;
 
     @NotEmpty
+    @SafeHtml
     private String name;
 
+    @NotEmpty
     private List<Menu> menu;
 
     private Integer rating;

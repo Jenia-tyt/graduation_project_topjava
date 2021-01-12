@@ -1,5 +1,6 @@
 package ru.restaurants.to;
 
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
@@ -17,6 +18,7 @@ public class ToMenu extends AbstractTo{
 
     @NotEmpty
     @NotNull
+    @SafeHtml
     private String menuRest;
     private Integer rating;
 

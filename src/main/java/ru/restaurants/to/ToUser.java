@@ -1,5 +1,6 @@
 package ru.restaurants.to;
 
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
@@ -14,6 +15,7 @@ public class ToUser extends AbstractTo {
     @NotEmpty
     @NotNull
     @Size(min = 3, max = 30)
+    @SafeHtml
     private String name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -21,6 +23,7 @@ public class ToUser extends AbstractTo {
 
     @Email
     @Size(min = 3, max = 30)
+    @SafeHtml
     private String email;
 
     @NotNull

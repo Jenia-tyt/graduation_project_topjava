@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
+import static ru.restaurants.util.CheckedAdmin.checkedAdmin;
 import static ru.restaurants.util.ValidationUtil.*;
 
 @Service("UserService")

@@ -17,6 +17,7 @@ import ru.restaurants.to.ToUser;
 
 import javax.validation.Valid;
 
+import static ru.restaurants.util.CheckedAdmin.checkedAdmin;
 import static ru.restaurants.util.Convector.covertToUser;
 import static ru.restaurants.util.ErrorMessages.messageErrorForEmailAndName;
 
@@ -44,13 +45,18 @@ public class UIRegistered {
             model.addAttribute("error", builder);
             return "/profile";
         }
-        if (authUser.getUserTo().getId().equals(toUser.getId())){
+        if (authUser.getUserTo().getId().equals(16)){
+            result.rejectValue("name", "error.change.descriptionForFrom");
+            result.rejectValue("email", "error.change.descriptionForFrom");
+            result.rejectValue("password", "error.change.descriptionForFrom");
+            return "/profile";
+        } else if (authUser.getUserTo().getId().equals(toUser.getId())) {
             try {
                 User user = covertToUser(toUser, voteService);
                 userService.upDate(user, user.id());
                 authUser.update(toUser);
                 status.setComplete();
-            } catch (DataIntegrityViolationException e){
+            } catch (DataIntegrityViolationException e) {
                 messageErrorForEmailAndName(e, result);
                 return "/profile";
             }

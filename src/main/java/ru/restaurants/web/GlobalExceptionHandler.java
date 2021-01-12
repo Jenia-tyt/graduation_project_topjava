@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(NoHandlerFoundException.class)
     public ModelAndView wrongRequest(HttpServletRequest req, NoHandlerFoundException e) {
-        return logAndGetExceptionView(req, e, false, ErrorType.WRONG_REQUEST, null);
+        return logAndGetExceptionView(req, e, false, ErrorType.WRONG_REQUEST, "exception.noHandlerFoundException");
     }
 
     @ExceptionHandler(ApplicationException.class)

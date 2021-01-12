@@ -10,11 +10,13 @@ import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.to.ToUser;
+import ru.restaurants.util.execption.ErrorChange;
 import ru.restaurants.util.execption.ErrorInfo;
 
 import javax.validation.Valid;
 import java.util.List;
 
+import static ru.restaurants.util.CheckedAdmin.checkedAdmin;
 import static ru.restaurants.util.Convector.covertToUser;
 
 @RestController
@@ -45,19 +47,22 @@ public class AdminUsersUIController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete (@PathVariable int id){
+    public void delete (@PathVariable Integer id){
+        checkedAdmin(id, userService);
         userService.delete(id);
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<ErrorInfo> createOrUpdate (@Valid ToUser toUser){
+        checkedAdmin(toUser.id(), userService);
         User user = covertToUser(toUser, voteService);
-        if (user.isNew()){
+        if (user.isNew()) {
             userService.create(user);
         } else {
             userService.upDate(user, user.id());
         }
         return ResponseEntity.ok().build();
     }
+
 }

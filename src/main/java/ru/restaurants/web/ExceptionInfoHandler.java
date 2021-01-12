@@ -84,8 +84,14 @@ public class ExceptionInfoHandler {
 
     @ExceptionHandler(VoteException.class)
     public ResponseEntity<ErrorInfo> VoteError(HttpServletRequest req, VoteException e) {
-        String str =e.getMessage() + " " + messageSourceAccessor.getMessage("error.vote.description");
+        String str = e.getMessage() + " " + messageSourceAccessor.getMessage("error.vote.description");
         return logAndGetErrorInfo(req, e, true, VOTE_ERROR, str);
+    }
+
+    @ExceptionHandler(ErrorChange.class)
+    public ResponseEntity<ErrorInfo> ChangeError(HttpServletRequest req, ErrorChange e){
+        String str = e.getMessage() + " " + messageSourceAccessor.getMessage("error.change.description");
+        return logAndGetErrorInfo(req, e, true, ERROR_CHANGE, str);
     }
 
     private ResponseEntity<ErrorInfo> logAndGetErrorInfo(HttpServletRequest req, Exception e, boolean logStackTrace, ErrorType errorType, String... details) {
