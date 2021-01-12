@@ -1,1 +1,1 @@
-web: java -war target/java-getting-started-1.0.war
+web: java -war target/Rest.war
