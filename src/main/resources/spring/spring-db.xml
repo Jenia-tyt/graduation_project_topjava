@@ -27,9 +27,9 @@
                 </bean>
                 <bean id="dataSource"
                       class="org.apache.tomcat.jdbc.pool.DataSource"
-                      p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
-                      p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
-                      p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
+                      p:url="jdbc:postgresql://ec2-54-78-127-245.eu-west-1.compute.amazonaws.com:5432/d2av5qgi2t968r"
+                      p:username="fpvmbbjlgeeaub"
+                      p:password="cc8c42c490b806cc059588ca87793367d233d58c54e2a5265aa9964fcd2f864d"
                       p:driverClassName="org.postgresql.Driver"
                       p:validationQuery="SELECT 1"
                       p:maxActive="10"
@@ -79,3 +79,20 @@
                       p:entityManagerFactory-ref="entityManagerFactory"/>
 
 </beans>
+
+<!--<bean id="dataSource"-->
+<!--      class="org.apache.tomcat.jdbc.pool.DataSource"-->
+<!--      p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"-->
+<!--      p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"-->
+<!--      p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"-->
+<!--      p:driverClassName="org.postgresql.Driver"-->
+<!--      p:validationQuery="SELECT 1"-->
+<!--      p:maxActive="10"-->
+<!--      p:minIdle="2"-->
+<!--      p:maxWait="20000"-->
+<!--      p:initialSize="2"-->
+<!--      p:maxIdle="5"-->
+<!--      p:testOnBorrow="true"-->
+<!--      p:removeAbandoned="true"-->
+<!--      p:testOnConnect="true"-->
+<!--      p:testWhileIdle="true"/>-->
