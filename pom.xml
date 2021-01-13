@@ -347,33 +347,7 @@
 
     <profile>
       <id>postgres</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.postgresql</groupId>
-          <artifactId>postgresql</artifactId>
-          <version>${postgresql.version}</version>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.tomcat</groupId>
-          <artifactId>tomcat-jdbc</artifactId>
-          <version>${tomcat.version}</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.slf4j</groupId>
-          <artifactId>jul-to-slf4j</artifactId>
-          <version>${slf4j.version}</version>
-          <scope>runtime</scope>
-        </dependency>
-      </dependencies>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
 
-    <profile>
-      <id>heroku</id>
-      <!--https://devcenter.heroku.com/articles/java-webapp-runner            -->
       <build>
         <plugins>
           <plugin>
@@ -402,6 +376,7 @@
           </plugin>
         </plugins>
       </build>
+
       <dependencies>
         <dependency>
           <groupId>org.postgresql</groupId>
@@ -412,9 +387,64 @@
           <groupId>org.apache.tomcat</groupId>
           <artifactId>tomcat-jdbc</artifactId>
           <version>${tomcat.version}</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.slf4j</groupId>
+          <artifactId>jul-to-slf4j</artifactId>
+          <version>${slf4j.version}</version>
+          <scope>runtime</scope>
         </dependency>
       </dependencies>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
     </profile>
+
+<!--    <profile>-->
+<!--      <id>heroku</id>-->
+<!--      &lt;!&ndash;https://devcenter.heroku.com/articles/java-webapp-runner            &ndash;&gt;-->
+<!--      <build>-->
+<!--        <plugins>-->
+<!--          <plugin>-->
+<!--            <groupId>org.apache.maven.plugins</groupId>-->
+<!--            <artifactId>maven-dependency-plugin</artifactId>-->
+<!--            <version>3.1.2</version>-->
+<!--            <executions>-->
+<!--              <execution>-->
+<!--                <phase>package</phase>-->
+<!--                <goals>-->
+<!--                  <goal>copy</goal>-->
+<!--                </goals>-->
+<!--                <configuration>-->
+<!--                  <artifactItems>-->
+<!--                    &lt;!&ndash;https://github.com/jsimone/webapp-runner#using-without-memcached-or-redis&ndash;&gt;-->
+<!--                    <artifactItem>-->
+<!--                      <groupId>com.heroku</groupId>-->
+<!--                      <artifactId>webapp-runner-main</artifactId>-->
+<!--                      <version>9.0.41.0</version>-->
+<!--                      <destFileName>webapp-runner.jar</destFileName>-->
+<!--                    </artifactItem>-->
+<!--                  </artifactItems>-->
+<!--                </configuration>-->
+<!--              </execution>-->
+<!--            </executions>-->
+<!--          </plugin>-->
+<!--        </plugins>-->
+<!--      </build>-->
+<!--      <dependencies>-->
+<!--        <dependency>-->
+<!--          <groupId>org.postgresql</groupId>-->
+<!--          <artifactId>postgresql</artifactId>-->
+<!--          <version>${postgresql.version}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--          <groupId>org.apache.tomcat</groupId>-->
+<!--          <artifactId>tomcat-jdbc</artifactId>-->
+<!--          <version>${tomcat.version}</version>-->
+<!--        </dependency>-->
+<!--      </dependencies>-->
+<!--    </profile>-->
 
   </profiles>
 
