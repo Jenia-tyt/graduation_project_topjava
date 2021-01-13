@@ -22,14 +22,14 @@
 <!--        <beans profile="heroku">-->
                 <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
 
-                <bean class="java.net.URI" id="dbUrl">
-                        <constructor-arg value="jdbc:postgresql://ec2-54-78-127-245.eu-west-1.compute.amazonaws.com:5432/d2av5qgi2t968r"/>
-                </bean>
+        <bean class="java.net.URI" id="dbUrl">
+                <constructor-arg value="${DATABASE_URL}"/>
+        </bean>
                 <bean id="dataSource"
                       class="org.apache.tomcat.jdbc.pool.DataSource"
-                      p:url="jdbc:postgresql://ec2-54-78-127-245.eu-west-1.compute.amazonaws.com:5432/d2av5qgi2t968r"
-                      p:username="fpvmbbjlgeeaub"
-                      p:password="cc8c42c490b806cc059588ca87793367d233d58c54e2a5265aa9964fcd2f864d"
+                      p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
+                      p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
+                      p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
                       p:driverClassName="org.postgresql.Driver"
                       p:validationQuery="SELECT 1"
                       p:maxActive="10"
