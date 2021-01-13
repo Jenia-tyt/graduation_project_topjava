@@ -335,13 +335,6 @@
       <scope>test</scope>
     </dependency>
 
-
-<!--    https://coderoad.ru/8092872/java-lang-ClassNotFoundException-org-springframework-jdbc-datasource-->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>4.0.6.RELEASE</version>
-    </dependency>
   </dependencies>
 
   <profiles>
@@ -378,7 +371,17 @@
         </plugins>
       </build>
 
+
+
       <dependencies>
+
+        <!--    https://coderoad.ru/8092872/java-lang-ClassNotFoundException-org-springframework-jdbc-datasource-->
+        <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>4.0.6.RELEASE</version>
+        </dependency>
+
         <dependency>
           <groupId>org.postgresql</groupId>
           <artifactId>postgresql</artifactId>
