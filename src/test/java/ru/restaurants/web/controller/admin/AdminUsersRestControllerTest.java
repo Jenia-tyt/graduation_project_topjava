@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static ru.restaurants.repository.UserDataTest.*;
 import static ru.restaurants.util.Convector.covertToUser;
 
-class AdminUserRestControllerTest extends AbstractControllerTest {
+class AdminUsersRestControllerTest extends AbstractControllerTest {
     private static final String URL_ADMIN_USER_REST_TEST = "/rest/admin/users/";
 
     @Autowired

@@ -20,7 +20,7 @@ import java.net.URI;
 
 import static ru.restaurants.util.Convector.covertToUser;
 import static ru.restaurants.web.controller.ProfileRestController.URL_REST_PROFILE;
-import static ru.restaurants.web.controller.admin.AdminUserRestController.ADMIN_USERS_REST;
+import static ru.restaurants.web.controller.admin.AdminUsersRestController.ADMIN_USERS_REST;
 
 
 @RestController

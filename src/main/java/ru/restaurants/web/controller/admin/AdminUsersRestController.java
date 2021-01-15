@@ -5,21 +5,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.to.ToUser;
-import javax.validation.Valid;
-import java.net.URI;
+
 import java.util.List;
 
 import static ru.restaurants.util.Convector.covertToUser;
-import static ru.restaurants.web.controller.admin.AdminUserRestController.ADMIN_USERS_REST;
+import static ru.restaurants.web.controller.admin.AdminUsersRestController.ADMIN_USERS_REST;
 
 @RestController
 @RequestMapping(value = ADMIN_USERS_REST, produces = MediaType.APPLICATION_JSON_VALUE)
-public class AdminUserRestController {
+public class AdminUsersRestController {
     public static final String ADMIN_USERS_REST = "rest/admin/users";
 
     @Autowired
@@ -28,7 +26,7 @@ public class AdminUserRestController {
     @Autowired
     private final VoteService voteService;
 
-    public AdminUserRestController (UserService userService, VoteService voteService) {
+    public AdminUsersRestController(UserService userService, VoteService voteService) {
         this.userService = userService;
         this.voteService = voteService;
     }

@@ -13,90 +13,44 @@
 
         <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
 
-<!--        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"-->
-<!--              p:driverClassName="org.postgresql.Driver"-->
-<!--              p:url="${database.url}"-->
-<!--              p:username="${database.username}"-->
-<!--              p:password="${database.password}"/>-->
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+              p:driverClassName="org.postgresql.Driver"
+              p:url="${database.url}"
+              p:username="${database.username}"
+              p:password="${database.password}"/>
 
-<!--        <beans profile="heroku">-->
-                <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
+        <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
+                <jdbc:script location="classpath:db/initDB.sql"/>
+                <jdbc:script location="classpath:db/populateDB.sql"/>
+        </jdbc:initialize-database>
 
-        <bean class="java.net.URI" id="dbUrl">
-                <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>
+        <context:component-scan base-package="ru.**.repository"/>
+        <jpa:repositories base-package="ru.**.repository"/>
+
+        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+              p:dataSource-ref="dataSource"
+              p:packagesToScan="ru.restaurants.model">
+
+                <property name="jpaPropertyMap">
+                        <map>
+                                <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
+                                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="${hibernate.use_sql_comments}"/>
+                                <entry key="#{T(org.hibernate.cfg.AvailableSettings).JPA_PROXY_COMPLIANCE}" value="false"/>
+
+                                <entry key="#{T(org.hibernate.cfg.AvailableSettings).CACHE_REGION_FACTORY}" value="org.hibernate.cache.jcache.internal.JCacheRegionFactory"/>
+                                <entry key="#{T(org.hibernate.cache.jcache.ConfigSettings).PROVIDER}" value="org.ehcache.jsr107.EhcacheCachingProvider"/>
+                                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/>
+                                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_QUERY_CACHE}" value="false"/> <!--default-->
+                        </map>
+                </property>
+
+                <property name="jpaVendorAdapter">
+                        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" p:showSql="${jpa.showSql}">
+                        </bean>
+                </property>
         </bean>
 
-<!--        <bean class="java.net.URI" id="dbUrl">-->
-<!--                <constructor-arg value="${DATABASE_URL}"/>-->
-<!--        </bean>-->
-                <bean id="dataSource"
-                      class="org.apache.tomcat.jdbc.pool.DataSource"
-                      p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
-                      p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
-                      p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
-                      p:driverClassName="org.postgresql.Driver"
-                      p:validationQuery="SELECT 1"
-                      p:maxActive="10"
-                      p:minIdle="2"
-                      p:maxWait="20000"
-                      p:initialSize="2"
-                      p:maxIdle="5"
-                      p:testOnBorrow="true"
-                      p:removeAbandoned="true"
-                      p:testOnConnect="true"
-                      p:testWhileIdle="true"/>
-<!--        </beans>-->
-
-<!--        <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">-->
-<!--                <jdbc:script location="classpath:db/initDB.sql"/>-->
-<!--                <jdbc:script location="classpath:db/populateDB.sql"/>-->
-<!--        </jdbc:initialize-database>-->
-
-                <context:component-scan base-package="ru.**.repository"/>
-                <jpa:repositories base-package="ru.**.repository"/>
-
-                <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-                      p:dataSource-ref="dataSource"
-                      p:packagesToScan="ru.restaurants.model">
-
-                        <property name="jpaPropertyMap">
-                                <map>
-                                        <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
-                                        <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="${hibernate.use_sql_comments}"/>
-                                        <entry key="#{T(org.hibernate.cfg.AvailableSettings).JPA_PROXY_COMPLIANCE}" value="false"/>
-
-                                        <entry key="#{T(org.hibernate.cfg.AvailableSettings).CACHE_REGION_FACTORY}" value="org.hibernate.cache.jcache.internal.JCacheRegionFactory"/>
-                                        <entry key="#{T(org.hibernate.cache.jcache.ConfigSettings).PROVIDER}" value="org.ehcache.jsr107.EhcacheCachingProvider"/>
-                                        <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/>
-                                        <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_QUERY_CACHE}" value="false"/> <!--default-->
-                                </map>
-                        </property>
-
-                        <property name="jpaVendorAdapter">
-                                <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" p:showSql="${jpa.showSql}">
-                                </bean>
-                        </property>
-
-                </bean>
-
-                <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-                      p:entityManagerFactory-ref="entityManagerFactory"/>
+        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
+              p:entityManagerFactory-ref="entityManagerFactory"/>
 
 </beans>
-
-<!--<bean id="dataSource"-->
-<!--      class="org.apache.tomcat.jdbc.pool.DataSource"-->
-<!--      p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"-->
-<!--      p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"-->
-<!--      p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"-->
-<!--      p:driverClassName="org.postgresql.Driver"-->
-<!--      p:validationQuery="SELECT 1"-->
-<!--      p:maxActive="10"-->
-<!--      p:minIdle="2"-->
-<!--      p:maxWait="20000"-->
-<!--      p:initialSize="2"-->
-<!--      p:maxIdle="5"-->
-<!--      p:testOnBorrow="true"-->
-<!--      p:removeAbandoned="true"-->
-<!--      p:testOnConnect="true"-->
-<!--      p:testWhileIdle="true"/>-->

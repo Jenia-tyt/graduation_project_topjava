@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.example</groupId>
@@ -19,35 +19,34 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
 
-<!--    spring-->
+    <!--    spring-->
     <spring.version>5.3.1</spring.version>
     <spring.security.version>5.4.1</spring.security.version>
     <spring-data-jpa.version>2.4.0</spring-data-jpa.version>
     <spring-security-test>5.4.1</spring-security-test>
     <tomcat.version>9.0.39</tomcat.version>
 
-<!--    logging-->
+    <!--    logging-->
     <logback.version>1.2.3</logback.version>
     <slf4j.version>1.7.30</slf4j.version>
 
-<!--    DB-->
+    <!--    DB-->
     <postgresql.version>42.2.17</postgresql.version>
 
-<!--    Test-->
+    <!--    Test-->
     <junit.jupiter.version>5.7.0</junit.jupiter.version>
     <assertj.version>3.17.2</assertj.version>
     <hamcrest.version>1.3</hamcrest.version>
 
-<!--    Hibernate-->
+    <!--    Hibernate-->
     <hibernate.version>5.4.22.Final</hibernate.version>
     <hibernate-validator.version>6.1.6.Final</hibernate-validator.version>
-    <jsoup.version>1.13.1</jsoup.version>
     <javax-el.version>3.0.1-b12</javax-el.version>
 
-<!--    Cache-->
+    <!--    Cache-->
     <ehcache.version>3.9.0</ehcache.version>
 
-<!--    JACKSON-->
+    <!--    JACKSON-->
     <jackson.version>2.11.3</jackson.version>
 
     <!--webjars-->
@@ -103,7 +102,7 @@
           <configuration>
             <configfiles>
               <configfile>
-<!--                <file>src/main/resources/tomcat/context.xml</file>-->
+                <!--                <file>src/main/resources/tomcat/context.xml</file>-->
                 <file>src/main/resources/tomcat/context.xml</file>
                 <todir>conf/Catalina/localhost/</todir>
                 <tofile>${project.build.finalName}.xml</tofile>
@@ -113,7 +112,7 @@
           <deployables>
             <deployable>
               <groupId>ru.restaurants</groupId>
-<!--              Ratig-->
+              <!--              Ratig-->
               <artifactId>Rest</artifactId>
               <type>war</type>
               <properties>
@@ -123,33 +122,6 @@
           </deployables>
         </configuration>
       </plugin>
-
-<!--      из профиля postgres-->
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>3.1.2</version>
-          <executions>
-            <execution>
-              <phase>package</phase>
-              <goals>
-                <goal>copy</goal>
-              </goals>
-              <configuration>
-                <artifactItems>
-                  <!--https://github.com/jsimone/webapp-runner#using-without-memcached-or-redis-->
-                  <artifactItem>
-                    <groupId>com.heroku</groupId>
-                    <artifactId>webapp-runner-main</artifactId>
-                    <version>9.0.41.0</version>
-                    <destFileName>webapp-runner.jar</destFileName>
-                  </artifactItem>
-                </artifactItems>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
 
     </plugins>
   </build>
@@ -192,7 +164,7 @@
       <version>${spring.version}</version>
     </dependency>
 
-<!--    ORM-->
+    <!--    ORM-->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
@@ -207,13 +179,6 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
       <version>${hibernate.version}</version>
-    </dependency>
-
-<!--    SafeHtmlValidator-->
-    <dependency>
-      <groupId>org.jsoup</groupId>
-      <artifactId>jsoup</artifactId>
-      <version>${jsoup.version}</version>
     </dependency>
 
     <!--http://hibernate.org/validator/documentation/getting-started/#unified-expression-language-el-->
@@ -258,7 +223,7 @@
       <version>1.2</version>
     </dependency>
 
-<!--    JACKSON-->
+    <!--    JACKSON-->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
@@ -361,17 +326,6 @@
       <version>${assertj.version}</version>
       <scope>test</scope>
     </dependency>
-
-
-
-
-<!--    без профилей-->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>4.0.6.RELEASE</version>
-    </dependency>
-
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
@@ -389,129 +343,8 @@
       <version>${slf4j.version}</version>
       <scope>runtime</scope>
     </dependency>
-
   </dependencies>
 
-
-
-
-
-
-
-<!--  <profiles>-->
-
-<!--    <profile>-->
-<!--      <id>postgres</id>-->
-
-<!--      <build>-->
-<!--        <plugins>-->
-<!--          <plugin>-->
-<!--            <groupId>org.apache.maven.plugins</groupId>-->
-<!--            <artifactId>maven-dependency-plugin</artifactId>-->
-<!--            <version>3.1.2</version>-->
-<!--            <executions>-->
-<!--              <execution>-->
-<!--                <phase>package</phase>-->
-<!--                <goals>-->
-<!--                  <goal>copy</goal>-->
-<!--                </goals>-->
-<!--                <configuration>-->
-<!--                  <artifactItems>-->
-<!--                    &lt;!&ndash;https://github.com/jsimone/webapp-runner#using-without-memcached-or-redis&ndash;&gt;-->
-<!--                    <artifactItem>-->
-<!--                      <groupId>com.heroku</groupId>-->
-<!--                      <artifactId>webapp-runner-main</artifactId>-->
-<!--                      <version>9.0.41.0</version>-->
-<!--                      <destFileName>webapp-runner.jar</destFileName>-->
-<!--                    </artifactItem>-->
-<!--                  </artifactItems>-->
-<!--                </configuration>-->
-<!--              </execution>-->
-<!--            </executions>-->
-<!--          </plugin>-->
-<!--        </plugins>-->
-<!--      </build>-->
-
-
-
-<!--      <dependencies>-->
-
-<!--        &lt;!&ndash;    https://coderoad.ru/8092872/java-lang-ClassNotFoundException-org-springframework-jdbc-datasource&ndash;&gt;-->
-<!--        <dependency>-->
-<!--          <groupId>org.springframework</groupId>-->
-<!--          <artifactId>spring-jdbc</artifactId>-->
-<!--          <version>4.0.6.RELEASE</version>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--          <groupId>org.postgresql</groupId>-->
-<!--          <artifactId>postgresql</artifactId>-->
-<!--          <version>${postgresql.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--          <groupId>org.apache.tomcat</groupId>-->
-<!--          <artifactId>tomcat-jdbc</artifactId>-->
-<!--          <version>${tomcat.version}</version>-->
-<!--          <scope>provided</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--          <groupId>org.slf4j</groupId>-->
-<!--          <artifactId>jul-to-slf4j</artifactId>-->
-<!--          <version>${slf4j.version}</version>-->
-<!--          <scope>runtime</scope>-->
-<!--        </dependency>-->
-<!--      </dependencies>-->
-<!--      <activation>-->
-<!--        <activeByDefault>true</activeByDefault>-->
-<!--      </activation>-->
-<!--    </profile>-->
-
-<!--    <profile>-->
-<!--      <id>heroku</id>-->
-<!--      &lt;!&ndash;https://devcenter.heroku.com/articles/java-webapp-runner            &ndash;&gt;-->
-<!--      <build>-->
-<!--        <plugins>-->
-<!--          <plugin>-->
-<!--            <groupId>org.apache.maven.plugins</groupId>-->
-<!--            <artifactId>maven-dependency-plugin</artifactId>-->
-<!--            <version>3.1.2</version>-->
-<!--            <executions>-->
-<!--              <execution>-->
-<!--                <phase>package</phase>-->
-<!--                <goals>-->
-<!--                  <goal>copy</goal>-->
-<!--                </goals>-->
-<!--                <configuration>-->
-<!--                  <artifactItems>-->
-<!--                    &lt;!&ndash;https://github.com/jsimone/webapp-runner#using-without-memcached-or-redis&ndash;&gt;-->
-<!--                    <artifactItem>-->
-<!--                      <groupId>com.heroku</groupId>-->
-<!--                      <artifactId>webapp-runner-main</artifactId>-->
-<!--                      <version>9.0.41.0</version>-->
-<!--                      <destFileName>webapp-runner.jar</destFileName>-->
-<!--                    </artifactItem>-->
-<!--                  </artifactItems>-->
-<!--                </configuration>-->
-<!--              </execution>-->
-<!--            </executions>-->
-<!--          </plugin>-->
-<!--        </plugins>-->
-<!--      </build>-->
-<!--      <dependencies>-->
-<!--        <dependency>-->
-<!--          <groupId>org.postgresql</groupId>-->
-<!--          <artifactId>postgresql</artifactId>-->
-<!--          <version>${postgresql.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--          <groupId>org.apache.tomcat</groupId>-->
-<!--          <artifactId>tomcat-jdbc</artifactId>-->
-<!--          <version>${tomcat.version}</version>-->
-<!--        </dependency>-->
-<!--      </dependencies>-->
-<!--    </profile>-->
-
-<!--  </profiles>-->
 
   <dependencyManagement>
     <dependencies>
