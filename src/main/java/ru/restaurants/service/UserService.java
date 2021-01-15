@@ -50,7 +50,8 @@ public class UserService implements UserDetailsService {
     public User getByEmail(String email){
         LOG.info("Get user with email {}", email);
         Assert.notNull(email, "Email doesn't be null");
-        return checkNotFound(repository.getByEmail(email), email);
+        String emailToLowerCase = email.toLowerCase();
+        return checkNotFound(repository.getByEmail(emailToLowerCase), email);
     }
 
     public void delete(int id){

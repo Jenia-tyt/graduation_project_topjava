@@ -56,19 +56,6 @@ public class Vote extends AbstractBaseEntity{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        return this.id != null
-                && this.id.equals(((Vote)o).id)
-                && this.dateVote.equals(((Vote)o).dateVote)
-                && this.idMenu.equals(((Vote) o).idMenu)
-                && this.user.equals(((Vote) o).user);
-    }
-
-    @Override
     public String toString() {
         return "User with id " + user.id +
                 "voted " + dateVote +

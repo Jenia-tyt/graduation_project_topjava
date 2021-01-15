@@ -139,20 +139,6 @@ public class User extends AbstractBaseEntity{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null){
-            return false;
-        }
-        if (this.getClass() != Hibernate.getClass(o)){
-            return false;
-        }
-        if (!super.equals(o)) return false;
-        return this.id != null
-                && this.id.equals(((User)o).id)
-                && this.name.equals(((User)o).name)
-                && this.email.equals(((User) o).email);
-    }
-    @Override
     public String toString() {
         return "Id user " + id +
                 "\nUser name " + name;

@@ -3,12 +3,9 @@ package ru.restaurants.repository.datajpa;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import ru.restaurants.model.Restaurant;
 import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.util.execption.NotFoundException;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -22,7 +19,7 @@ class UserDateJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     void duplicateCreateUser (){
-        User user = userService.get(USER_ID);
+        User user = userService.get(USER_ID_15);
         user.setId(USER_ID_66);
         assertThrows(DataAccessException.class, ()-> userService.create(user));
     }
@@ -39,28 +36,28 @@ class UserDateJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     void get() {
-        User user = userService.get(USER_ID);
-        assertThat(user).isEqualTo(USER);
+        User user = userService.get(USER_ID_15);
+        assertThat(user).isEqualTo(USER_WHIT_ID_15);
     }
 
     @Test
     void getByEmail() {
         User user = userService.getByEmail("user@mail.ru");
-        assertThat(user).isEqualTo(USER);
+        assertThat(user).isEqualTo(USER_WHIT_ID_15);
     }
 
     @Test
     void delete() {
-        userService.delete(USER_ID);
-        assertThrows(NotFoundException.class, ()-> userService.get(USER_ID));
+        userService.delete(USER_ID_15);
+        assertThrows(NotFoundException.class, ()-> userService.get(USER_ID_15));
     }
 
     @Test
     void upDate() {
         User user = new User(USER_NEW_WITH_ID_66);
-        user.setId(USER_ID);
+        user.setId(USER_ID_15);
         userService.upDate(user, user.id());
-        assertThat(user).isEqualTo(userService.get(USER_ID));
+        assertThat(user).isEqualTo(userService.get(USER_ID_15));
     }
 
     @Test
@@ -72,6 +69,6 @@ class UserDateJpaRepositoryTest extends AbstractDataJpaTest{
 
     @Test
     void getAll(){
-        assertThat(allUsers).isEqualTo(userService.getAll());
+        assertThat(ALL_USERS).isEqualTo(userService.getAll());
     }
 }

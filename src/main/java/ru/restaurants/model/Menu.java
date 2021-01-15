@@ -90,17 +90,4 @@ public class Menu extends AbstractBaseEntity{
                 "Rating: " + rating;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        return this.id != null
-                && this.id.equals(((Menu) o).id)
-                && this.dateMenu.equals(((Menu) o).dateMenu)
-                && this.rest.equals(((Menu) o).rest)
-                && this.rating.equals(((Menu) o).rating);
-    }
-
 }
