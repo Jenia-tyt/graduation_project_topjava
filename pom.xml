@@ -10,7 +10,6 @@
   <packaging>war</packaging>
 
   <name>Graduation Project Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
@@ -36,11 +35,13 @@
     <!--    Test-->
     <junit.jupiter.version>5.7.0</junit.jupiter.version>
     <assertj.version>3.17.2</assertj.version>
-    <hamcrest.version>1.3</hamcrest.version>
+    <hamcrest.version>2.2</hamcrest.version>
+    <json-path.version>2.5.0</json-path.version>
 
     <!--    Hibernate-->
     <hibernate.version>5.4.22.Final</hibernate.version>
     <hibernate-validator.version>6.1.6.Final</hibernate-validator.version>
+    <jsoup.version>1.13.1</jsoup.version>
     <javax-el.version>3.0.1-b12</javax-el.version>
 
     <!--    Cache-->
@@ -60,8 +61,8 @@
   <build>
     <finalName>Rest</finalName>
     <defaultGoal>package</defaultGoal>
-    <plugins>
 
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -112,7 +113,6 @@
           <deployables>
             <deployable>
               <groupId>ru.restaurants</groupId>
-              <!--              Ratig-->
               <artifactId>Rest</artifactId>
               <type>war</type>
               <properties>
@@ -158,10 +158,34 @@
       <artifactId>spring-data-jpa</artifactId>
       <version>${spring-data-jpa.version}</version>
     </dependency>
+<!--======-->
     <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>${spring.version}</version>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+      <version>2.9.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger-ui</artifactId>
+      <version>2.9.2</version>
+    </dependency>
+<!--    ====-->
+
+<!--    security-->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-taglibs</artifactId>
+      <version>${spring.security.version}</version>
     </dependency>
 
     <!--    ORM-->
@@ -179,6 +203,11 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-jcache</artifactId>
       <version>${hibernate.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>${jsoup.version}</version>
     </dependency>
 
     <!--http://hibernate.org/validator/documentation/getting-started/#unified-expression-language-el-->
@@ -211,9 +240,9 @@
 
     <!--Web-->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>4.0.1</version>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-servlet-api</artifactId>
+      <version>${tomcat.version}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -223,41 +252,10 @@
       <version>1.2</version>
     </dependency>
 
-    <!--    JACKSON-->
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson.version}</version>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-hibernate5</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-jsr310</artifactId>
-      <version>${jackson.version}</version>
-    </dependency>
-
-    <!--security-->
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-web</artifactId>
-      <version>${spring.security.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-      <version>${spring.security.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-taglibs</artifactId>
-      <version>${spring.security.version}</version>
-    </dependency>
-
-
 
     <!-- Webjars (static dependencies distributed as JAR files) -->
     <dependency>
@@ -303,11 +301,34 @@
       <version>${webjars-noty.version}</version>
     </dependency>
 
+    <!--    JACKSON-->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-hibernate5</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
     <!--Test-->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
       <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path</artifactId>
+      <version>${json-path.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -332,16 +353,24 @@
       <version>${postgresql.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jdbc</artifactId>
-      <version>${tomcat.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
       <version>${slf4j.version}</version>
       <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <version>${hamcrest.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+<!--    tomcat jdbc-->
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jdbc</artifactId>
+      <version>${tomcat.version}</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 

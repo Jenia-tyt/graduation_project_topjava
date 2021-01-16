@@ -9,13 +9,15 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
+import static org.hibernate.validator.constraints.SafeHtml.WhiteListType.NONE;
+
 public class ToUser extends AbstractTo {
     private static final long serialVersionUID = 1L;
 
     @NotEmpty
     @NotNull
     @Size(min = 3, max = 30)
-    @SafeHtml
+    @SafeHtml (whitelistType = SafeHtml.WhiteListType.NONE)
     private String name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -23,7 +25,7 @@ public class ToUser extends AbstractTo {
 
     @Email
     @Size(min = 3, max = 30)
-    @SafeHtml
+    @SafeHtml (whitelistType = SafeHtml.WhiteListType.NONE)
     private String email;
 
     @NotNull
@@ -42,6 +44,10 @@ public class ToUser extends AbstractTo {
         this.email = email;
         this.password = password;
         this.role = role;
+    }
+
+    public ToUser(ToUser toUser){
+        this(toUser.getId(), toUser.getName(), toUser.getVoteLast(), toUser.getEmail(), toUser.getPassword(), toUser.getRole());
     }
 
     public String getName() {

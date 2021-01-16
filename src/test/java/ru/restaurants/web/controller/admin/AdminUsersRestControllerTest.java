@@ -7,6 +7,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
+import ru.restaurants.to.ToUser;
 import ru.restaurants.util.execption.NotFoundException;
 import ru.restaurants.web.TestMatcher;
 import ru.restaurants.web.AbstractControllerTest;
@@ -54,10 +55,11 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    void create() throws Exception {
+    void create() throws Exception { //не проходит валидацию
+        ToUser toUser = new ToUser(NEW_TO_USER);
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(NEW_TO_USER)))
+                .content(JsonUtil.writeValue(toUser)))
                 .andDo(print());
 
         User createUser = userService.getByEmail(NEW_TO_USER.getEmail());

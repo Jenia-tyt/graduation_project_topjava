@@ -5,11 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.to.ToUser;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 import static ru.restaurants.util.Convector.covertToUser;
@@ -49,13 +52,12 @@ public class AdminUsersRestController {
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> create ( @RequestBody ToUser toUser){
+    public ResponseEntity<User> create ( @RequestBody @Valid ToUser toUser){ //@valid
         User user = covertToUser(toUser, voteService);
         User created = userService.create(user);
-//        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-//                .path(ADMIN_USERS_REST).build().toUri();
-//        return ResponseEntity.created(uriOfNewResource).body(created);
-        return new ResponseEntity<User>(HttpStatus.CREATED);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(ADMIN_USERS_REST).build().toUri();
+        return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
 //    @PutMapping

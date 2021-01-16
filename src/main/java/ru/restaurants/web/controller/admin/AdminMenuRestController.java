@@ -63,7 +63,7 @@ public class AdminMenuRestController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void upDate(@RequestBody @Valid ToMenu toMenu, @PathVariable int id){
+    public void update(@RequestBody @Valid ToMenu toMenu, @PathVariable int id){
         Menu menu = covertToMenu(toMenu, restaurantService);
         service.upDate(menu, id);
     }
