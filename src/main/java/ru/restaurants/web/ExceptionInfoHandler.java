@@ -26,7 +26,7 @@ import static ru.restaurants.util.execption.ErrorType.*;
 public class ExceptionInfoHandler {
     private static final Logger log = LoggerFactory.getLogger(ExceptionInfoHandler.class);
 
-    public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";//поменять занечени и добавить а бандел
+    public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
     public static final String EXCEPTION_DUPLICATE_NAME = "exception.user.duplicateName";
 
     private static final Map<String, String> CONSTRAINS_I18N_MAP = Map.of(

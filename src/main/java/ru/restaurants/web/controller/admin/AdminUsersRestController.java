@@ -52,7 +52,7 @@ public class AdminUsersRestController {
 
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> create ( @RequestBody @Valid ToUser toUser){ //@valid
+    public ResponseEntity<User> create ( @RequestBody @Valid ToUser toUser){
         User user = covertToUser(toUser, voteService);
         User created = userService.create(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -60,7 +60,11 @@ public class AdminUsersRestController {
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
 
-//    @PutMapping
-//    @RequestMapping(HttpStatus.NO_CONTENT)
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus (HttpStatus.NO_CONTENT)
+    public void update (@RequestBody @Valid ToUser toUser, @PathVariable Integer id){
+        User user = covertToUser(toUser, voteService);
+        userService.upDate(user, id);
+    }
 }
 

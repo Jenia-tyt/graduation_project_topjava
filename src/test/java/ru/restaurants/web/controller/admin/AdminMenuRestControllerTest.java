@@ -3,12 +3,9 @@ package ru.restaurants.web.controller.admin;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import ru.restaurants.model.Menu;
-import ru.restaurants.model.User;
 import ru.restaurants.service.MenuService;
 import ru.restaurants.util.execption.NotFoundException;
 import ru.restaurants.web.TestMatcher;
@@ -22,7 +19,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.restaurants.repository.MenuDataTest.*;
 import static ru.restaurants.repository.RestDataTest.REST_ID;
-import static ru.restaurants.repository.UserDataTest.USER_ID_16;
 import static ru.restaurants.web.controller.admin.AdminMenuRestController.ADMIN_MENU_TO_DAY;
 import static ru.restaurants.web.TestUtil.*;
 

@@ -37,13 +37,13 @@ class UserDateJpaRepositoryTest extends AbstractDataJpaTest{
     @Test
     void get() {
         User user = userService.get(USER_ID_15);
-        assertThat(user).isEqualTo(USER_WHIT_ID_15);
+        assertThat(user).isEqualTo(USER_WITH_ID_15);
     }
 
     @Test
     void getByEmail() {
         User user = userService.getByEmail("user@mail.ru");
-        assertThat(user).isEqualTo(USER_WHIT_ID_15);
+        assertThat(user).isEqualTo(USER_WITH_ID_15);
     }
 
     @Test
