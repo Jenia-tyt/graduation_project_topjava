@@ -10,7 +10,6 @@ import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.to.ToUser;
-import ru.restaurants.util.execption.ErrorChange;
 import ru.restaurants.util.execption.ErrorInfo;
 
 import javax.validation.Valid;
@@ -60,7 +59,7 @@ public class AdminUsersUIController {
         if (user.isNew()) {
             userService.create(user);
         } else {
-            userService.upDate(user, user.id());
+            userService.update(user, user.id());
         }
         return ResponseEntity.ok().build();
     }

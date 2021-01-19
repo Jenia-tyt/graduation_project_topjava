@@ -54,7 +54,8 @@ public class AdminMenuRestController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menu> create (@RequestBody @Valid ToMenu toMenu){
-        Menu menu = service.save(covertToMenu(toMenu, restaurantService));
+        Menu covertToMenu = covertToMenu(toMenu, restaurantService);
+        Menu menu = service.save(covertToMenu);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(ADMIN_MENU_TO_DAY + "/{id}")
                 .buildAndExpand(menu.getId()).toUri();

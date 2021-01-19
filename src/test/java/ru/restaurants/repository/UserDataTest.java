@@ -11,6 +11,8 @@ import java.util.List;
 
 public class UserDataTest {
     public final static Integer USER_ID_15 = 15;
+    public final static Integer USER_ID_16 = 16;
+    public final static Integer USER_ID_17 = 17;
     public final static User USER_WITH_ID_15 = new User(USER_ID_15, "user@mail.ru", "user", "passwordUser", null, LocalDate.of(20, 01, 30), Role.USER);
 
     public final static Integer USER_ID_66 = 66;

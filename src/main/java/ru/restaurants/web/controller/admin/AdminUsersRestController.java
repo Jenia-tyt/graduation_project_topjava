@@ -64,7 +64,7 @@ public class AdminUsersRestController {
     @ResponseStatus (HttpStatus.NO_CONTENT)
     public void update (@RequestBody @Valid ToUser toUser, @PathVariable Integer id){
         User user = covertToUser(toUser, voteService);
-        userService.upDate(user, id);
+        userService.update(user, id);
     }
 }
 

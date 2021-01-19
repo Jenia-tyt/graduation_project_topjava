@@ -44,7 +44,7 @@ public class ProfileRestController {
     public void update(@Valid ToUser toUser, @AuthenticationPrincipal AuthorizedUser authUser){
         if (authUser.getUserTo().getId().equals(toUser.getId())){
             User user = covertToUser(toUser, voteService);
-            userService.upDate(user, user.id());
+            userService.update(user, user.id());
             authUser.update(toUser);
         }
     }

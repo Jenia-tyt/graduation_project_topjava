@@ -53,7 +53,7 @@ public class UIRegisteredController {
         } else if (authUser.getUserTo().getId().equals(toUser.getId())) {
             try {
                 User user = covertToUser(toUser, voteService);
-                userService.upDate(user, user.id());
+                userService.update(user, user.id());
                 authUser.update(toUser);
                 status.setComplete();
             } catch (DataIntegrityViolationException e) {

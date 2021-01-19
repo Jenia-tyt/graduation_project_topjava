@@ -1,7 +1,10 @@
 package ru.restaurants.repository;
 
+import ru.restaurants.model.Menu;
 import ru.restaurants.model.Restaurant;
+import ru.restaurants.to.ToRestaurant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static ru.restaurants.repository.MenuDataTest.MENU_OF_REST;
@@ -30,4 +33,6 @@ public class RestDataTest {
         r.setRating(888);
         return r;
     }
+
+    public static final ToRestaurant NEW_TO_REST = new ToRestaurant(null, "Новый ресторан", new ArrayList<Menu>(), 0);
 }

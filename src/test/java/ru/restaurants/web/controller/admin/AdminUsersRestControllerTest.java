@@ -24,6 +24,7 @@ import static ru.restaurants.util.Convector.covertToUser;
 import static ru.restaurants.util.execption.ErrorType.VALIDATION_ERROR;
 import static ru.restaurants.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
 import static ru.restaurants.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_NAME;
+import static ru.restaurants.web.TestUtil.userHttpBasic;
 
 class AdminUsersRestControllerTest extends AbstractControllerTest {
     private static final String URL_ADMIN_USER_REST_TEST = "/rest/admin/users/";
@@ -36,7 +37,8 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
 
     @Test
     void getAll() throws Exception {
-        perform(MockMvcRequestBuilders.get(URL_ADMIN_USER_REST_TEST))
+        perform(MockMvcRequestBuilders.get(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16)))
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(TestMatcher.usingEqualsComparator(User.class).contentJson(ALL_USERS))
                 .andDo(print());
@@ -44,7 +46,8 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
 
     @Test
     void get() throws Exception {
-        perform(MockMvcRequestBuilders.get(URL_ADMIN_USER_REST_TEST + USER_ID_15))
+        perform(MockMvcRequestBuilders.get(URL_ADMIN_USER_REST_TEST + USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16)))
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(TestMatcher.usingEqualsComparator(User.class).contentJson(USER_WITH_ID_15))
                 .andDo(print());
@@ -57,7 +60,8 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
 
     @Test
     void delete() throws Exception {
-        perform(MockMvcRequestBuilders.delete(URL_ADMIN_USER_REST_TEST +  USER_ID_15))
+        perform(MockMvcRequestBuilders.delete(URL_ADMIN_USER_REST_TEST +  USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16)))
                 .andExpect(status().isNoContent());
 
         assertThrows(NotFoundException.class, ()-> userService.delete(USER_ID_15));
@@ -66,6 +70,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
     @Test
     void create() throws Exception {
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andDo(print());
@@ -80,6 +85,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         UPDATE_USER.setId(USER_ID_15);
 
         perform(MockMvcRequestBuilders.put(URL_ADMIN_USER_REST_TEST + USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(UPDATE_USER)));
 
@@ -92,6 +98,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setName("A");
 
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -104,6 +111,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setName("");
 
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -116,6 +124,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setEmail("badEmail");
 
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -128,6 +137,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setEmail("");
 
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -140,6 +150,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setPassword("AD");
 
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -153,6 +164,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setName("admin");
 
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -168,6 +180,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setEmail("admin@mail.ru");
 
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -185,6 +198,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
 
 
         perform(MockMvcRequestBuilders.put(URL_ADMIN_USER_REST_TEST + USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -199,6 +213,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setEmail("user@mail.ru");
 
         perform(MockMvcRequestBuilders.put(URL_ADMIN_USER_REST_TEST + USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -213,6 +228,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setEmail("usermail.ru");
 
         perform(MockMvcRequestBuilders.put(URL_ADMIN_USER_REST_TEST + USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -227,6 +243,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setEmail("");
 
         perform(MockMvcRequestBuilders.put(URL_ADMIN_USER_REST_TEST + USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -242,6 +259,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setPassword("AD");
 
         perform(MockMvcRequestBuilders.put(URL_ADMIN_USER_REST_TEST + USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -259,6 +277,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setEmail("user@mail.ru");
 
         perform(MockMvcRequestBuilders.put(URL_ADMIN_USER_REST_TEST + USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -275,6 +294,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         NEW_TO_USER.setEmail("admin@mail.ru");
 
         perform(MockMvcRequestBuilders.put(URL_ADMIN_USER_REST_TEST + USER_ID_15)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -287,6 +307,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
     void updateHtmlUnsafeName() throws Exception {
         NEW_TO_USER.setName("<script>alert(123)</script>");
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
@@ -298,12 +319,11 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
     void updateHtmlUnsafeEmail() throws Exception {
         NEW_TO_USER.setEmail("<script>alert(123)</script>");
         perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+                .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(errorType(VALIDATION_ERROR))
                 .andDo(print());
     }
-
-
 }

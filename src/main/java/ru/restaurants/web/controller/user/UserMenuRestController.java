@@ -71,7 +71,7 @@ public class UserMenuRestController {
     }
 
     @PutMapping("/vote/{id}")
-    public ResponseEntity<String> vote(@PathVariable int id, @AuthenticationPrincipal AuthorizedUser authorizedUser, HttpServletRequest request) {
+    public ResponseEntity<String> vote(@PathVariable int id, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         LocalDateTime dateTime = LocalDateTime.now();
 
         Integer idUser = authorizedUser.getId();

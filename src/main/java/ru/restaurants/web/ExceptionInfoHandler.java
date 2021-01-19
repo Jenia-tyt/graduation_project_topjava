@@ -28,10 +28,14 @@ public class ExceptionInfoHandler {
 
     public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
     public static final String EXCEPTION_DUPLICATE_NAME = "exception.user.duplicateName";
+    public static final String EXCEPTION_DUPLICATE_DATE_MENU = "exception.menu.duplicateDate";
+    public static final String EXCEPTION_DUPLICATE_NAME_REST = "exception.rest.duplicateName";
 
     private static final Map<String, String> CONSTRAINS_I18N_MAP = Map.of(
             "users_email_key", EXCEPTION_DUPLICATE_EMAIL,
-            "users_name_key", EXCEPTION_DUPLICATE_NAME);
+            "users_name_key", EXCEPTION_DUPLICATE_NAME,
+            "menu_id_rest_date_menu_key", EXCEPTION_DUPLICATE_DATE_MENU,
+            "restaurant_name_key", EXCEPTION_DUPLICATE_NAME_REST);
 
     private final MessageSourceAccessor messageSourceAccessor;
 

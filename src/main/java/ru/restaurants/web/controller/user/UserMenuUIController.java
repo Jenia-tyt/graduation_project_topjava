@@ -85,7 +85,7 @@ public class UserMenuUIController {
     }
 
     @PutMapping("/vote/{id}")
-    public ResponseEntity<ErrorInfo> vote(@PathVariable int id, @AuthenticationPrincipal AuthorizedUser authorizedUser, HttpServletRequest request) {
+    public ResponseEntity<ErrorInfo> vote(@PathVariable int id, @AuthenticationPrincipal AuthorizedUser authorizedUser) {
         LocalDateTime dateTime = LocalDateTime.now();
 
         Integer idUser = authorizedUser.getId();

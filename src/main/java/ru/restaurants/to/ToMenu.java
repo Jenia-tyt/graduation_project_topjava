@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 public class ToMenu extends AbstractTo{
     private static final long serialVersionUID = 1L;
-    private Integer id;
     private int id_rest;
 
     @NotNull
@@ -22,14 +21,15 @@ public class ToMenu extends AbstractTo{
     private String menuRest;
     private Integer rating;
 
+    public ToMenu(){}
+
     public ToMenu(Integer id, int id_rest, LocalDate dateMenu, String menuRest, Integer rating) {
-        this.id = id;
+        super(id);
         this.id_rest = id_rest;
         this.dateMenu = dateMenu;
         this.menuRest = menuRest;
         this.rating = rating;
     }
-
 
     public Integer getId() {
         return id;

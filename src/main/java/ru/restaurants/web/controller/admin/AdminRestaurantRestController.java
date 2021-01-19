@@ -53,7 +53,8 @@ public class AdminRestaurantRestController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> save(@RequestBody @Valid ToRestaurant toRest) {
-        Restaurant r = restService.save(covertToRestaurant(toRest, menuService));
+        Restaurant restaurant = covertToRestaurant(toRest, menuService);
+        Restaurant r = restService.save(restaurant);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(RESTAURANT + "/{id}")
                 .buildAndExpand(r.getId()).toUri();

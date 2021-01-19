@@ -1,6 +1,7 @@
 package ru.restaurants.repository;
 
 import ru.restaurants.model.Menu;
+import ru.restaurants.to.ToMenu;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -33,4 +34,7 @@ public class MenuDataTest {
     public static final List<Menu> ALL_MENU = List.of(menu1, m2, m3, m4, m5, menu2, menu3, m6, m7);
 
     public static final List<Menu> MENU_TO_DAY = List.of(m7, m6);
+
+    public static final ToMenu NEW_TO_MENU = new ToMenu(null, REST_ID, LocalDate.now(), "Новое меню", 0);
+    public static final ToMenu MENU_DUPLICATE_DATE = new ToMenu(null, REST_ID, LocalDate.of(2020, 01, 30), "Меню с дубликатом даты", 0);
 }

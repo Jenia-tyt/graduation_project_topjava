@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Restaurant;
 import ru.restaurants.repository.RestaurantRepository;
+import ru.restaurants.repository.datajpa.RestaurantsDataJpaRepository;
 import ru.restaurants.web.controller.admin.AdminRestaurantRestController;
 
 import java.util.List;
@@ -20,9 +21,9 @@ public class RestaurantService {
     private static final Logger LOG = LoggerFactory.getLogger(AdminRestaurantRestController.class);
 
     @Autowired
-    private final RestaurantRepository repository;
+    private final RestaurantsDataJpaRepository repository;
 
-    public RestaurantService(RestaurantRepository repository) {
+    public RestaurantService(RestaurantsDataJpaRepository repository) {
         this.repository = repository;
     }
 

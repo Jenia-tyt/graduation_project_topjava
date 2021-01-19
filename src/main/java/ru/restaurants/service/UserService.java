@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
         checkNotFoundWithId(repository.delete(id), id);
     }
 
-    public void upDate(User user,Integer id){
+    public void update(User user, Integer id){
         LOG.info("User update with");
         Assert.notNull(user, "User doesn't be null");
         Assert.notNull(id, "Id doesn't be null");
