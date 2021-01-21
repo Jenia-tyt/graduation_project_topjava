@@ -35,4 +35,5 @@ public class RestDataTest {
     }
 
     public static final ToRestaurant NEW_TO_REST = new ToRestaurant(null, "Новый ресторан", new ArrayList<Menu>(), 0);
+    public static final ToRestaurant TO_REST_DUPLICATED_NAME = new ToRestaurant(null, "restaurant1", new ArrayList<Menu>(), 0);
 }

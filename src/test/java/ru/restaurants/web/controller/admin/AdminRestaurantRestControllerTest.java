@@ -114,17 +114,15 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
         NEW_TO_REST.setName("Новый ресторан");
     }
 
-//    @Test
-//    @Transactional(propagation = Propagation.NEVER)
-//    void createRestaurantWithDuplicateName () throws Exception {
-//        NEW_TO_REST.setName(restaurantService.get(1).getName());
-//
-//        perform(MockMvcRequestBuilders.post(URL_ADMIN_REST)
-//                .with(userHttpBasic(USER_WITH_ID_16))
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(JsonUtil.writeValue(NEW_TO_REST)))
-//                .andExpect(status().isUnprocessableEntity())
-//                .andExpect(errorType(ErrorType.VALIDATION_ERROR))
-//                .andDo(print());
-//    }
+    @Test
+    @Transactional(propagation = Propagation.NEVER)
+    void createRestaurantWithDuplicateName () throws Exception {
+        perform(MockMvcRequestBuilders.post(URL_ADMIN_REST)
+                .with(userHttpBasic(USER_WITH_ID_16))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(TO_REST_DUPLICATED_NAME)))
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(errorType(ErrorType.VALIDATION_ERROR))
+                .andDo(print());
+    }
 }

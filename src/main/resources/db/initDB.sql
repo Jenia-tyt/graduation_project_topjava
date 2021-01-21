@@ -4,12 +4,10 @@ DROP TABLE IF EXISTS restaurant;
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS users;
 
--- CREATE SEQUENCE global_seq START WITH 1;
-
 CREATE TABLE restaurant
 (
     id              INTEGER     PRIMARY KEY DEFAULT nextval('global_seq'),
-    name            VARCHAR     unique not null,
+    name            VARCHAR     UNIQUE NOT NULL,
     rating          INTEGER
 );
 CREATE UNIQUE INDEX rest_id_unic_index ON restaurant (id);

@@ -39,9 +39,9 @@ public class ProfileRestController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@Valid ToUser toUser, @AuthenticationPrincipal AuthorizedUser authUser){
+    public void update(@RequestBody @Valid ToUser toUser, @AuthenticationPrincipal AuthorizedUser authUser){
         if (authUser.getUserTo().getId().equals(toUser.getId())){
             User user = covertToUser(toUser, voteService);
             userService.update(user, user.id());

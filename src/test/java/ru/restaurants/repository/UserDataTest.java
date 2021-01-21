@@ -24,6 +24,12 @@ public class UserDataTest {
     public final static List<User> ALL_USERS = Arrays.asList(USER_WITH_ID_15, USER_WITH_ID_16, USER_WITH_ID_17);
 
     public final static ToUser NEW_TO_USER = new ToUser(null, "newToUser", null, "ToUser@mail.ru", "ToUserPassword", "USER");
+    public final static ToUser NEW_TO_USER_2 = new ToUser(null, "newToUser2", null, "ToUser2@mail.ru", "ToUserPassword", "USER");
+    public final static ToUser TO_USER_WITH_ID_15_DUPLICATE_NAME_ADMIN = new ToUser(15, "admin", null, "ToUser@mail.ru", "passwordUser", "USER");
+    public final static ToUser TO_USER_WITH_ID_15_DUPLICATE_EMAIL_ADMIN = new ToUser(15, "toUser", null, "admin@mail.ru", "passwordUser", "USER");
     public final static ToUser UPDATE_USER = new ToUser(null, "UPDATE", LocalDate.now(), "UPDATE_USER@mail.ru", "UPDATE", "ADMIN");
+    public final static ToUser UPDATE_USER_WITH_ROLE_USER = new ToUser(USER_ID_15, "UPDATE", LocalDate.now(), "UPDATE_USER@mail.ru", "UPDATE", "USER");
+    public final static ToUser TO_USER_WITH_ALERT_NAME = new ToUser(null, "<script>alert(123)</script>", null, "ToUser@mail.ru", "ToUserPassword", "USER");
+    public final static ToUser TO_USER_WITH_ALERT_EMAIL = new ToUser(null, "newToUser", null, "<script>alert(123)</script>", "ToUserPassword", "USER");
 
 }
