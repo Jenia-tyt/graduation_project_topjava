@@ -11,11 +11,9 @@ import ru.restaurants.model.User;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.util.execption.NotFoundException;
-import ru.restaurants.web.TestMatcher;
 import ru.restaurants.web.AbstractControllerTest;
 import ru.restaurants.web.json.JsonUtil;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -24,6 +22,7 @@ import static ru.restaurants.util.Convector.covertToUser;
 import static ru.restaurants.util.execption.ErrorType.VALIDATION_ERROR;
 import static ru.restaurants.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
 import static ru.restaurants.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_NAME;
+import static ru.restaurants.web.TestUtil.readFromJson;
 import static ru.restaurants.web.TestUtil.userHttpBasic;
 
 class AdminUsersRestControllerTest extends AbstractControllerTest {
@@ -40,7 +39,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         perform(MockMvcRequestBuilders.get(URL_ADMIN_USER_REST_TEST)
                 .with(userHttpBasic(USER_WITH_ID_16)))
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(TestMatcher.usingEqualsComparator(User.class).contentJson(ALL_USERS))
+                .andExpect(USER_TEST_MATCHER_NOT_IGNORE.contentJson(ALL_USERS))
                 .andDo(print());
     }
 
@@ -49,7 +48,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         perform(MockMvcRequestBuilders.get(URL_ADMIN_USER_REST_TEST + USER_ID_15)
                 .with(userHttpBasic(USER_WITH_ID_16)))
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(TestMatcher.usingEqualsComparator(User.class).contentJson(USER_WITH_ID_15))
+                .andExpect(USER_TEST_MATCHER_NOT_IGNORE.contentJson(USER_WITH_ID_15))
                 .andDo(print());
     }
 
@@ -69,15 +68,21 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
 
     @Test
     void create() throws Exception {
-        perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
+        NEW_TO_USER.setName("newToUser");
+        User user = covertToUser(NEW_TO_USER, voteService);
+        user.setEmail(user.getEmail().toLowerCase());
+
+        ResultActions actions = perform(MockMvcRequestBuilders.post(URL_ADMIN_USER_REST_TEST)
                 .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_USER)))
+                .andExpect(USER_TEST_MATCHER_IGNORE_ID_PASSWORD_VOTE.contentJson(user))
                 .andDo(print());
 
-        User createUser = userService.getByEmail(NEW_TO_USER.getEmail());
-        NEW_TO_USER.setId(createUser.id());
-        assertThat(createUser).isEqualTo(covertToUser(NEW_TO_USER, voteService));
+        User createUser = readFromJson(actions, User.class);
+        user.setId(createUser.getId());
+
+        USER_TEST_MATCHER_NOT_IGNORE.assertMatch(user, createUser);
     }
 
     @Test
@@ -90,7 +95,7 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
                 .content(JsonUtil.writeValue(UPDATE_USER)));
 
         User updateUser = covertToUser(UPDATE_USER, voteService);
-        assertThat(updateUser).isEqualTo(userService.get(USER_ID_15));
+        USER_TEST_MATCHER_NOT_IGNORE.assertMatch(updateUser, userService.get(USER_ID_15));
     }
 
     @Test

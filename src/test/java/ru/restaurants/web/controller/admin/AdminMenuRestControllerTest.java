@@ -24,7 +24,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static ru.restaurants.repository.MenuDataTest.*;
 import static ru.restaurants.repository.RestDataTest.REST_ID;
-import static ru.restaurants.repository.UserDataTest.NEW_TO_USER;
 import static ru.restaurants.repository.UserDataTest.USER_WITH_ID_16;
 import static ru.restaurants.util.Convector.covertToMenu;
 import static ru.restaurants.util.execption.ErrorType.VALIDATION_ERROR;
@@ -47,7 +46,7 @@ class AdminMenuRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(USER_WITH_ID_16)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(TestMatcher.usingEqualsComparator(Menu.class).contentJson(MENU_TO_DAY))
+                .andExpect(MENU_MATCHER_NOT_IGNORE.contentJson(MENU_TO_DAY))
                 .andDo(print());
     }
 
@@ -57,7 +56,7 @@ class AdminMenuRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(USER_WITH_ID_16)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(TestMatcher.usingEqualsComparator(Menu.class).contentJson(MENU_OF_REST))
+                .andExpect(MENU_MATCHER_NOT_IGNORE.contentJson(MENU_OF_REST))
                 .andDo(print());
     }
 
@@ -72,20 +71,21 @@ class AdminMenuRestControllerTest extends AbstractControllerTest {
 
     @Test
     void create() throws Exception{
+        Menu menu = covertToMenu(NEW_TO_MENU, restaurantService);
+
         ResultActions actions = perform(MockMvcRequestBuilders.post(URL_ADMIN_MENU_TO_DAY)
                 .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(NEW_TO_MENU)))
+                .andExpect(TestMatcher.usingIgnoringFieldsComparator(Menu.class, "id", "rest").contentJson(menu))
                 .andDo(print());
 
         Menu create = readFromJson(actions, Menu.class);
         int id = create.id();
         NEW_TO_MENU.setId(id);
 
-        Menu menu = covertToMenu(NEW_TO_MENU, restaurantService);
-
-        assertThat(create).isEqualTo(menu);
-        assertThat(create).isEqualTo(service.get(menu.id()));
+        menu.setId(id);
+        TestMatcher.usingIgnoringFieldsComparator(Menu.class, "rest").assertMatch(create, menu);
     }
 
     @Test
@@ -100,7 +100,7 @@ class AdminMenuRestControllerTest extends AbstractControllerTest {
                 .andDo(print());
 
         Menu menu = covertToMenu(toMenu, restaurantService);
-        assertThat(service.get(MENU_ID)).isEqualTo(menu);
+        TestMatcher.usingIgnoringFieldsComparator(Menu.class, "rest").assertMatch(service.get(MENU_ID), menu);
     }
 
     @Test

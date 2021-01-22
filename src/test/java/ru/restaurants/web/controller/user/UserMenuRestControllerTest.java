@@ -3,17 +3,10 @@ package ru.restaurants.web.controller.user;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import ru.restaurants.AuthorizedUser;
 import ru.restaurants.model.Menu;
-import ru.restaurants.model.User;
 import ru.restaurants.service.MenuService;
-import ru.restaurants.service.RestaurantService;
 import ru.restaurants.service.UserService;
-import ru.restaurants.web.TestMatcher;
 import ru.restaurants.web.AbstractControllerTest;
 
 import java.time.LocalDate;
@@ -47,7 +40,7 @@ class UserMenuRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(USER_WITH_ID_15)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(TestMatcher.usingEqualsComparator(Menu.class).contentJson(MENU_TO_DAY));
+                .andExpect(MENU_MATCHER_NOT_IGNORE.contentJson(MENU_TO_DAY));
     }
 
     @Test
@@ -56,7 +49,7 @@ class UserMenuRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(USER_WITH_ID_15)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(TestMatcher.usingEqualsComparator(Menu.class).contentJson(MENU_OF_REST));
+                .andExpect(MENU_MATCHER_NOT_IGNORE.contentJson(MENU_OF_REST));
     }
 
     @Test
@@ -92,6 +85,7 @@ class UserMenuRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isPreconditionFailed())
                 .andDo(print());
 
+        MENU_MATCHER_IGNORE_REST.assertMatch(menuService.get(10), m5);
         assertThat(menuService.get(10)).isEqualTo(m5);
         setTime_11_00(LocalTime.of(11,00,00));
     }
@@ -130,12 +124,12 @@ class UserMenuRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    void cantVoteBehindMenuWithDateIsNotToDay() throws Exception{
+    void cantVoteBehindMenuWithDateIsNotToDay() throws Exception{ //переписать с тест матчером
         perform(MockMvcRequestBuilders.put(URL_USER + "vote/10")
                 .with(userHttpBasic(USER_WITH_ID_15)))
                 .andExpect(status().isPreconditionFailed())
                 .andDo(print());
 
-        assertThat(menuService.get(10)).isEqualTo(m5);
+        MENU_MATCHER_IGNORE_REST.assertMatch(menuService.get(10), m5);
     }
 }

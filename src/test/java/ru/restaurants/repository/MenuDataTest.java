@@ -2,6 +2,7 @@ package ru.restaurants.repository;
 
 import ru.restaurants.model.Menu;
 import ru.restaurants.to.ToMenu;
+import ru.restaurants.web.TestMatcher;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,6 +13,9 @@ import static ru.restaurants.repository.RestDataTest.*;
 
 
 public class MenuDataTest {
+    public static TestMatcher<Menu> MENU_MATCHER_NOT_IGNORE = TestMatcher.usingEqualsComparator(Menu.class);
+    public static TestMatcher<Menu> MENU_MATCHER_IGNORE_REST = TestMatcher.usingIgnoringFieldsComparator(Menu.class, "rest");
+
     public static final Integer MENU_ID = 6;
     public static final int NOT_FOUND_ID_MENU = 999;
     public static final Menu MENU = new Menu(MENU_ID, REST, LocalDate.of(2020, Month.JANUARY, 30), "компот 1 макороны 2 суп 3", 0);

@@ -25,7 +25,7 @@ class ProfileRestControllerTest extends AbstractControllerTest {
     private UserService userService;
 
     @Test
-    void update() throws Exception {
+    void update() throws Exception {//переписать с тест матчером и сравнить возвращемый ти
         perform(MockMvcRequestBuilders.put(REST_UPDATE_PROFILE)
                 .with(userHttpBasic(USER_WITH_ID_15))
                 .contentType(MediaType.APPLICATION_JSON)

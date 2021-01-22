@@ -12,11 +12,9 @@ import ru.restaurants.service.MenuService;
 import ru.restaurants.service.RestaurantService;
 import ru.restaurants.util.execption.ErrorType;
 import ru.restaurants.util.execption.NotFoundException;
-import ru.restaurants.web.TestMatcher;
 import ru.restaurants.web.AbstractControllerTest;
 import ru.restaurants.web.json.JsonUtil;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -45,7 +43,8 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(USER_WITH_ID_16)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(TestMatcher.usingEqualsComparator(Restaurant.class).contentJson(LIST_REST));
+                .andExpect(REST_MATCHER_NOT_IGNORE.contentJson(LIST_REST))
+                .andDo(print());
     }
 
     @Test
@@ -54,7 +53,7 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(USER_WITH_ID_16)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(TestMatcher.usingEqualsComparator(Restaurant.class).contentJson(REST));
+                .andExpect(REST_MATCHER_NOT_IGNORE.contentJson(REST));
     }
 
     @Test
@@ -72,22 +71,24 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     void save() throws Exception{
+        Restaurant restaurant = covertToRestaurant(NEW_TO_REST, menuService);
         ResultActions actions = perform(MockMvcRequestBuilders.post(URL_ADMIN_REST)
                 .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(NEW_TO_REST)));
+                .content(JsonUtil.writeValue(NEW_TO_REST)))
+                .andExpect(REST_MATCHER_IGNORE_ID.contentJson(restaurant))
+                .andDo(print());
 
         Restaurant createRest = readFromJson(actions, Restaurant.class);
-
-        Restaurant restaurant = covertToRestaurant(NEW_TO_REST, menuService);
         restaurant.setId(createRest.getId());
 
-        assertThat(restaurant).isEqualTo(createRest);
+        REST_MATCHER_NOT_IGNORE.assertMatch(createRest, restaurant);
     }
 
     @Test
     void update() throws Exception{
         NEW_TO_REST.setId(REST_ID);
+        Restaurant restaurant = covertToRestaurant(NEW_TO_REST, menuService);
 
         perform(MockMvcRequestBuilders.put(URL_ADMIN_REST + REST_ID)
                 .with(userHttpBasic(USER_WITH_ID_16))
@@ -96,8 +97,7 @@ class AdminRestaurantRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isNoContent())
                 .andDo(print());
 
-        Restaurant restaurant = covertToRestaurant(NEW_TO_REST, menuService);
-        assertThat(restaurant).isEqualTo(restaurantService.get(REST_ID));
+        REST_MATCHER_NOT_IGNORE.assertMatch(restaurant, restaurantService.get(REST_ID));
     }
 
     @Test

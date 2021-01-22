@@ -3,6 +3,7 @@ package ru.restaurants.repository;
 import ru.restaurants.model.Role;
 import ru.restaurants.model.User;
 import ru.restaurants.to.ToUser;
+import ru.restaurants.web.TestMatcher;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -10,8 +11,10 @@ import java.util.List;
 
 
 public class UserDataTest {
+    public final static TestMatcher<User> USER_TEST_MATCHER_NOT_IGNORE = TestMatcher.usingEqualsComparator(User.class);
+    public final static TestMatcher<User> USER_TEST_MATCHER_IGNORE_ID_PASSWORD_VOTE = TestMatcher.usingIgnoringFieldsComparator(User.class, "id", "password", "votes");
+
     public final static Integer USER_ID_15 = 15;
-    public final static Integer USER_ID_16 = 16;
     public final static Integer USER_ID_17 = 17;
     public final static User USER_WITH_ID_15 = new User(USER_ID_15, "user@mail.ru", "user", "passwordUser", null, LocalDate.of(20, 01, 30), Role.USER);
 
