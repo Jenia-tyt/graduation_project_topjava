@@ -6,8 +6,8 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
     <div class="container">
-        <a class="navbar-brand" href="Restaurant/login">
-            <img src="Restaurant/resources/images/icon.png" width="32" height="32" class="rounded-circle">
+        <a class="navbar-brand" href="login">
+            <img src="resources/images/icon.png" width="32" height="32" class="rounded-circle">
             <spring:message code="app.title"/>
         </a>
 
@@ -21,14 +21,14 @@
                 <li class="nav-item">
 
                     <sec:authorize access="isAuthenticated()">
-                        <form:form class="form-inline my-2" action="Restaurant/logout" method="post">
+                        <form:form class="form-inline my-2" action="logout" method="post">
                             <sec:authorize access="hasRole('ADMIN')">
-                                <a class="btn btn-info mr-1" href="/Restaurant/restaurant"><spring:message code="rest.title"/></a>
+                                <a class="btn btn-info mr-1" href="restaurant"><spring:message code="rest.title"/></a>
 
-                                <a class="btn btn-info mr-1" href="/Restaurant/users"><spring:message code="users.title"/></a>
+                                <a class="btn btn-info mr-1" href="users"><spring:message code="users.title"/></a>
                             </sec:authorize>
 
-                            <a class="btn btn-info mr-1" href="Restaurant/profile"><spring:message code="app.user"/><sec:authentication property="principal.userTo.name"/></a>
+                            <a class="btn btn-info mr-1" href="profile"><spring:message code="app.user"/><sec:authentication property="principal.userTo.name"/></a>
 
                             <button class="btn btn-primary my-1" type="submit">
                                 <span class="fa fa-sign-out"></span>
@@ -38,8 +38,8 @@
 
                     <sec:authorize access="isAnonymous()">
                             <form:form id="login_form" class="form-inline my-2" action="${pageContext.request.contextPath}/spring_security_check" method="post">
-                                <input class="form-control mr-1" type="text" placeholder="Email" name="username">
-                                <input class="form-control mr-1" type="password" placeholder="Password" name="password">
+                                <input class="form-control mr-1" type="text" placeholder="Email" name="username" autocomplete="off">
+                                <input class="form-control mr-1" type="password" placeholder="Password" name="password" autocomplete="off">
                                 <button class="btn btn-success" type="submit">
                                     <span class="fa fa-sign-in"></span>
                                 </button>

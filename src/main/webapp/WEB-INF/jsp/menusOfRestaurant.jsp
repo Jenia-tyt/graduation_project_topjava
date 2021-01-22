@@ -5,13 +5,12 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<script type="text/javascript" src="Restaurant/resources/js/GP.common.js" defer></script>
-<script type="text/javascript" src="Restaurant/resources/js/GP.menusOfRest.js" defer></script>
+<script type="text/javascript" src="resources/js/GP.common.js" defer></script>
+<script type="text/javascript" src="resources/js/GP.menusOfRest.js" defer></script>
 <jsp:include page="fragments/bodyHaeder.jsp"/>
 
 <div class="jumbotron pt-4">
     <div class="container">
-        <%--        сюда надо добьавить название ресторана--%>
         <h3 class="text-center"><spring:message code="rest.allMenu"/></h3>
         <br>
 

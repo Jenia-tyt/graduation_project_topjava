@@ -8,8 +8,8 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <html>
 <body>
-<script type="text/javascript" src="Restaurant/resources/js/GP.common.js" defer></script>
-<script type="text/javascript" src="Restaurant/resources/js/GP.users.js" defer></script>
+<script type="text/javascript" src="resources/js/GP.common.js" defer></script>
+<script type="text/javascript" src="resources/js/GP.users.js" defer></script>
 <jsp:include page="fragments/bodyHaeder.jsp"/>
 
 <div class="jumbotron pt-4">

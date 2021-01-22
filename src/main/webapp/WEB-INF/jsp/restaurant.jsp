@@ -4,8 +4,8 @@
 
 <jsp:include page="fragments/headTag.jsp"/>
 <html>
-<script type="text/javascript" src="Restaurant/resources/js/GP.common.js" defer></script>
-<script type="text/javascript" src="Restaurant/resources/js/GP.restaurant.js" defer></script>
+<script type="text/javascript" src="resources/js/GP.common.js" defer></script>
+<script type="text/javascript" src="resources/js/GP.restaurant.js" defer></script>
 <body>
 <jsp:include page="fragments/bodyHaeder.jsp"/>
 
@@ -25,8 +25,6 @@
             <thead>
             <tr>
                 <th><spring:message code="rest.name"/></th>
-<%--                Сюда дабавить рейтинг ресторана ккоторый должен сумироваться из всех голосов за все меню--%>
-<%--                внести в правки в метод vote сделю в конце как доп--%>
                 <th><spring:message code="rest.rating"/></th>
                 <th></th>
                 <th></th>

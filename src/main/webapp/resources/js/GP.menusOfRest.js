@@ -1,4 +1,4 @@
-var URL_ALL_MENU_REST = '/Restaurant/admin/menuToDay/';
+var URL_ALL_MENU_REST = '/admin/menuToDay/';
 
 var cat = localStorage.getItem('idRest')
 

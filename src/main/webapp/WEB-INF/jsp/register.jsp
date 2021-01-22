@@ -7,7 +7,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<script type="text/javascript" src="Restaurant/resources/js/GP.common.js" defer></script>
+<script type="text/javascript" src="resources/js/GP.common.js" defer></script>
 <jsp:include page="fragments/bodyHaeder.jsp"/>
 
 <div class="jumbotron pt-4">
@@ -18,7 +18,7 @@
             <div class="col-5 offset-3">
                 <h3> <spring:message code="common.registered"/></h3>
 
-                <form:form class="form-group"  method="post" modelAttribute="toUser" action="Restaurant/register"
+                <form:form class="form-group"  method="post" modelAttribute="toUser" action="register"
                       charset="UTF-8" accept-charset="UTF-8">
 
                     <input type="text" hidden="hidden" name="role" id="role" value="USER">
@@ -28,7 +28,7 @@
                     <rest:inputField name="password" labelCode="users.password" inputType="password"/>
 
                 <div class="text-right">
-                    <a class="btn btn-secondary" onclick="location.href = 'Restaurant/login'">
+                    <a class="btn btn-secondary" onclick="location.href = 'login'">
                         <span class="fa fa-close"></span>
                         <spring:message code="common.cancel"/>
                     </a>

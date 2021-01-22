@@ -1,5 +1,5 @@
     var form;
-    var URL_ADMIN = '/Restaurant/admin/menuToDay';
+    var URL_ADMIN = '/admin/menuToDay';
 
     $.ajaxSetup({cache: false});
 
@@ -108,7 +108,7 @@
     function updateRow(id, id_rest) { //переписать через кусловие
         form.find(":input").val("");
         $("#modalTitle").html(i18n["editTitle"]);
-        $.get('/Restaurant/profile/menuToDay/' + id, function (data) {
+        $.get('/profile/menuToDay/' + id, function (data) {
             $.each(data, function (key, value) {
                 if (key === 'dateMenu'){
                     let date = new Date(value).toLocaleString().substring(0,10).split('.').reverse().join("-");
@@ -142,7 +142,7 @@
 
     function renderVoteBtn(date, type, row){
         if (type === "display") {
-            return "<a onclick='vote(" + row.id + ")'><span class='btn btn-primary'><img src='Restaurant/resources/images/icon2.png' width=30 height=30></span></a>";
+            return "<a onclick='vote(" + row.id + ")'><span class='btn btn-primary'><img src='resources/images/icon2.png' width=30 height=30></span></a>";
         }
     }
 
@@ -193,7 +193,7 @@
     function deleteRowForUser(id) {
         if (confirm(i18n['common.confirm'])) {
             $.ajax({
-                url: '/Restaurant/admin/users/' + id,
+                url: '/admin/users/' + id,
                 type: "DELETE"
             }).done(function () {
                 ctx.updateTable();
@@ -205,7 +205,7 @@
     function updateRowForUser(id) {
         form.find(":input").val("");
         $("#modalTitle").html(i18n["editUser"]);
-        $.get('/Restaurant/admin/users/' + id, function (data) {
+        $.get('/admin/users/' + id, function (data) {
             $.each(data, function (key, value) {
                 if (key === "role") {
                     let str = value.sort().join('.');
@@ -227,7 +227,7 @@
     function updateUser(){
         $.ajax({
             type: "POST",
-            url: "/Restaurant/admin/users",
+            url: "/admin/users",
             data: form.serialize(),
             success: function (date){
                 $('#editRow').modal('hide');
@@ -248,7 +248,7 @@
     function updateRowForRest(id) { //переписать через условие
         form.find(":input").val("");
         $("#modalTitle").html(i18n["editTitle"]);
-        $.get("/Restaurant/admin/restaurant/" + id, function (data) {
+        $.get("/admin/restaurant/" + id, function (data) {
             $.each(data, function (key, value) {
                 form.find("input[name='" + key + "']").val(value);
             });
@@ -264,7 +264,7 @@
 
     function renderRestaurantForPageRest(data, type, row) {
         if (type === "display") {
-            return "<a href='/Restaurant/menusOfRestaurant'><span class='btn btn-success' onclick='set(" + row.id + ")'>"+ row.name +"</span></a>"
+            return "<a href='/menusOfRestaurant'><span class='btn btn-success' onclick='set(" + row.id + ")'>"+ row.name +"</span></a>"
 
         }
     }
@@ -272,7 +272,7 @@
     function deleteRowForRest(id) {
         if (confirm(i18n['common.confirm'])) {
             $.ajax({
-                url: "/Restaurant/admin/restaurant/" + id,
+                url: "/admin/restaurant/" + id,
                 type: "DELETE"
             }).done(function () {
                 ctx.updateTableRest();
@@ -284,7 +284,7 @@
     function saveForRest(){
         $.ajax({
             type: "POST",
-            url: "/Restaurant/admin/restaurant",
+            url: "/admin/restaurant",
             data: form.serialize(),
             success: function (data){
                 $('#editRow').modal('hide');

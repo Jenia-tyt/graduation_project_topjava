@@ -1,4 +1,4 @@
-var URL_USER_MENU = '/Restaurant/profile/menuToDay/';
+var URL_USER_MENU = '/profile/menuToDay/';
 
     var ctx = {
         ajaxUrl:URL_USER_MENU,

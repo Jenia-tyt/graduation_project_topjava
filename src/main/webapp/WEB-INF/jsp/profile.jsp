@@ -7,7 +7,7 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<script type="text/javascript" src="Restaurant/resources/js/GP.common.js" defer></script>
+<script type="text/javascript" src="resources/js/GP.common.js" defer></script>
 <jsp:include page="fragments/bodyHaeder.jsp"/>
 
 <div class="jumbotron pt-4">
@@ -17,7 +17,7 @@
             <div class="col-5 offset-3">
                 <h3><spring:message code="profile.title"/> ${toUser.name}</h3>
 
-                <form:form class="form-group"  method="post" modelAttribute="toUser" action="Restaurant/register/update"
+                <form:form class="form-group"  method="post" modelAttribute="toUser" action="register/update"
                       charset="UTF-8" accept-charset="UTF-8">
 
                     <input type="number" name="id" id="id" hidden="hidden" value="${toUser.id()}">
@@ -33,7 +33,7 @@
                     <br>
 
                     <div class="text-right">
-                        <a class="btn btn-secondary" onclick="location.href = 'Restaurant/users'">
+                        <a class="btn btn-secondary" onclick="location.href = 'users'">
                             <span class="fa fa-close"></span>
                             <spring:message code="common.cancel"/>
                         </a>

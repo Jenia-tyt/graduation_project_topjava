@@ -1,4 +1,4 @@
-var URL_ALL_USERS = '/Restaurant/admin/users/';
+var URL_ALL_USERS = '/admin/users/';
 
 var ctx = {
     ajaxUrl:URL_ALL_USERS,

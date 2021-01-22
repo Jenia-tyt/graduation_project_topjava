@@ -1,4 +1,4 @@
-var URL_ALL_REST = '/Restaurant/admin/restaurant';
+var URL_ALL_REST = '/admin/restaurant';
 
 var ctx = {
     ajaxUrl:URL_ALL_REST,
