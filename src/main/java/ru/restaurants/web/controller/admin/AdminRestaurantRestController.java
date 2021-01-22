@@ -63,7 +63,7 @@ public class AdminRestaurantRestController {
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void upDate(@RequestBody @Valid ToRestaurant toRest, @PathVariable int id){
+    public void update(@RequestBody @Valid ToRestaurant toRest, @PathVariable int id){
         Restaurant rest = covertToRestaurant(toRest, menuService);
         restService.update(rest, id);
     }

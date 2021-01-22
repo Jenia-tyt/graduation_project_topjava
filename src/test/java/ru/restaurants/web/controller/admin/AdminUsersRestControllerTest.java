@@ -92,7 +92,8 @@ class AdminUsersRestControllerTest extends AbstractControllerTest {
         perform(MockMvcRequestBuilders.put(URL_ADMIN_USER_REST_TEST + USER_ID_15)
                 .with(userHttpBasic(USER_WITH_ID_16))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(UPDATE_USER)));
+                .content(JsonUtil.writeValue(UPDATE_USER)))
+                .andDo(print());
 
         User updateUser = covertToUser(UPDATE_USER, voteService);
         USER_TEST_MATCHER_NOT_IGNORE.assertMatch(updateUser, userService.get(USER_ID_15));
