@@ -12,7 +12,6 @@ VALUES  ('restaurant1', 0),
         ('restaurant5', 99),
         ('restaurant4', -10);
 
-
 INSERT INTO menu (id_rest, date_menu, menu)
 VALUES  (1, '2020-01-30', 'компот 10руб, макороны 20руб, суп 30руб'),
         (2, '2020-01-30', 'чай 15руб, гречка 20руб, щи 40руб'),
