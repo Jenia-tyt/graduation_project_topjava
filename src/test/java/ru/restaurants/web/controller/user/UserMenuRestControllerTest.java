@@ -40,7 +40,8 @@ class UserMenuRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(USER_WITH_ID_15)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(MENU_MATCHER_NOT_IGNORE.contentJson(MENU_TO_DAY));
+                .andExpect(MENU_MATCHER_NOT_IGNORE.contentJson(MENU_TO_DAY))
+                .andDo(print());
     }
 
     @Test
@@ -49,7 +50,8 @@ class UserMenuRestControllerTest extends AbstractControllerTest {
                 .with(userHttpBasic(USER_WITH_ID_15)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(MENU_MATCHER_NOT_IGNORE.contentJson(MENU_OF_REST));
+                .andExpect(MENU_MATCHER_NOT_IGNORE.contentJson(MENU_OF_REST))
+                .andDo(print());
     }
 
     @Test

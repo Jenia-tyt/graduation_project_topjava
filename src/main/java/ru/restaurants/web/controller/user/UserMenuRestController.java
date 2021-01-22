@@ -59,9 +59,8 @@ public class UserMenuRestController {
         return menuService.getAllByDate(date);
     }
 
-    @GetMapping("/restaurant")
-    public List<Menu> getAllMenuOfRest(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
+    @GetMapping("/restaurant/{id}")
+    public List<Menu> getAllMenuOfRest(@PathVariable int id) {
         return menuService.getAllMenuOfRest(id);
     }
 
