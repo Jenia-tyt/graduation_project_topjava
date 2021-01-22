@@ -94,7 +94,7 @@ Restaurant with id = 1 delete (Restaurant' id have number since 1 - 5): \
 curl --location --request DELETE 'http://localhost:8080/Restaurant/rest/admin/restaurant/5' \
 --header 'Authorization:Basic YWRtaW5AbWFpbC5ydTpwYXNzd29yZEFkbWlu'
 
-New restaurant crete: \
+New restaurant create: \
 curl --location --request POST 'http://localhost:8080/Restaurant/rest/admin/restaurant' \
 --header 'Authorization:Basic YWRtaW5AbWFpbC5ydTpwYXNzd29yZEFkbWlu' \
 --header 'Content-Type: application/json' \
