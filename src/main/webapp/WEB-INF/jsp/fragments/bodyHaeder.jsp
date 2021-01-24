@@ -5,6 +5,9 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
+<%--    предупреждение favicon запросов--%>
+    <link rel="icon" href="data:,">
+
     <div class="container">
         <a class="navbar-brand" href="login">
             <img src="resources/images/icon.png" width="32" height="32" class="rounded-circle">
