@@ -105,7 +105,7 @@
         }
     }
 
-    function updateRow(id, id_rest) { //переписать через кусловие
+    function updateRow(id, id_rest) {
         form.find(":input").val("");
         $("#modalTitle").html(i18n["editTitle"]);
         $.get('/profile/menuToDay/' + id, function (data) {

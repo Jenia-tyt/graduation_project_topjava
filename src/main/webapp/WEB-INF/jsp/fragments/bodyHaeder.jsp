@@ -6,7 +6,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
 <%--    предупреждение favicon запросов--%>
-    <link rel="icon" href="data:,">
+    <link rel="icon" href="data:;base64,=">
 
     <div class="container">
         <a class="navbar-brand" href="login">
