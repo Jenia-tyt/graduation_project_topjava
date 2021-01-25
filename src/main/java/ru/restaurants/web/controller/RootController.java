@@ -62,4 +62,9 @@ public class RootController {
         model.addAttribute("toUser", authUser.getUserTo());
         return "profile";
     }
+
+    @GetMapping("/favicon.ico")
+    public String favicon(){
+        return "menuToDay";
+    }
 }
