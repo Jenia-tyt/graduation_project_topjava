@@ -19,6 +19,7 @@
                         "lengthMenu":       i18n["common.lengthMenu"],
                         "loadingRecords":   i18n["common.loadingRecords"],
                         "processing":       i18n["common.processing"],
+                        "sZeroRecords":     i18n["common.sZeroRecords"],
                         "paginate": {
                             "next":         i18n["common.paginate.next"],
                             "previous":     i18n["common.paginate.previous"]},
