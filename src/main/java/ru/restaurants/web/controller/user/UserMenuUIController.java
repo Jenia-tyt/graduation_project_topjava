@@ -1,7 +1,5 @@
 package ru.restaurants.web.controller.user;
 
-
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,7 +18,6 @@ import ru.restaurants.service.RestaurantService;
 import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.util.execption.ErrorInfo;
-import ru.restaurants.util.execption.ErrorType;
 import ru.restaurants.util.execption.VoteException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,9 +25,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
-
-import static ru.restaurants.util.execption.ErrorType.VALIDATION_ERROR;
-import static ru.restaurants.util.execption.ErrorType.VOTE_ERROR;
 
 
 @RestController

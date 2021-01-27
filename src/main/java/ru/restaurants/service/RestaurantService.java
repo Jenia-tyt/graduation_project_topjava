@@ -8,7 +8,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import ru.restaurants.model.Restaurant;
-import ru.restaurants.repository.RestaurantRepository;
 import ru.restaurants.repository.datajpa.RestaurantsDataJpaRepository;
 import ru.restaurants.web.controller.admin.AdminRestaurantRestController;
 

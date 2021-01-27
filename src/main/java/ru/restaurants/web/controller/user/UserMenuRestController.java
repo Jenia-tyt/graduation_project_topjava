@@ -18,7 +18,6 @@ import ru.restaurants.service.UserService;
 import ru.restaurants.service.VoteService;
 import ru.restaurants.util.execption.VoteException;
 
-import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;

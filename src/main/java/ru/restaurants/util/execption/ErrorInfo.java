@@ -16,4 +16,16 @@ public class ErrorInfo {
     public ErrorType getType() {
         return type;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getTypeMessage() {
+        return typeMessage;
+    }
+
+    public String[] getDetails() {
+        return details;
+    }
 }

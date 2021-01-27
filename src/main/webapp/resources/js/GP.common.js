@@ -19,6 +19,7 @@
                         "lengthMenu":       i18n["common.lengthMenu"],
                         "loadingRecords":   i18n["common.loadingRecords"],
                         "processing":       i18n["common.processing"],
+                        "sZeroRecords":     i18n["common.sZeroRecords"],
                         "paginate": {
                             "next":         i18n["common.paginate.next"],
                             "previous":     i18n["common.paginate.previous"]},
@@ -105,7 +106,7 @@
         }
     }
 
-    function updateRow(id, id_rest) { //переписать через кусловие
+    function updateRow(id, id_rest) {
         form.find(":input").val("");
         $("#modalTitle").html(i18n["editTitle"]);
         $.get('/Restaurant/profile/menuToDay/' + id, function (data) {
@@ -175,7 +176,7 @@
         localStorage.setItem("idRest", idRest);
     }
 
-    // ==================== USERS+++++++++++++++++++++ наверно надо вынести в отдельный файл так как получается много дублируеющего кода
+    // ==================== USERS+++++++++++++++++++++
 
 
     function renderEditBtnForUser(data, type, row) {

@@ -9,8 +9,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
-import static org.hibernate.validator.constraints.SafeHtml.WhiteListType.NONE;
-
 public class ToUser extends AbstractTo {
     private static final long serialVersionUID = 1L;
 

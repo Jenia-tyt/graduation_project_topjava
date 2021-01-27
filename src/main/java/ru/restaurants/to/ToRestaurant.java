@@ -12,7 +12,6 @@ public class ToRestaurant extends AbstractTo{
     @SafeHtml
     private String name;
 
-//    @NotEmpty
     private List<Menu> menu;
 
     private Integer rating;

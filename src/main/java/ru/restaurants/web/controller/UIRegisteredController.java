@@ -17,7 +17,6 @@ import ru.restaurants.to.ToUser;
 
 import javax.validation.Valid;
 
-import static ru.restaurants.util.CheckedAdmin.checkedAdmin;
 import static ru.restaurants.util.Convector.covertToUser;
 import static ru.restaurants.util.ErrorMessages.messageErrorForEmailAndName;
 

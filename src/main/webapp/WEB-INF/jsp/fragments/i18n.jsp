@@ -23,7 +23,8 @@
                                                 "common.paginate.next",
                                                 "common.paginate.previous",
                                                 "common.loadingRecords",
-                                                "common.processing"}%>'>
+                                                "common.processing",
+                                                "common.sZeroRecords"}%>'>
 
     i18n['${key}'] = '<spring:message code="${key}"/>';
     </c:forEach>
