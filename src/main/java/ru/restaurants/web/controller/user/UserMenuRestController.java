@@ -24,6 +24,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import static ru.restaurants.util.UpdateDate.updateDate;
+
 @RestController
 @RequestMapping(value = UserMenuRestController.USER_MENU_TO_DAY, produces = MediaType.APPLICATION_JSON_VALUE)
 public class UserMenuRestController {
@@ -56,6 +58,7 @@ public class UserMenuRestController {
     @GetMapping()
     public List<Menu> getAllByDate() {
         LocalDate date = LocalDate.now();
+        updateDate(menuService, date);
         return menuService.getAllByDate(date);
     }
 
