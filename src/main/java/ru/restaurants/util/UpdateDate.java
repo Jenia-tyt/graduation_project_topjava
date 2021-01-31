@@ -13,5 +13,8 @@ public class UpdateDate {
         
         menu1.setDateMenu(date);
         menu2.setDateMenu(date);
+
+        menuService.upDate(menu1, menu1.id());
+        menuService.upDate(menu2, menu2.id());
     }
 }
