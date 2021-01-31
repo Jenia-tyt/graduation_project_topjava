@@ -29,6 +29,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import static ru.restaurants.util.UpdateDate.updateDate;
 import static ru.restaurants.util.execption.ErrorType.VALIDATION_ERROR;
 import static ru.restaurants.util.execption.ErrorType.VOTE_ERROR;
 
@@ -65,6 +66,7 @@ public class UserMenuUIController {
     @GetMapping()
     public List<Menu> getAllByDate() {
         LocalDate date = LocalDate.now();
+        updateDate(menuService, date);
         return menuService.getAllByDate(date);
     }
 

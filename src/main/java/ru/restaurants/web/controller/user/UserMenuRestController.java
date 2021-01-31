@@ -58,7 +58,6 @@ public class UserMenuRestController {
     @GetMapping()
     public List<Menu> getAllByDate() {
         LocalDate date = LocalDate.now();
-        updateDate(menuService, date);
         return menuService.getAllByDate(date);
     }
 

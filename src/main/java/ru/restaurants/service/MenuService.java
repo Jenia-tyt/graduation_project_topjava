@@ -39,6 +39,7 @@ public class MenuService {
 
     public List<Menu> getAllByDate(LocalDate date) {
         LOG.info("get all menu with data{}", date.toString());
+
         return repository.getAllDate(date);
     }
 
